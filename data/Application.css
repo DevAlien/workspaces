@@ -1,0 +1,94 @@
+/*
+* Copyright (c) 2017 Daniel Foré (http://danielfore.com)
+*
+* This program is free software; you can redistribute it and/or
+* modify it under the terms of the GNU General Public
+* License as published by the Free Software Foundation; either
+* version 2 of the License, or (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+* General Public License for more details.
+*
+* You should have received a copy of the GNU General Public
+* License along with this program; if not, write to the
+* Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+* Boston, MA 02110-1301 USA
+*/
+
+
+@define-color shaded_bg shade(@bg_color, 0.92);
+
+.sidebar, .left-header, .pane {
+    background-color: @shaded_bg;
+}
+
+.right-header, .right-stack {
+    transition: all 250ms ease-in-out;
+}
+
+.right-header {
+    background-color: @base_color;
+} 
+
+.right-header:dir(ltr) {
+    border-left: none;
+    border-top-left-radius: 0;
+}
+
+.right-header:dir(rtl) {
+    border-top-right-radius: 0;
+}
+
+paned {
+    background-color: @shaded_bg;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+paned.horizontal > separator {
+    background-image:
+        linear-gradient(
+            to right,
+            @menu_separator 1px,
+            @menu_separator_shadow 1px,
+            @menu_separator_shadow 2px,
+            transparent 2px
+        );
+    margin-right: 0px;
+    min-width: 1px;
+}
+
+paned.vertical > separator {
+    background-image:
+        linear-gradient(
+            @menu_separator -2px,
+            @menu_separator_shadow 1px,
+            @menu_separator_shadow 2px,
+            transparent 2px
+        );
+    margin-bottom: 0px;
+    min-height: 1px;
+}
+
+.titlebar {
+    border: none;
+}
+grid.titlebar {
+	padding: 0;
+}
+
+.left-header:dir(ltr) {
+    border-top-right-radius: 0;
+}
+
+.left-header:dir(rtl) {
+    border-top-left-radius: 0;
+}
+
+.dialog-title {
+    margin-left: 12px;
+}

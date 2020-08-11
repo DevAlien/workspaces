@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<schemalist>
+    <schema path="/com/github/devalien/workspaces/" id="com.github.devalien.workspaces">
+        <key name="pos-x" type="i">
+            <default>360</default>
+            <summary>Horizontal position</summary>
+            <description>Saved horizontal position of main window</description>
+        </key>
+        <key name="pos-y" type="i">
+            <default>640</default>
+            <summary>Vertical position</summary>
+            <description>Saved vertical position of main window</description>
+        </key>
+        <key name="window-width" type="i">
+            <default>1040</default>
+            <summary>Window width</summary>
+            <description>Saved width of main window</description>
+        </key>
+        <key name="window-height" type="i">
+            <default>400</default>
+            <summary>Window height</summary>
+            <description>Saved height of main window</description>
+        </key>
+        <key name="pane-position" type="i">
+            <default>255</default>
+            <summary>Most recent pane position</summary>
+            <description>Most recent pane position</description>
+        </key>
+    </schema>
+</schemalist>

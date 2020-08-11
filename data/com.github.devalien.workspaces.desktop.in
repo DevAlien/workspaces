@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Workspaces
+Comment=Manage your workspaces
+GenericName=Workspace
+Exec=com.github.devalien.workspaces %U
+Icon=com.github.devalien.workspaces
+Terminal=false
+Categories=Utility;GTK;Development;
+Keywords=Develop
