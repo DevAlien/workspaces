@@ -20,31 +20,61 @@
  */
 
 public class Workspaces.Widgets.ExpandableCategory : Granite.Widgets.SourceList.ExpandableItem {
-    private Workspaces.Models.Category category;
+    private Workspaces.Models.Workspace workspace;
 
-    public ExpandableCategory (Workspaces.Models.Category category) {
-        Object (name: category.name);
+    public signal void added_new_item (Workspaces.Widgets.WorkspaceItem item);
 
-        this.category = category;
+    public ExpandableCategory (Workspaces.Models.Workspace workspace) {
+        Object (name: workspace.name);
+
+        this.workspace = workspace;
         load ();
     }
 
     void load () {
         collapsible = true;
         expanded = true;
+        var default_icon = new ThemedIcon ("dialog-question");
+        //  icon_image.gicon = default_icon;
 
-        foreach ( var workspace in category.workspaces ) {
-            add_item (workspace);
+        //  icon_image.pixel_size = 24;
+        icon = default_icon;
+        foreach ( var item in workspace.items ) {
+            add_item (item, false);
         }
 
-        category.workspace_added.connect ((workspace) => {
-            add_item (workspace);
+        workspace.item_added.connect ((item) => {
+            add_item (item, true);
         });
     }
 
-    private void add_item (Workspaces.Models.Workspace workspace) {
-        var item = new Workspaces.Widgets.WorkspaceItem (workspace);
-        item.set_data<string>("stack_child", workspace.name);
-        add (item);
+    private void add_item (Workspaces.Models.Item item, bool to_open) {
+        var it = new Workspaces.Widgets.WorkspaceItem (item);
+        it.set_data<string>("stack_child", item.name);
+        it.action_activated.connect ((i) => {
+            i.selectable = false;
+            it.item.execute_command ();
+            GLib.Timeout.add (100, () => {
+                i.selectable = true;
+                return false;
+            }, GLib.Priority.DEFAULT);
+        });
+        it.activated.connect ((i) => {
+            warning (i.name);
+        });
+        add (it);
+
+        if (to_open == true) {
+            added_new_item (it);
+        }
+    }
+
+    public override Gtk.Menu ? get_context_menu () {
+        Gtk.Menu menu = new Gtk.Menu ();
+        Gtk.MenuItem menu_item = new Gtk.MenuItem.with_label (_ ("Delete"));
+        menu.add (menu_item);
+        menu.show_all ();
+
+        return menu;
     }
 }

@@ -21,14 +21,16 @@
 
 using Gee;
 
-public class Workspaces.Window : Gtk.Window {
+public class Workspaces.PreferencesWindow : Gtk.Window {
     public GLib.Settings settings;
     public Gtk.Stack stack { get; set; }
-    private Workspaces.Controllers.WorkspacesController _workspaces;
+
+    public Workspaces.Controllers.WorkspacesController workspaces_controller {get; set;}
+
     private Granite.Widgets.SourceList source_list;
 
-    public Window (Application app) {
-        Object (application: app,
+    public PreferencesWindow () {
+        Object (application: Application.instance,
                 height_request: 600,
                 icon_name: "document-new",
                 resizable: true,
@@ -37,6 +39,7 @@ public class Workspaces.Window : Gtk.Window {
     }
 
     construct {
+        workspaces_controller = Application.instance.workspaces_controller;
         var provider = new Gtk.CssProvider ();
 
         window_position = Gtk.WindowPosition.CENTER;
@@ -45,7 +48,7 @@ public class Workspaces.Window : Gtk.Window {
         move (settings.get_int ("pos-x"), settings.get_int ("pos-y"));
 
         set_geometry_hints (null, Gdk.Geometry () {
-            min_height = 440, min_width = 400
+            min_height = 440, min_width = 900
         }, Gdk.WindowHints.MIN_SIZE);
 
         resize (settings.get_int ("window-width"), settings.get_int ("window-height"));
@@ -54,7 +57,7 @@ public class Workspaces.Window : Gtk.Window {
             return before_destroy ();
         });
 
-        var categories = load_data ();
+        var workspaces = load_data ();
 
         /* Start Stack Container */
         var stack = new Gtk.Stack ();
@@ -62,25 +65,35 @@ public class Workspaces.Window : Gtk.Window {
 
         stack.get_style_context ().add_class ("right-stack");
 
-        var welcome = new Workspaces.Widgets.Welcome (categories);
+        var welcome = new Workspaces.Widgets.Welcome ();
         stack.add_named (welcome, "welcome");
+        var item_editor = new Workspaces.Views.ItemEditor ();
+        stack.add_named (item_editor, "editor");
         /* End Stack Container */
 
         /* Start Sidebar SourceList */
         source_list = new Granite.Widgets.SourceList ();
-        foreach (var c in categories) {
-            var cat = new Workspaces.Widgets.ExpandableCategory (c);
-            source_list.root.add (cat);
+        foreach (var workspace in workspaces) {
+            var w = new Workspaces.Widgets.ExpandableCategory (workspace);
+            source_list.root.add (w);
+            w.added_new_item.connect ((item) => {
+                source_list.selected = item;
+            });
         }
         source_list.set_size_request (160, -1);
 
         source_list.item_selected.connect ((item) => {
-            debug (item.name);
+            var i = item as Workspaces.Widgets.WorkspaceItem;
+            item_editor.load_item (i);
+            stack.set_visible_child_name ("editor");
         });
 
-        _workspaces.category_added.connect ((category) => {
-            var cat = new Workspaces.Widgets.ExpandableCategory (category);
-            source_list.root.add (cat);
+        workspaces_controller.workspace_added.connect ((workspace) => {
+            var w = new Workspaces.Widgets.ExpandableCategory (workspace);
+            source_list.root.add (w);
+            w.added_new_item.connect ((item) => {
+                source_list.selected = item;
+            });
         });
         /* End Sidebar SourceList */
 
@@ -95,7 +108,20 @@ public class Workspaces.Window : Gtk.Window {
         add_workspace_button.get_style_context ().add_class ("font-bold");
         add_workspace_button.get_style_context ().add_class ("add-button");
         add_workspace_button.clicked.connect (() => {
-            show_add_workspace_dialog (categories);
+            show_add_workspace_dialog ();
+        });
+
+        var add_item_button = new Gtk.Button.from_icon_name ("list-add-symbolic", Gtk.IconSize.MENU);
+        add_item_button.valign = Gtk.Align.CENTER;
+        add_item_button.halign = Gtk.Align.START;
+        add_item_button.always_show_image = true;
+        add_item_button.can_focus = false;
+        add_item_button.label = _ ("Add Item");
+        add_item_button.get_style_context ().add_class ("flat");
+        add_item_button.get_style_context ().add_class ("font-bold");
+        add_item_button.get_style_context ().add_class ("add-button");
+        add_item_button.clicked.connect (() => {
+            show_add_item_dialog ();
         });
         var add_revealer = new Gtk.Revealer ();
         add_revealer.transition_type = Gtk.RevealerTransitionType.CROSSFADE;
@@ -110,6 +136,7 @@ public class Workspaces.Window : Gtk.Window {
         action_box.margin_start = 9;
         action_box.hexpand = true;
         action_box.pack_start (add_revealer, false, false, 0);
+        action_box.pack_start (add_item_button, false, false, 0);
         /* End Sidebar Bottom Actions */
 
         /* Start Sidebar */
@@ -139,6 +166,18 @@ public class Workspaces.Window : Gtk.Window {
         left_header_context.add_class (Gtk.STYLE_CLASS_FLAT);
 
         var right_header = new Gtk.HeaderBar ();
+        var load_ql_button = new Gtk.Button.from_icon_name ("system-search-symbolic", Gtk.IconSize.MENU);
+        load_ql_button.valign = Gtk.Align.CENTER;
+        load_ql_button.halign = Gtk.Align.END;
+        load_ql_button.always_show_image = true;
+        load_ql_button.can_focus = false;
+        load_ql_button.get_style_context ().add_class ("flat");
+        load_ql_button.get_style_context ().add_class ("font-bold");
+        load_ql_button.get_style_context ().add_class ("add-button");
+        load_ql_button.clicked.connect (() => {
+            Application.instance.load_quick_launch ();
+        });
+        right_header.pack_end (load_ql_button);
         right_header.hexpand = true;
 
         var right_header_context = right_header.get_style_context ();
@@ -164,31 +203,26 @@ public class Workspaces.Window : Gtk.Window {
         show_all ();
     }
 
-    public void show_add_workspace_dialog (ArrayList<Workspaces.Models.Category> collections) {
-        var dialog = new Workspaces.Dialogs.AddWorkspace (this, collections);
+    public void show_add_workspace_dialog () {
+        var dialog = new Workspaces.Dialogs.AddWorkspace (this);
 
         dialog.show_all ();
-        dialog.creation.connect ((workspace, category) => {
-            _workspaces.add_workspace (workspace, category);
+        dialog.creation.connect ((workspace) => {
+            workspaces_controller.add_workspace (workspace);
         });
     }
 
-    public void show_add_category_dialog (ArrayList<Workspaces.Models.Category> collections) {
-        var dialog = new Workspaces.Dialogs.AddCategory (this, collections);
+    public void show_add_item_dialog () {
+        var dialog = new Workspaces.Dialogs.AddItem (this, load_data ());
 
         dialog.show_all ();
-        dialog.creation.connect ((category) => {
-            _workspaces.add_category (category);
+        dialog.creation.connect ((item, workspace) => {
+            workspaces_controller.add_item (item, workspace);
         });
     }
 
-    private ArrayList<Workspaces.Models.Category> load_data () {
-        var data_file = Path.build_filename (Application.instance.data_dir, "data.json");
-
-        var store = new Workspaces.Models.Store (data_file);
-        _workspaces = new Workspaces.Controllers.WorkspacesController (store);
-
-        return store.get_all ();
+    private ArrayList<Workspaces.Models.Workspace> load_data () {
+        return workspaces_controller.get_all ();
     }
 
     public bool before_destroy () {

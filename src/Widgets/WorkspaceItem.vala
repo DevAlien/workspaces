@@ -20,12 +20,25 @@
  */
 
 public class Workspaces.Widgets.WorkspaceItem : Granite.Widgets.SourceList.Item {
-    private Workspaces.Models.Workspace workspace;
+    public Workspaces.Models.Item item {get; set;}
 
-    public WorkspaceItem (Workspaces.Models.Workspace workspace) {
-        Object (name: workspace.name);
+    public WorkspaceItem (Workspaces.Models.Item item) {
+        Object (name: item.name);
 
-        this.workspace = workspace;
+        this.item = item;
+        //  var icon_image = new GLib.Icon ();
+        if (item.icon != null) {
+            try {
+                icon = Icon.new_for_string (item.icon);
+            } catch (Error e) {
+                debug (e.message);
+            }
+        }
+
+        var default_icon = new ThemedIcon ("media-playback-start");
+        //  icon_image.gicon = default_icon;
+
+        this.activatable = default_icon;
     }
 
     public override Gtk.Menu ? get_context_menu () {

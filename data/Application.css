@@ -18,18 +18,23 @@
 */
 
 
-@define-color shaded_bg shade(@bg_color, 0.92);
+@define-color shaded_bg shade(@theme_base_color, 0.92);
+@define-color shaded_base shade(@theme_base_color, 0.98);
+
 
 .sidebar, .left-header, .pane {
     background-color: @shaded_bg;
 }
 
+.left-header, .right-header, .left-header:backdrop, .right-header:backdrop {
+    background-image: none;
+}
 .right-header, .right-stack {
     transition: all 250ms ease-in-out;
 }
 
-.right-header {
-    background-color: @base_color;
+.right-header, .item-editor, .background, .welcome {
+    background-color: @shaded_base;
 } 
 
 .right-header:dir(ltr) {
@@ -60,6 +65,7 @@ paned.horizontal > separator {
         );
     margin-right: 0px;
     min-width: 1px;
+    padding-right: 0px;
 }
 
 paned.vertical > separator {
@@ -91,4 +97,13 @@ grid.titlebar {
 
 .dialog-title {
     margin-left: 12px;
+}
+
+.icon-selector-button {
+    border-width: 1px;
+    border-color: @borders;
+}
+
+.large-search-entry {
+    font-size: 175%;
 }

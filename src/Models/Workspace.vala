@@ -27,12 +27,22 @@ public class Workspaces.Models.Workspace : GLib.Object, Json.Serializable {
     public string name { get; set; }
     public string icon { get; set; }
     public ArrayList<Workspaces.Models.Item> items { get; set; }
+    public signal void changed (Workspaces.Models.Workspace workspace);
+    public signal void item_added (Workspaces.Models.Item item);
 
-    public Workspace (string id, string name) {
+    public Workspace (string name) {
         GLib.Object ();
 
-        this.id = id;
+        this.id = Uuid.string_random ();
         this.name = name;
+        items = new ArrayList<Workspaces.Models.Item> ();
+    }
+
+    public void add_item (Workspaces.Models.Item item) {
+        stdout.printf ("name: %s\n", item.name);
+        items.add (item);
+        item_added (item);
+        stdout.printf ("SIZE: %d\n", items.size);
     }
 
     public string to_string () {

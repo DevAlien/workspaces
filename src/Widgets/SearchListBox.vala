@@ -19,17 +19,25 @@
  * Authored by: Goncalo Margalho <g@margalho.info>
  */
 
-public static void set_widget_visible (Gtk.Widget widget, bool visible) {
-    if (visible) {
-        widget.no_show_all = false;
-        widget.show_all ();
-    } else {
-        widget.no_show_all = true;
-        widget.hide ();
+public class Workspaces.Widgets.SearchListBox : Gtk.ListBox {
+    private string search_text = "";
+    public SearchListBox () {
+        set_selection_mode (Gtk.SelectionMode.SINGLE);
+        set_filter_func (do_filter_list);
     }
-}
 
-public static int main (string[] args) {
-    var app = Workspaces.Application.instance;
-    return app.run (args);
+    public void set_search_text (string search_text) {
+        this.search_text = search_text;
+        invalidate_filter ();
+    }
+
+    protected bool do_filter_list (Gtk.ListBoxRow row) {
+        SearchListBoxItem child = row as SearchListBoxItem;
+
+        if (search_text.length > 0) {
+            return child.item.contains_text (search_text.down ());
+        }
+
+        return true;
+    }
 }

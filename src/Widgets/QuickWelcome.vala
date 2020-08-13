@@ -19,17 +19,23 @@
  * Authored by: Goncalo Margalho <g@margalho.info>
  */
 
-public static void set_widget_visible (Gtk.Widget widget, bool visible) {
-    if (visible) {
-        widget.no_show_all = false;
-        widget.show_all ();
-    } else {
-        widget.no_show_all = true;
-        widget.hide ();
+public class Workspaces.Widgets.QuickWelcome : Gtk.Grid {
+    public QuickWelcome () {
+        Object ();
     }
-}
 
-public static int main (string[] args) {
-    var app = Workspaces.Application.instance;
-    return app.run (args);
+    construct {
+        var welcome = new Granite.Widgets.Welcome ("Workspaces", _ ("There are no workspaces"));
+        welcome.append ("document-import", _ ("Add Workspace"), _ ("Add a new workspace"));
+
+        add (welcome);
+
+        welcome.activated.connect ((index) => {
+            switch (index) {
+            case 0 :
+                Application.instance.load_preferences ();
+                break;
+            }
+        });
+    }
 }

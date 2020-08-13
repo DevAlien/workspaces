@@ -21,38 +21,19 @@
 
 namespace Workspaces.Dialogs {
     public class AddWorkspace : Dialog {
-        public signal void creation (Workspaces.Models.Workspace workspace, Workspaces.Models.Category collection);
+        public signal void creation (Workspaces.Models.Workspace workspace);
 
-        public AddWorkspace (Gtk.Window parent, Gee.ArrayList<Workspaces.Models.Category> collections) {
+        public AddWorkspace (Gtk.Window parent) {
             base (_ ("Add Workspace"), "document-import", parent);
             request_name_entry.text = _ ("My Workspace");
 
             add_button (_ ("Create"), Gtk.ResponseType.APPLY);
-            var content = get_content_area () as Gtk.Box;
-
-            var combo_box = new Gtk.ComboBoxText ();
-
-            if (collections.size > 0) {
-                var combo_container = new Gtk.Box (Gtk.Orientation.VERTICAL, 5);
-                var collection_label = new Gtk.Label (_ ("Add to collection"));
-                collection_label.halign = Gtk.Align.START;
-                combo_container.pack_start (collection_label);
-                foreach (var collection in collections) {
-                    combo_box.append (collection.name, collection.name);
-                }
-
-                combo_container.pack_start (combo_box);
-                combo_box.active = 0;
-                combo_container.margin_bottom = 12;
-                content.add (combo_container);
-            }
-
 
             response.connect ((source, id) => {
                 switch (id) {
                 case Gtk.ResponseType.APPLY :
-                    var collection = collections.get (combo_box.active);
-                    create_workspace (collection);
+
+                    create_workspace ();
 
                     break;
                 case Gtk.ResponseType.CLOSE :
@@ -62,16 +43,16 @@ namespace Workspaces.Dialogs {
             });
         }
 
-        private void create_workspace (Workspaces.Models.Category category) {
+        private void create_workspace () {
             var name = request_name_entry.text.strip ();
 
             if (name.length == 0) {
                 show_warning (_ ("Workspace name must not be empty."));
             } else {
                 debug ("AddWorkspace.create_workspace, creating: " + name);
-                var workspace = new Workspaces.Models.Workspace (name, name);
+                var workspace = new Workspaces.Models.Workspace (name);
 
-                creation (workspace, category);
+                creation (workspace);
                 destroy ();
             }
         }

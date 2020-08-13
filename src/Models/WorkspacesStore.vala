@@ -22,39 +22,40 @@
 using Gee;
 
 public class Workspaces.Models.Store : Object {
-    private ArrayList<Workspaces.Models.Category> _store;
+    private ArrayList<Workspaces.Models.Workspace> _store;
     private File _data_file;
 
     public Store (string data_path) {
         Object ();
 
-        _store = new ArrayList<Workspaces.Models.Category> ();
+        _store = new ArrayList<Workspaces.Models.Workspace> ();
         _data_file = File.new_for_path (data_path);
         debug (@"store initialized in path $data_path");
         ensure ();
         load ();
     }
 
-    public void add_category (Workspaces.Models.Category category) {
-        _add_category (category);
+    public void add_workspace (Workspaces.Models.Workspace workspace) {
+        _add_workspace (workspace);
         persist ();
     }
 
-    private void _add_category (Workspaces.Models.Category category) {
-        _store.add (category);
+    private void _add_workspace (Workspaces.Models.Workspace workspace) {
+        debug (workspace.items.size.to_string ());
+        _store.add (workspace);
     }
 
-    public void add_workspace (Workspaces.Models.Workspace workspace, Workspaces.Models.Category category) {
-        foreach ( var c in _store ) {
-            if ( c.id == category.id ) {
-                c.add_workspace (workspace);
+    public void add_item (Workspaces.Models.Item item, Workspaces.Models.Workspace workspace) {
+        foreach ( var w in _store ) {
+            if ( w.id == workspace.id ) {
+                w.add_item (item);
             }
         }
         persist ();
     }
 
-    public void remove (Workspaces.Models.Category category) {
-        _store.remove (category);
+    public void remove (Workspaces.Models.Workspace workspace) {
+        _store.remove (workspace);
         persist ();
     }
 
@@ -70,18 +71,17 @@ public class Workspaces.Models.Store : Object {
             warning (@"store: unable to load data, does it exist? $(e.message)");
         }
 
-        Json.Node node = parser.get_root ();
+        Json.Node ? node = parser.get_root ();
         Json.Array array = node.get_array ();
         array.foreach_element ((a, i, elem) => {
-            Workspaces.Models.Category category = Json.gobject_deserialize (typeof (Workspaces.Models.Category), elem) as Workspaces.Models.Category;
-
-            _add_category (category);
+            Workspaces.Models.Workspace workspace = Json.gobject_deserialize (typeof (Workspaces.Models.Workspace), elem) as Workspaces.Models.Workspace;
+            _add_workspace (workspace);
         });
 
         debug (@"loaded store size: $(_store.size)");
     }
 
-    private void persist () {
+    public void persist () {
         debug ("persisting store");
         var data = serialize ();
 
@@ -102,6 +102,7 @@ public class Workspaces.Models.Store : Object {
     private void ensure () {
         try {
             var df = _data_file.create (FileCreateFlags.PRIVATE);
+            df.write ("[]".data);
             df.close ();
             debug (@"store created");
         } catch ( Error e ) {
@@ -124,7 +125,7 @@ public class Workspaces.Models.Store : Object {
         return data;
     }
 
-    public ArrayList<Workspaces.Models.Category> get_all () {
+    public ArrayList<Workspaces.Models.Workspace> get_all () {
         return _store;
     }
 }

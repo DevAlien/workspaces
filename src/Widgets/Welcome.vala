@@ -20,26 +20,23 @@
  */
 
 public class Workspaces.Widgets.Welcome : Gtk.Grid {
-    private Gee.ArrayList<Workspaces.Models.Category> collections;
-    public Welcome (Gee.ArrayList<Workspaces.Models.Category> collections) {
+    public Welcome () {
         Object ();
-        this.collections = collections;
     }
 
     construct {
         var welcome = new Granite.Widgets.Welcome ("Workspaces", _ ("No Workspace selected"));
-        welcome.append ("document-new", _ ("Add Category"), _ ("Create a category"));
         welcome.append ("document-import", _ ("Add Workspace"), _ ("Add a new workspace"));
-
+        welcome.append ("document-new", _ ("Add Item"), _ ("Add a new item"));
         add (welcome);
 
         welcome.activated.connect ((index) => {
             switch (index) {
             case 0 :
-                Workspaces.Application.instance.window.show_add_category_dialog (collections);
+                Workspaces.Application.instance.preferences_window.show_add_workspace_dialog ();
                 break;
             case 1 :
-                Workspaces.Application.instance.window.show_add_workspace_dialog (collections);
+                Workspaces.Application.instance.preferences_window.show_add_item_dialog ();
                 break;
             }
         });

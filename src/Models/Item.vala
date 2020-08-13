@@ -22,15 +22,23 @@
 public class Workspaces.Models.Item : Object {
     public string id { get; set; }
     public string name { get; set; }
-    public string icon {get; set;}
-    public string item_type {get; set;}
-    public string command {get; set;}
+    public string icon { get; set; }
+    public string item_type { get; set; }
+    public string command { get; set; }
+    public bool auto_start { get; set; }
 
-    public Item (string id, string name) {
+    public Item (string name) {
         Object ();
-
-        this.id = id;
+        this.id = Uuid.string_random ();
         this.name = name;
+    }
+
+    public void execute_command () {
+        try {
+            Process.spawn_command_line_async (command);
+        } catch (SpawnError e) {
+            warning ("Error: %s\n", e.message);
+        }
     }
 
     public string to_string () {

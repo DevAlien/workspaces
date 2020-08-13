@@ -22,7 +22,8 @@
 using Gee;
 
 public class Workspaces.Controllers.WorkspacesController : Object {
-    public signal void category_added (Workspaces.Models.Category category);
+    public signal void workspace_added (Workspaces.Models.Workspace workspace);
+    public signal void item_added (Workspaces.Models.Item item);
 
     public Workspaces.Models.Store store { get; set; }
 
@@ -30,12 +31,29 @@ public class Workspaces.Controllers.WorkspacesController : Object {
         this.store = store;
     }
 
-    public void add_category (Workspaces.Models.Category category) {
-        store.add_category (category);
-        category_added (category);
+    //  public void add_category (Workspaces.Models.Category category) {
+    //      store.add_category (category);
+    //      category_added (category);
+    //  }
+
+    public void save () {
+        store.persist ();
     }
 
-    public void add_workspace (Workspaces.Models.Workspace workspace, Workspaces.Models.Category category) {
-        store.add_workspace (workspace, category);
+    public void add_workspace (Workspaces.Models.Workspace workspace) {
+        store.add_workspace (workspace);
+        workspace_added (workspace);
+        var item = new Workspaces.Models.Item ("New item");
+        store.add_item (item, workspace);
+        item_added (item);
+    }
+
+    public void add_item (Workspaces.Models.Item item, Workspaces.Models.Workspace workspace) {
+        store.add_item (item, workspace);
+        item_added (item);
+    }
+
+    public ArrayList<Workspaces.Models.Workspace> get_all () {
+        return store.get_all ();
     }
 }
