@@ -74,8 +74,4 @@ public class Workspaces.Widgets.SearchListBoxItem : Gtk.ListBoxRow {
 
         show_all ();
     }
-
-    public string test () {
-        return "void";
-    }
 }

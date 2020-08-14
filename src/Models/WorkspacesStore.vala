@@ -54,6 +54,22 @@ public class Workspaces.Models.Store : Object {
         persist ();
     }
 
+    public bool remove_item (Workspaces.Models.Item item) {
+        var has_deleted = false;
+        foreach ( var w in _store ) {
+            var index = w.items.index_of (item);
+            if (index != -1) {
+                w.items.remove_at (index);
+                has_deleted = true;
+                break;
+            }
+        }
+
+        persist ();
+
+        return has_deleted;
+    }
+
     public void remove (Workspaces.Models.Workspace workspace) {
         _store.remove (workspace);
         persist ();

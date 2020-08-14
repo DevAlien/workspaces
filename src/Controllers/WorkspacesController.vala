@@ -24,6 +24,7 @@ using Gee;
 public class Workspaces.Controllers.WorkspacesController : Object {
     public signal void workspace_added (Workspaces.Models.Workspace workspace);
     public signal void item_added (Workspaces.Models.Item item);
+    public signal void item_removed (Workspaces.Models.Item item);
 
     public Workspaces.Models.Store store { get; set; }
 
@@ -39,7 +40,15 @@ public class Workspaces.Controllers.WorkspacesController : Object {
     public void save () {
         store.persist ();
     }
+    public void duplicate_item (Workspaces.Models.Item item, Workspaces.Models.Workspace workspace) {
+        var new_item = new Workspaces.Models.Item (item.name);
+        new_item.icon = item.icon;
+        new_item.item_type = item.item_type;
+        new_item.command = item.command;
+        new_item.auto_start = item.auto_start;
 
+        add_item (new_item, workspace);
+    }
     public void add_workspace (Workspaces.Models.Workspace workspace) {
         store.add_workspace (workspace);
         workspace_added (workspace);
@@ -51,6 +60,10 @@ public class Workspaces.Controllers.WorkspacesController : Object {
     public void add_item (Workspaces.Models.Item item, Workspaces.Models.Workspace workspace) {
         store.add_item (item, workspace);
         item_added (item);
+    }
+
+    public bool remove_item (Workspaces.Models.Item item) {
+        return store.remove_item (item);
     }
 
     public ArrayList<Workspaces.Models.Workspace> get_all () {

@@ -53,8 +53,8 @@ public class Workspaces.QuickLaunchWindow : Gtk.Dialog {
         list_box_scroll.show_all ();
 
         list_box.row_activated.connect ((row) => {
-            // TODO: Execute action
-            debug ("DO the action");
+            var search_item = row as Workspaces.Widgets.SearchListBoxItem;
+            search_item.item.launch ();
         });
 
         empty_alert = new Workspaces.Views.AlertView (_ ("No Workspaces or Items Found"), "", "edit-find-symbolic");

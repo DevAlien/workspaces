@@ -45,6 +45,13 @@ public class Workspaces.Models.Workspace : GLib.Object, Json.Serializable {
         stdout.printf ("SIZE: %d\n", items.size);
     }
 
+    public void launch () {
+        foreach (var i in items) {
+            if (i.auto_start) {
+                i.execute_command ();
+            }
+        }
+    }
     public string to_string () {
         return @"[$(this.id)] $(this.name)";
     }

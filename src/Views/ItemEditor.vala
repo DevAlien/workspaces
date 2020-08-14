@@ -92,14 +92,13 @@ public class Workspaces.Widgets.FieldEntry : Gtk.Box {
 
 public class Workspaces.Views.ItemEditor : Gtk.Box {
     public signal void removed ();
-    public signal void duplicate ();
 
     private Workspaces.Widgets.WorkspaceItem item;
     //  private Workspaces.Widgets.Workspace workspace;
     private Workspaces.Widgets.IconButton icon_button;
     private Gtk.Entry name_entry;
     private Gtk.Entry cmdline_entry;
-    private Gtk.Switch terminal_switch;
+    private Gtk.Switch auto_start_switch;
 
     private Gtk.Button delete_button;
     private Granite.Widgets.Toast toast;
@@ -145,20 +144,17 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
         cmdline_entry.placeholder_text = _ ("Program to execute along with it's arguments");
         cmdline_entry.changed.connect (() => {
             item.item.command = cmdline_entry.get_text ();
-            Workspaces.Application.instance.preferences_window.workspaces_controller.save ();
+            Workspaces.Application.instance.workspaces_controller.save ();
         });
 
-        terminal_switch = new Gtk.Switch ();
-        terminal_switch.notify["active"].connect (() => {
-            toast.title = "dio cane";
-            toast.set_default_action ("dio mio");
-            toast.send_notification ();
-            item.item.auto_start = terminal_switch.state;
-            Workspaces.Application.instance.preferences_window.workspaces_controller.save ();
+        auto_start_switch = new Gtk.Switch ();
+        auto_start_switch.notify["active"].connect (() => {
+            item.item.auto_start = auto_start_switch.state;
+            Workspaces.Application.instance.workspaces_controller.save ();
         });
 
         var executable_box = new Workspaces.Widgets.SettingBox (_ ("Command Line"), cmdline_entry, false);
-        var terminal_box = new Workspaces.Widgets.SettingBox (_ ("Launch in Terminal"), terminal_switch, true);
+        var terminal_box = new Workspaces.Widgets.SettingBox (_ ("Auto Launch with workspace"), auto_start_switch, true);
 
         var launch_settings_grid = new Workspaces.Widgets.SettingsGrid (_ ("Settings"));
         launch_settings_grid.add_widget (executable_box);
@@ -185,12 +181,18 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
         scrolled.add (settings_grid);
 
         delete_button = new Gtk.Button.with_label (_ ("Delete"));
-        delete_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-        delete_button.sensitive = false;
+        delete_button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
+        delete_button.clicked.connect (() => {
+            item.remove_itself ();
+        });
 
         var duplicate_button = new Gtk.Button.with_label (_ ("Duplicate"));
-        duplicate_button.clicked.connect (() => duplicate ());
-        duplicate_button.sensitive = false;
+        duplicate_button.clicked.connect (() => {
+            var workspace_parent = item.parent as Workspaces.Widgets.ExpandableCategory;
+            if (workspace_parent != null) {
+                Workspaces.Application.instance.workspaces_controller.duplicate_item (item.item, workspace_parent.workspace);
+            }
+        });
 
         var button_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
         button_box.margin = 6;
@@ -253,6 +255,6 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
             cmdline_entry.set_text (item.item.command);
         }
 
-        terminal_switch.set_state (item.item.auto_start);
+        auto_start_switch.set_state (item.item.auto_start);
     }
 }

@@ -41,9 +41,21 @@ public class Workspaces.Widgets.WorkspaceItem : Granite.Widgets.SourceList.Item 
         this.activatable = default_icon;
     }
 
+    public void remove_itself () {
+        var has_deleted = Application.instance.workspaces_controller.remove_item (item);
+        if (has_deleted) {
+            var workspace_parent = this.parent as Workspaces.Widgets.ExpandableCategory;
+            if (workspace_parent != null) {
+                workspace_parent.remove_item (this);
+            }
+        }
+    }
     public override Gtk.Menu ? get_context_menu () {
         Gtk.Menu menu = new Gtk.Menu ();
         Gtk.MenuItem menu_item = new Gtk.MenuItem.with_label (_ ("Delete"));
+        menu_item.activate.connect (() => {
+            remove_itself ();
+        });
         menu.add (menu_item);
         menu.show_all ();
 

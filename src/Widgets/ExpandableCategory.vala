@@ -20,9 +20,10 @@
  */
 
 public class Workspaces.Widgets.ExpandableCategory : Granite.Widgets.SourceList.ExpandableItem {
-    private Workspaces.Models.Workspace workspace;
+    public Workspaces.Models.Workspace workspace { get; set; }
 
     public signal void added_new_item (Workspaces.Widgets.WorkspaceItem item);
+    public signal void item_deleted (Workspaces.Widgets.WorkspaceItem item);
 
     public ExpandableCategory (Workspaces.Models.Workspace workspace) {
         Object (name: workspace.name);
@@ -46,6 +47,10 @@ public class Workspaces.Widgets.ExpandableCategory : Granite.Widgets.SourceList.
         workspace.item_added.connect ((item) => {
             add_item (item, true);
         });
+    }
+    public void remove_item (Workspaces.Widgets.WorkspaceItem item) {
+        remove (item);
+        item_deleted (item);
     }
 
     private void add_item (Workspaces.Models.Item item, bool to_open) {

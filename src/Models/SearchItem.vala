@@ -26,6 +26,13 @@ public class Workspaces.Models.SearchItem : GLib.Object {
     public SearchItem () {
         GLib.Object ();
     }
+    public void launch () {
+        if (item != null) {
+            item.execute_command ();
+        } else if (workspace != null) {
+            workspace.launch ();
+        }
+    }
 
     public bool contains_text (string search_text) {
         if (item != null) {

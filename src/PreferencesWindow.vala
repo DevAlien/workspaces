@@ -60,7 +60,7 @@ public class Workspaces.PreferencesWindow : Gtk.Window {
         var workspaces = load_data ();
 
         /* Start Stack Container */
-        var stack = new Gtk.Stack ();
+        stack = new Gtk.Stack ();
         stack.transition_type = Gtk.StackTransitionType.CROSSFADE;
 
         stack.get_style_context ().add_class ("right-stack");
@@ -74,12 +74,9 @@ public class Workspaces.PreferencesWindow : Gtk.Window {
         /* Start Sidebar SourceList */
         source_list = new Granite.Widgets.SourceList ();
         foreach (var workspace in workspaces) {
-            var w = new Workspaces.Widgets.ExpandableCategory (workspace);
-            source_list.root.add (w);
-            w.added_new_item.connect ((item) => {
-                source_list.selected = item;
-            });
+            set_source_list_workspace (workspace);
         }
+
         source_list.set_size_request (160, -1);
 
         source_list.item_selected.connect ((item) => {
@@ -89,11 +86,7 @@ public class Workspaces.PreferencesWindow : Gtk.Window {
         });
 
         workspaces_controller.workspace_added.connect ((workspace) => {
-            var w = new Workspaces.Widgets.ExpandableCategory (workspace);
-            source_list.root.add (w);
-            w.added_new_item.connect ((item) => {
-                source_list.selected = item;
-            });
+            set_source_list_workspace (workspace);
         });
         /* End Sidebar SourceList */
 
@@ -203,6 +196,21 @@ public class Workspaces.PreferencesWindow : Gtk.Window {
         show_all ();
     }
 
+    private void set_source_list_workspace (Workspaces.Models.Workspace workspace) {
+        var w = new Workspaces.Widgets.ExpandableCategory (workspace);
+        source_list.root.add (w);
+        w.added_new_item.connect ((item) => {
+            source_list.selected = item;
+        });
+
+        w.item_deleted.connect ((item) => {
+            if (source_list.selected != null) {
+                if (source_list.selected == item) {
+                    stack.set_visible_child_name ("welcome");
+                }
+            }
+        });
+    }
     public void show_add_workspace_dialog () {
         var dialog = new Workspaces.Dialogs.AddWorkspace (this);
 
