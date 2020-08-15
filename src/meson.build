@@ -13,6 +13,7 @@ sources = files (
     'Widgets/SettingBox.vala',
     'Widgets/SearchListBox.vala',
     'Widgets/SearchListBoxItem.vala',
+    'Widgets/Dot.vala',
     'Widgets/QuickWelcome.vala',
     'Models/Category.vala',
     'Models/Item.vala',

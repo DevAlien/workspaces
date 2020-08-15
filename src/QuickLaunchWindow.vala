@@ -12,7 +12,7 @@ public class Workspaces.QuickLaunchWindow : Gtk.Dialog {
     public QuickLaunchWindow () {
         Object (application: Application.instance,
                 height_request: 700,
-                icon_name: "document-new",
+                icon_name: "com.github.devalien.workspaces",
                 resizable: true,
                 title: _ ("Workspaces"),
                 width_request: 500);
@@ -24,6 +24,7 @@ public class Workspaces.QuickLaunchWindow : Gtk.Dialog {
         search_headerbar = new Gtk.SearchEntry ();
         search_headerbar.placeholder_text = _ ("Search Workspaces\u2026");
         search_headerbar.hexpand = true;
+
         search_headerbar.key_press_event.connect ((event) => {
             switch (event.keyval) {
             case Gdk.Key.Escape :
@@ -98,28 +99,10 @@ public class Workspaces.QuickLaunchWindow : Gtk.Dialog {
         var action_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         action_box.get_style_context ().add_class ("bottom-buttons");
         action_box.margin_end = 9;
-        action_box.margin_bottom = 6;
         action_box.margin_top = 6;
         action_box.margin_start = 9;
         action_box.hexpand = true;
         action_box.pack_start (add_revealer, false, false, 0);
-        set_focus.connect (() => {
-            debug ("focus gone");
-        });
-        focus.connect (() => {
-            debug ("focus");
-            return false;
-        });
-
-        focus_in_event.connect (() => {
-            debug ("focus in");
-            return false;
-        });
-
-        focus_out_event.connect (() => {
-            debug ("focus out");
-            return false;
-        });
 
         get_content_area ().add (stack);
         get_content_area ().add (action_box);
@@ -128,6 +111,7 @@ public class Workspaces.QuickLaunchWindow : Gtk.Dialog {
 
         show_all ();
         update_stack_visibility ();
+        search_headerbar.grab_focus ();
     }
 
     public void add_entry (Workspaces.Models.SearchItem entry) {

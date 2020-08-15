@@ -99,7 +99,7 @@ public class Workspaces.PreferencesWindow : Gtk.Window {
         add_workspace_button.label = _ ("Add Workspace");
         add_workspace_button.get_style_context ().add_class ("flat");
         add_workspace_button.get_style_context ().add_class ("font-bold");
-        add_workspace_button.get_style_context ().add_class ("add-button");
+        add_workspace_button.get_style_context ().add_class ("ql-button");
         add_workspace_button.clicked.connect (() => {
             show_add_workspace_dialog ();
         });
@@ -221,12 +221,46 @@ public class Workspaces.PreferencesWindow : Gtk.Window {
     }
 
     public void show_add_item_dialog () {
-        var dialog = new Workspaces.Dialogs.AddItem (this, load_data ());
+        var data = load_data ();
+        debug (data.size.to_string ());
+        if (data == null || data.size == 0) {
+            var dialogd = new Gtk.Dialog.with_buttons (_ ("Cannot create an item without a workspace"), this,
+                                                       Gtk.DialogFlags.MODAL,
+                                                       _ ("Ok"),
+                                                       Gtk.ResponseType.OK, null);
+
+            var content_area = dialogd.get_content_area ();
+            var label = new Gtk.Label (_ ("To add an item you first need to create a workspace."));
+            label.get_style_context ().add_class ("h4");
+            label.get_style_context ().add_class ("dialog-label");
+            content_area.add (label);
+
+            /* Connect the 'response' signal of the dialog
+             * the signal handler.  It is emitted when the dialog's
+             * OK button is clicked.
+             */
+            dialogd.response.connect (on_response);
+
+            /* Show the dialog and all the widgets. */
+            dialogd.show_all ();
+            return;
+        }
+
+        var dialog = new Workspaces.Dialogs.AddItem (this, data);
 
         dialog.show_all ();
         dialog.creation.connect ((item, workspace) => {
             workspaces_controller.add_item (item, workspace);
         });
+    }
+
+    private void on_response (Gtk.Dialog dialog, int response_id) {
+        /* To see the int value of the ResponseType. This is only
+         * for demonstration purposes.*/
+        print ("response is %d\n", response_id);
+
+/* This causes the dialog to be destroyed. */
+        dialog.destroy ();
     }
 
     private ArrayList<Workspaces.Models.Workspace> load_data () {

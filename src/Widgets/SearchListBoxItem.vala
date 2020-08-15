@@ -53,14 +53,15 @@ public class Workspaces.Widgets.SearchListBoxItem : Gtk.ListBoxRow {
             text.single_line_mode = true;
             text.max_width_chars = 60;
             grid.attach (text, 0, 0, 1, 1);
+            grid.attach (new Workspaces.Widgets.Dot (), 1, 0, 1, 1);
         } else if (entry.item != null) {
+            get_style_context ().add_class ("search-list-item-item");
             name = entry.item.name;
             if (entry.item.icon != null) {
                 var icon = new Gtk.Image.from_icon_name (entry.item.icon, Gtk.IconSize.SMALL_TOOLBAR);
                 icon.set_pixel_size (32);
                 grid.attach (icon, 0, 0, 1, 1);
             }
-
             var sanitised_text = name.replace ("\n", "");
             var text = new Gtk.Label (sanitised_text);
             text.get_style_context ().add_class ("h3");
@@ -69,6 +70,7 @@ public class Workspaces.Widgets.SearchListBoxItem : Gtk.ListBoxRow {
             text.single_line_mode = true;
             text.max_width_chars = 60;
             grid.attach (text, 1, 0, 1, 1);
+            grid.attach (new Workspaces.Widgets.Dot (), 2, 0, 1, 1);
         }
 
 
