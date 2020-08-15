@@ -29,6 +29,14 @@ public static void set_widget_visible (Gtk.Widget widget, bool visible) {
     }
 }
 
+public static bool is_flatpak () {
+    var is_flatpak = Environment.get_variable ("FLATPAK_ID");
+    if (is_flatpak != null) {
+        return true;
+    }
+
+    return false;
+}
 public static int main (string[] args) {
     var app = Workspaces.Application.instance;
     return app.run (args);

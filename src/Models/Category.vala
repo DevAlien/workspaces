@@ -89,5 +89,9 @@ namespace Workspaces.Models {
             }
             return default_deserialize_property (property_name, out @value, pspec, property_node);
         }
+
+        public virtual unowned ParamSpec ? find_property (string name) {
+            return get_class ().find_property (name);
+        }
     }
 }

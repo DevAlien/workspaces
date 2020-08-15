@@ -103,6 +103,23 @@ public class Workspaces.QuickLaunchWindow : Gtk.Dialog {
         action_box.margin_start = 9;
         action_box.hexpand = true;
         action_box.pack_start (add_revealer, false, false, 0);
+        set_focus.connect (() => {
+            debug ("focus gone");
+        });
+        focus.connect (() => {
+            debug ("focus");
+            return false;
+        });
+
+        focus_in_event.connect (() => {
+            debug ("focus in");
+            return false;
+        });
+
+        focus_out_event.connect (() => {
+            debug ("focus out");
+            return false;
+        });
 
         get_content_area ().add (stack);
         get_content_area ().add (action_box);
