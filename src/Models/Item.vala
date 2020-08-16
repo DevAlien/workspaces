@@ -31,13 +31,20 @@ public class Workspaces.Models.Item : Object {
         Object ();
         this.id = Uuid.string_random ();
         this.name = name;
+        this.command = "";
     }
 
     public void execute_command () {
-        try {
-            Process.spawn_command_line_async (command);
-        } catch (SpawnError e) {
-            warning ("Error: %s\n", e.message);
+        if (command.length > 0) {
+            var to_run_command = command;
+            if (is_flatpak () == true) {
+                to_run_command = "flatpak-spawn --host " + to_run_command;
+            }
+            try {
+                Process.spawn_command_line_async (to_run_command);
+            } catch (SpawnError e) {
+                warning ("Error: %s\n", e.message);
+            }
         }
     }
 
