@@ -1,1 +1,17 @@
 src/Application.vala
+src/PreferencesWindow.vala
+src/QuickLaunchWindow.vala
+
+src/Dialogs/AddCategory.vala
+src/Dialogs/AddItem.vala
+src/Dialogs/AddWorkspace.vala
+src/Dialogs/Dialog.vala
+
+src/Views/ItemEditor.vala
+
+src/Widgets/ExpandableCategory.vala
+src/Widgets/IconButton.vala
+src/Widgets/IconChooserDialog.vala
+src/Widgets/QuickWelcome.vala
+src/Widgets/Welcome.vala
+src/Widgets/WorkspaceItem.vala

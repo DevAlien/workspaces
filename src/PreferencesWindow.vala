@@ -235,13 +235,8 @@ public class Workspaces.PreferencesWindow : Gtk.Window {
             label.get_style_context ().add_class ("dialog-label");
             content_area.add (label);
 
-            /* Connect the 'response' signal of the dialog
-             * the signal handler.  It is emitted when the dialog's
-             * OK button is clicked.
-             */
             dialogd.response.connect (on_response);
 
-            /* Show the dialog and all the widgets. */
             dialogd.show_all ();
             return;
         }

@@ -70,7 +70,9 @@ public class Workspaces.Widgets.SearchListBoxItem : Gtk.ListBoxRow {
             text.single_line_mode = true;
             text.max_width_chars = 60;
             grid.attach (text, 1, 0, 1, 1);
-            grid.attach (new Workspaces.Widgets.Dot (), 2, 0, 1, 1);
+            if (entry.item.auto_start == true) {
+                grid.attach (new Workspaces.Widgets.Dot (), 2, 0, 1, 1);
+            }
         }
 
 

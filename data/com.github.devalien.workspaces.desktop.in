@@ -1,10 +1,10 @@
 [Desktop Entry]
 Type=Application
 Name=Workspaces
-Comment=Manage your workspaces
-GenericName=Workspace
-Exec=com.github.devalien.workspaces %U
+Comment=Workspaces to be always ready to work
+GenericName=Workspaces
+Exec=com.github.devalien.workspaces
 Icon=com.github.devalien.workspaces
 Terminal=false
 Categories=Utility;GTK;Development;
-Keywords=Develop
+Keywords=Develop;Workspace;Launcher

@@ -4,22 +4,38 @@
   <id>com.github.devalien.workspaces</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+</project_license>
-  <name>Your App's Name</name>
-  <summary>A Catchy Tagline</summary>
+  <name>Workspaces</name>
+  <summary>Workspaces to be always ready to work</summary>
   <description>
-    <p>A quick summary of your app's main selling points and features. Just a couple sentences per paragraph is best.</p>
+    <p>Make working on different projects easy again!</p>
+    <p>Workspaces lets you configure and quickly launch all you need to work on a project. It can open in a second different instances of code, a specific website and a directory</p>
   </description>
   <provides>
     <binary>com.github.devalien.workspaces</binary>
   </provides>
   <developer_name>Goncalo Margalho</developer_name>
-  <url type="homepage"></url>
+  <url type="homepage">http://github.com/DevAlien/workspaces</url>
   <url type="bugtracker">http://github.com/DevAlien/workspaces/issues</url>
   <url type="help">http://github.com/DevAlien/workspaces/issues</url>
+
   <screenshots>
-    <screenshot type="default">
+   <screenshot type="default">
+      <image>https://github.com/devalien/workspaces/raw/master/data/screenshots/workspaces-quick-launcher-light.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://github.com/devalien/workspaces/raw/master/data/screenshots/workspaces-quick-launcher-dark.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://github.com/devalien/workspaces/raw/master/data/screenshots/workspaces-preferences-light.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://github.com/devalien/workspaces/raw/master/data/screenshots/workspaces-preferences-editing-light.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://github.com/devalien/workspaces/raw/master/data/screenshots/workspaces-preferences-add-item-dark.png</image>
     </screenshot>
   </screenshots>
+
   <content_rating type="oars-1.1">
     <content_attribute id="violence-cartoon">none</content_attribute>
     <content_attribute id="violence-fantasy">none</content_attribute>
@@ -49,7 +65,19 @@
     <content_attribute id="money-purchasing">none</content_attribute>
     <content_attribute id="money-gambling">none</content_attribute>
   </content_rating>
+  
   <releases>
-    <rel8ease version="0.0.1" date="2020-01-01"/>
+    <release version="1.0" date="2020-08-17">
+      <description>
+        <p>Initial release</p>
+      </description>
+    </release>
   </releases>
+
+   <custom>
+      <value key="x-appcenter-color-primary">#ffb017</value>
+      <value key="x-appcenter-color-primary-text">#000</value>
+      <value key="x-appcenter-suggested-price">0</value>
+  </custom>
+
 </component>
