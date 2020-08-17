@@ -1,12 +1,6 @@
-com.github.devalien.workspaces (1.0.6) RELEASED; urgency=low
+com.github.devalien.workspaces (1.1.0) RELEASED; urgency=low
 
   * Fix control file for deb packaging.  * 
-
- -- Goncalo Margalho <g@margalho.info>  Mon, 17 Aug 2020 13:41:57 +0200
-
-com.github.devalien.workspaces (1.0.4) RELEASED; urgency=low
-
-  * Release for elementary OS.  * 
 
  -- Goncalo Margalho <g@margalho.info>  Mon, 17 Aug 2020 13:41:57 +0200
 
