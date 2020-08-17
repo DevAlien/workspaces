@@ -6,5 +6,5 @@ GenericName=Workspaces
 Exec=com.github.devalien.workspaces
 Icon=com.github.devalien.workspaces
 Terminal=false
-Categories=Utility;GTK;Development;
+Categories=Utility;GTK;
 Keywords=Develop;Workspace;Launcher
