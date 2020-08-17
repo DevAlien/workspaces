@@ -1,4 +1,4 @@
-com.github.devalien.workspaces (1.0.5) RELEASED; urgency=low
+com.github.devalien.workspaces (1.0.6) RELEASED; urgency=low
 
   * Fix control file for deb packaging.  * 
 
