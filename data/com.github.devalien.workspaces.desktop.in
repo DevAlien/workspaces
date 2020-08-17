@@ -7,4 +7,4 @@ Exec=com.github.devalien.workspaces
 Icon=com.github.devalien.workspaces
 Terminal=false
 Categories=Utility;GTK;
-Keywords=Develop;Workspace;Launcher
+Keywords=Develop;Workspace;Launcher;
