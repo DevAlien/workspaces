@@ -1,0 +1,17 @@
+Source: com.github.devalien.workspaces
+Section: x11
+Priority: optional
+Maintainer: Goncalo Margalho <g@margalho.info>
+Build-Depends: cmake (>= 2.8),
+               debhelper (>= 9),
+               libgtk-3-dev,
+               valac (>= 0.40.0)
+               libgranite-dev,
+               libjson-glib-dev,
+               libgee-0.8-dev
+Standards-Version: 3.9.3
+
+Package: com.github.devalien.workspaces
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Workspaces to be always ready to work
