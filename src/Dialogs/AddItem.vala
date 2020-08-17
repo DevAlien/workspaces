@@ -24,7 +24,7 @@ namespace Workspaces.Dialogs {
         public signal void creation (Workspaces.Models.Item item, Workspaces.Models.Workspace workspaces);
 
         public AddItem (Gtk.Window parent, Gee.ArrayList<Workspaces.Models.Workspace> workspaces) {
-            base (_ ("Add Item"), "document-new", parent);
+            base (_ ("Add Item"), "workspaces-new-item", parent);
             request_name_entry.text = _ ("New Item");
 
             add_button (_ ("Create"), Gtk.ResponseType.APPLY);

@@ -24,7 +24,7 @@ namespace Workspaces.Dialogs {
         public signal void creation (Workspaces.Models.Workspace workspace);
 
         public AddWorkspace (Gtk.Window parent) {
-            base (_ ("Add Workspace"), "document-import", parent);
+            base (_ ("Add Workspace"), "workspaces-new-workspace", parent);
             request_name_entry.text = _ ("My Workspace");
 
             add_button (_ ("Create"), Gtk.ResponseType.APPLY);

@@ -27,7 +27,7 @@ public class Workspaces.Application : Gtk.Application {
 
     public Workspaces.Controllers.WorkspacesController workspaces_controller;
 
-    public const string APP_VERSION = "1.0.2";
+    public const string APP_VERSION = "1.0.3";
     public const string APP_ID = "com.github.devalien.workspaces";
 
     private bool show_quick_launch = false;

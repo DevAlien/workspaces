@@ -2,7 +2,7 @@
 project (
     'com.github.devalien.workspaces',
     'vala', 'c',
-    version: '1.0.2'
+    version: '1.0.3'
 )
 
 # Translation module

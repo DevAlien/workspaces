@@ -24,7 +24,7 @@ namespace Workspaces.Dialogs {
         public signal void creation (Workspaces.Models.Category request);
 
         public AddCategory (Gtk.Window parent, Gee.ArrayList<Workspaces.Models.Category> collections) {
-            base (_ ("Add Collection"), "document-new", parent);
+            base (_ ("Add Collection"), "workspaces-new-item", parent);
             request_name_entry.text = _ ("My Collection");
 
             add_button (_ ("Create"), Gtk.ResponseType.APPLY);

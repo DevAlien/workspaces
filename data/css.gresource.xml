@@ -3,4 +3,9 @@
   <gresource prefix="/com/github/devalien/workspaces">
     <file alias="Application.css" compressed="true">Application.css</file>
   </gresource>
+
+   <gresource prefix="/com/github/devalien/workspaces/icons">
+    <file alias="workspaces-new-item.svg" compressed="true">icons/64/document-new.svg</file>
+    <file alias="workspaces-new-workspace.svg" compressed="true">icons/64/document-page-setup.svg</file>
+  </gresource>
 </gresources>

@@ -26,7 +26,7 @@ public class Workspaces.Widgets.QuickWelcome : Gtk.Grid {
 
     construct {
         var welcome = new Granite.Widgets.Welcome ("Workspaces", _ ("There are no workspaces"));
-        welcome.append ("document-import", _ ("Add Workspace"), _ ("Add a new workspace"));
+        welcome.append ("workspaces-new-workspace", _ ("Add Workspace"), _ ("Add a new workspace"));
 
         add (welcome);
 
