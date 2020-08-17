@@ -65,9 +65,21 @@
     <content_attribute id="money-purchasing">none</content_attribute>
     <content_attribute id="money-gambling">none</content_attribute>
   </content_rating>
-  
+
   <releases>
-    <release version="1.0" date="2020-08-17">
+    <release version="1.0.2" date="2020-08-17">
+      <description>
+        <p>Improvementes</p>
+        <ul>
+          <li>Improved Icon</li>
+        </ul>
+        <p>Bug Fixes</p>
+        <ul>
+          <li>Set text color of the search icon on the header</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.0.0" date="2020-08-17">
       <description>
         <p>Initial release</p>
       </description>

@@ -32,7 +32,7 @@ public class Workspaces.PreferencesWindow : Gtk.Window {
     public PreferencesWindow () {
         Object (application: Application.instance,
                 height_request: 600,
-                icon_name: "document-new",
+                icon_name: "com.github.devalien.workspaces",
                 resizable: true,
                 title: _ ("Workspaces"),
                 width_request: 700);
@@ -166,7 +166,7 @@ public class Workspaces.PreferencesWindow : Gtk.Window {
         load_ql_button.can_focus = false;
         load_ql_button.get_style_context ().add_class ("flat");
         load_ql_button.get_style_context ().add_class ("font-bold");
-        load_ql_button.get_style_context ().add_class ("add-button");
+        load_ql_button.get_style_context ().add_class ("ql-button");
         load_ql_button.clicked.connect (() => {
             Application.instance.load_quick_launch ();
         });
