@@ -29,9 +29,14 @@ public class Workspaces.Application : Gtk.Application {
 
     public const string APP_VERSION = "1.1.0";
     public const string APP_ID = "com.github.devalien.workspaces";
+    public const string SHOW_WORKSPACES_CMD = APP_ID;
+    private const string SHOW_WORKSPACES_SHORTCUT = "<Control><Alt>w";
 
     private bool show_quick_launch = false;
     private bool show_settings = false;
+    private bool started_settings = false;
+
+    public signal void update_command (string command);
     public Application () {
         Object (
             application_id: APP_ID,
@@ -58,6 +63,7 @@ public class Workspaces.Application : Gtk.Application {
     public override int command_line (ApplicationCommandLine command_line) {
         show_settings = false;
         show_quick_launch = true;
+        started_settings = false;
         bool version = false;
 
         OptionEntry[] options = new OptionEntry[3];
@@ -92,6 +98,7 @@ public class Workspaces.Application : Gtk.Application {
 
         if (show_quick_launch == false) {
             show_settings = true;
+            started_settings = true;
         }
 
         //  hold ();
@@ -111,6 +118,13 @@ public class Workspaces.Application : Gtk.Application {
     }
 
     private void load_windows () {
+        var first_run = settings.get_boolean ("first-run");
+
+        if (first_run) {
+            set_default_shortcut ();
+            settings.set_boolean ("first-run", false);
+        }
+
         if (ql_window != null) {
             remove_window (ql_window);
             ql_window.close ();
@@ -123,7 +137,7 @@ public class Workspaces.Application : Gtk.Application {
         }
         if (show_quick_launch) {
             if (ql_window == null) {
-                ql_window = new QuickLaunchWindow ();
+                ql_window = new QuickLaunchWindow (first_run);
                 add_window (ql_window);
             } else {
                 ql_window.present ();
@@ -135,6 +149,22 @@ public class Workspaces.Application : Gtk.Application {
             } else {
                 preferences_window.present ();
             }
+        }
+    }
+    public void close_preferences () {
+        if (ql_window != null) {
+            remove_window (ql_window);
+            ql_window.close ();
+            ql_window = null;
+        }
+        if (preferences_window != null) {
+            remove_window (preferences_window);
+            preferences_window.close ();
+            preferences_window = null;
+        }
+
+        if (started_settings == false) {
+            load_quick_launch ();
         }
     }
     protected override void activate () {
@@ -162,6 +192,21 @@ public class Workspaces.Application : Gtk.Application {
                 ql_window.destroy ();
             }
         });
+    }
+
+    private void set_default_shortcut () {
+        CustomShortcutSettings.init ();
+        foreach (var shortcut in CustomShortcutSettings.list_custom_shortcuts ()) {
+            if (shortcut.command == SHOW_WORKSPACES_CMD) {
+                CustomShortcutSettings.edit_shortcut (shortcut.relocatable_schema, SHOW_WORKSPACES_SHORTCUT);
+                return;
+            }
+        }
+        var shortcut = CustomShortcutSettings.create_shortcut ();
+        if (shortcut != null) {
+            CustomShortcutSettings.edit_shortcut (shortcut, SHOW_WORKSPACES_SHORTCUT);
+            CustomShortcutSettings.edit_command (shortcut, SHOW_WORKSPACES_CMD);
+        }
     }
 
     private void ensure_dir (string path) {

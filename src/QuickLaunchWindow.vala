@@ -1,4 +1,4 @@
-public class Workspaces.QuickLaunchWindow : Gtk.Dialog {
+public class Workspaces.QuickLaunchWindow : Gtk.Window {
     public signal void search_changed (string search_term);
     public signal void paste_item (int id);
     public signal void delete_item (int id);
@@ -9,7 +9,7 @@ public class Workspaces.QuickLaunchWindow : Gtk.Dialog {
     private Gtk.SearchEntry search_headerbar;
     public Workspaces.Controllers.WorkspacesController workspaces_controller;
 
-    public QuickLaunchWindow () {
+    public QuickLaunchWindow (bool first_run) {
         Object (application: Application.instance,
                 height_request: 700,
                 icon_name: "com.github.devalien.workspaces",
@@ -100,18 +100,25 @@ public class Workspaces.QuickLaunchWindow : Gtk.Dialog {
         action_box.get_style_context ().add_class ("bottom-buttons");
         action_box.margin_end = 9;
         action_box.margin_top = 6;
+        action_box.margin_bottom = 6;
         action_box.margin_start = 9;
         action_box.hexpand = true;
         action_box.pack_start (add_revealer, false, false, 0);
+        var main_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+        main_box.add (stack);
+        main_box.add (action_box);
 
-        get_content_area ().add (stack);
-        get_content_area ().add (action_box);
+        add (main_box);
 
         set_titlebar (search_headerbar);
 
         show_all ();
         update_stack_visibility ();
         search_headerbar.grab_focus ();
+        if (first_run) {
+            var dialog = new Workspaces.Dialogs.Preferences (first_run, this);
+            dialog.present ();
+        }
     }
 
     public void add_entry (Workspaces.Models.SearchItem entry) {

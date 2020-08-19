@@ -27,5 +27,10 @@
             <summary>Most recent pane position</summary>
             <description>Most recent pane position</description>
         </key>
+        <key type="b" name="first-run">
+            <default>true</default>
+            <summary>Whether this is the first time that Workspaces has opened</summary>
+            <description>Used to determine whether or not to perform initial install steps</description>
+        </key>
     </schema>
 </schemalist>

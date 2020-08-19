@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 - Today Goncalo Margalho ()
+ * Copyright (c) 2020 - Today Goncalo Margalho (https://github.com/devalien)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -21,13 +21,25 @@
 
 using Gee;
 
-public class Workspaces.PreferencesWindow : Gtk.Window {
+public class Workspaces.PreferencesWindow : Gtk.ApplicationWindow {
     public GLib.Settings settings;
     public Gtk.Stack stack { get; set; }
 
     public Workspaces.Controllers.WorkspacesController workspaces_controller {get; set;}
 
     private Granite.Widgets.SourceList source_list;
+
+    public const string ACTION_PREFIX = "win.";
+    public const string ACTION_ABOUT = "action_about";
+    public const string ACTION_SETTINGS = "action_settings";
+    public const string ACTION_QUICK_LAUNCHER = "action_quick_launcher";
+    private signal void refresh_favourites ();
+
+    private const ActionEntry[] ACTION_ENTRIES = {
+        { ACTION_ABOUT, on_action_about },
+        { ACTION_SETTINGS, on_action_settings },
+        { ACTION_QUICK_LAUNCHER, on_action_quick_launcher },
+    };
 
     public PreferencesWindow () {
         Object (application: Application.instance,
@@ -36,9 +48,14 @@ public class Workspaces.PreferencesWindow : Gtk.Window {
                 resizable: true,
                 title: _ ("Workspaces"),
                 width_request: 700);
+
+        //  var dark = new Theme ().is_theme_dark ();
+        //  warning (@"Theme settings: $dark");
     }
 
     construct {
+        add_action_entries (ACTION_ENTRIES, this);
+
         workspaces_controller = Application.instance.workspaces_controller;
         var provider = new Gtk.CssProvider ();
 
@@ -159,18 +176,82 @@ public class Workspaces.PreferencesWindow : Gtk.Window {
         left_header_context.add_class (Gtk.STYLE_CLASS_FLAT);
 
         var right_header = new Gtk.HeaderBar ();
-        var load_ql_button = new Gtk.Button.from_icon_name ("system-search-symbolic", Gtk.IconSize.MENU);
-        load_ql_button.valign = Gtk.Align.CENTER;
-        load_ql_button.halign = Gtk.Align.END;
-        load_ql_button.always_show_image = true;
-        load_ql_button.can_focus = false;
-        load_ql_button.get_style_context ().add_class ("flat");
-        load_ql_button.get_style_context ().add_class ("font-bold");
-        load_ql_button.get_style_context ().add_class ("ql-button");
-        load_ql_button.clicked.connect (() => {
-            Application.instance.load_quick_launch ();
+
+        var settings_menuitem = new Gtk.ModelButton ();
+        settings_menuitem.text = _ ("Settings");
+        settings_menuitem.action_name = ACTION_PREFIX + ACTION_SETTINGS;
+
+        var about_menuitem = new Gtk.ModelButton ();
+        about_menuitem.text = _ ("About");
+        about_menuitem.action_name = ACTION_PREFIX + ACTION_ABOUT;
+
+
+        var gtk_settings = Gtk.Settings.get_default ();
+        var mode_switch = new Granite.ModeSwitch.from_icon_name (
+            "display-brightness-symbolic",
+            "weather-clear-night-symbolic"
+            );
+        mode_switch.primary_icon_tooltip_text = _ ("Light mode");
+        mode_switch.secondary_icon_tooltip_text = _ ("Dark mode");
+        mode_switch.valign = Gtk.Align.CENTER;
+        mode_switch.bind_property ("active", gtk_settings, "gtk-application-prefer-dark-theme", GLib.BindingFlags.BIDIRECTIONAL);
+
+        var accel = "";
+        string ? accel_path = null;
+
+        CustomShortcutSettings.init ();
+        foreach (var shortcut in CustomShortcutSettings.list_custom_shortcuts ()) {
+            if (shortcut.command == Workspaces.Application.SHOW_WORKSPACES_CMD) {
+                accel = shortcut.shortcut;
+                accel_path = shortcut.relocatable_schema;
+            }
+        }
+
+        var undo_menuitem = new Gtk.ModelButton ();
+        undo_menuitem.get_child ().destroy ();
+        undo_menuitem.add (new Granite.AccelLabel ("Open Quick Launcher", accel));
+        undo_menuitem.action_name = ACTION_PREFIX + ACTION_ABOUT;
+        Application.instance.update_command.connect ((command) => {
+            undo_menuitem.get_child ().destroy ();
+            undo_menuitem.add (new Granite.AccelLabel ("Open Quick Launcher", command));
         });
-        right_header.pack_end (load_ql_button);
+
+        var menu_grid = new Gtk.Grid ();
+        menu_grid.margin_bottom = 3;
+        menu_grid.margin_top = 5;
+        menu_grid.row_spacing = 3;
+        menu_grid.orientation = Gtk.Orientation.VERTICAL;
+        menu_grid.attach (undo_menuitem, 0,0, 3, 1);
+        menu_grid.attach (new Gtk.SeparatorMenuItem (), 0, 1, 3, 1);
+        menu_grid.attach (settings_menuitem, 0, 2, 3, 1);
+        menu_grid.attach (new Gtk.SeparatorMenuItem (), 0, 3, 3, 1);
+        menu_grid.attach (about_menuitem, 0, 4, 3, 1);
+        menu_grid.show_all ();
+
+        var menu = new Gtk.Popover (null);
+        menu.add (menu_grid);
+
+
+        var prefs_button = new Gtk.MenuButton ();
+        prefs_button.image = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
+        prefs_button.valign = Gtk.Align.CENTER;
+        prefs_button.sensitive = true;
+        prefs_button.tooltip_text = _ ("Preferences");
+        prefs_button.popover = menu;
+        right_header.pack_end (prefs_button);
+
+        //  var load_ql_button = new Gtk.Button.from_icon_name ("system-search-symbolic", Gtk.IconSize.MENU);
+        //  load_ql_button.valign = Gtk.Align.CENTER;
+        //  load_ql_button.halign = Gtk.Align.END;
+        //  load_ql_button.always_show_image = true;
+        //  load_ql_button.can_focus = false;
+        //  load_ql_button.get_style_context ().add_class ("flat");
+        //  load_ql_button.get_style_context ().add_class ("font-bold");
+        //  load_ql_button.get_style_context ().add_class ("ql-button");
+        //  load_ql_button.clicked.connect (() => {
+        //      Application.instance.load_quick_launch ();
+        //  });
+        //  right_header.pack_end (load_ql_button);
         right_header.hexpand = true;
 
         var right_header_context = right_header.get_style_context ();
@@ -262,6 +343,20 @@ public class Workspaces.PreferencesWindow : Gtk.Window {
         return workspaces_controller.get_all ();
     }
 
+    private void on_action_about () {
+        var dialog = new Workspaces.Dialogs.AboutDialog (this);
+        dialog.present ();
+    }
+
+    private void on_action_settings () {
+        var dialog = new Workspaces.Dialogs.Preferences (false, this);
+        dialog.present ();
+    }
+
+    private void on_action_quick_launcher () {
+        Application.instance.load_quick_launch ();
+    }
+
     public bool before_destroy () {
         int width, height, x, y;
 
@@ -272,7 +367,7 @@ public class Workspaces.PreferencesWindow : Gtk.Window {
         settings.set_int ("pos-y", y);
         settings.set_int ("window-height", height);
         settings.set_int ("window-width", width);
-
+        Workspaces.Application.instance.close_preferences ();
         return false;
     }
 }
