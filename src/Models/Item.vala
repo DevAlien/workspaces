@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 - Today Goncalo Margalho ()
+ * Copyright (c) 2020 - Today Goncalo Margalho (https://github.com/devalien)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -26,26 +26,85 @@ public class Workspaces.Models.Item : Object {
     public string item_type { get; set; }
     public string command { get; set; }
     public bool auto_start { get; set; }
+    public bool run_in_termianl { get; set; }
+    public Workspaces.Models.AppInfo app_info {get; set;}
+    public string directory {get; set;}
 
     public Item (string name) {
         Object ();
         this.id = Uuid.string_random ();
         this.name = name;
         this.command = "";
+        this.item_type = "Custom";
+        this.run_in_termianl = false;
     }
 
     public void execute_command () {
-        if (command.length > 0) {
-            var to_run_command = command;
-            if (is_flatpak () == true) {
-                to_run_command = "flatpak-spawn --host " + to_run_command;
-            }
-            try {
-                Process.spawn_command_line_async (to_run_command);
-            } catch (SpawnError e) {
-                warning ("Error: %s\n", e.message);
-            }
+        var to_run_command = prepare_command ();
+        if (is_flatpak () == true) {
+            to_run_command = "flatpak-spawn --host " + to_run_command;
         }
+        try {
+            string[] ? argvp = null;
+            Shell.parse_argv (to_run_command, out argvp);
+            info ("Command to launch: %s".printf (to_run_command));
+            string[] env = Environ.get ();
+
+            string cdir = GLib.Environment.get_home_dir ();
+            Process.spawn_async (cdir,
+                                 argvp,
+                                 env,
+                                 SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD | SpawnFlags.STDOUT_TO_DEV_NULL | SpawnFlags.STDERR_TO_DEV_NULL,
+                                 null,
+                                 null
+                                 );
+        } catch (SpawnError e) {
+            warning ("Error: %s\n", e.message);
+        } catch (ShellError e) {
+            warning ("Error: %s\n", e.message);
+        }
+    }
+
+    private string prepare_command () {
+        var c = "";
+        if (command != null) {
+            c = command;
+        }
+
+        switch (item_type) {
+        case "URL" :
+        case "Directory" :
+            if (directory != null && directory.length > 0) {
+                c = "xdg-open " + directory;
+            }
+            break;
+        case "Application" :
+            if (app_info != null && app_info.executable.length > 0) {
+                c = app_info.executable + " ";
+                break;
+            } else {
+                return "";
+            }
+        case "ApplicationDirectory" :
+            if (app_info != null && app_info.executable != null && app_info.executable.length > 0) {
+                var d = "";
+                if (directory != null && directory.length > 0) {
+                    d = " " + directory;
+                }
+                c = app_info.executable + d;
+                break;
+            } else {
+                return "";
+            }
+        default :
+            c = command;
+            break;
+        }
+
+        if (run_in_termianl && item_type != "URL" && item_type != "Directory") {
+            c = "x-terminal-emulator -x " + c;
+        }
+        return c;
     }
 
     public string to_string () {

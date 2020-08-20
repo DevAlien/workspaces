@@ -1,11 +1,24 @@
+com.github.devalien.workspaces (1.2.0) RELEASED; urgency=low
+
+  * Added default shortcut to launch the app and a way to modify it. *
+  * Add missing icons. *
+  * Add URL type. *
+  * Add Application type. *
+  * Add Application + Directory type. *
+  * Add Directory type. *
+  * Add Custom type. *
+  * When closing preferences, if you were in the quick launcher, it will open back that one. *
+
+ -- Goncalo Margalho <g@margalho.info>  Mon, 21 Aug 2020 00:20:20 +0200
+
 com.github.devalien.workspaces (1.1.0) RELEASED; urgency=low
 
-  * Fix control file for deb packaging.  * 
+  * Fix control file for deb packaging. * 
 
  -- Goncalo Margalho <g@margalho.info>  Mon, 17 Aug 2020 13:41:57 +0200
 
 com.github.devalien.workspaces (1.0.0) UNRELEASED; urgency=low
 
-  * Initial Release.  * 
+  * Initial Release. * 
 
  -- Goncalo Margalho <g@margalho.info>  Mon, 17 Aug 2020 8:41:57 +0200

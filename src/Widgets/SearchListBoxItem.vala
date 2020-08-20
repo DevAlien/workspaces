@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 - Today Goncalo Margalho ()
+ * Copyright (c) 2020 - Today Goncalo Margalho (https://github.com/devalien)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -35,13 +35,6 @@ public class Workspaces.Widgets.SearchListBoxItem : Gtk.ListBoxRow {
 
         add (grid);
 
-        //  if (index != null) {
-        //      var shortcut = new Gtk.Label (index.to_string ());
-        //      shortcut.get_style_context ().add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
-        //      shortcut.get_style_context ().add_class ("keycap");
-        //      shortcut.set_size_request (20, 25);
-        //      grid.attach (shortcut, 0, 0, 1, 1);
-        //  }
         var name = "";
         if (entry.workspace != null) {
             name = entry.workspace.name;

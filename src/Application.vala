@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 - Today Goncalo Margalho ()
+ * Copyright (c) 2020 - Today Goncalo Margalho (https://github.com/devalien)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -27,7 +27,7 @@ public class Workspaces.Application : Gtk.Application {
 
     public Workspaces.Controllers.WorkspacesController workspaces_controller;
 
-    public const string APP_VERSION = "1.1.0";
+    public const string APP_VERSION = "1.2.0";
     public const string APP_ID = "com.github.devalien.workspaces";
     public const string SHOW_WORKSPACES_CMD = APP_ID;
     private const string SHOW_WORKSPACES_SHORTCUT = "<Control><Alt>w";
@@ -101,9 +101,7 @@ public class Workspaces.Application : Gtk.Application {
             started_settings = true;
         }
 
-        //  hold ();
         activate ();
-        //  already_running = true;
         return 0;
     }
 

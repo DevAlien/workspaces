@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 - Today Goncalo Margalho ()
+ * Copyright (c) 2020 - Today Goncalo Margalho (https://github.com/devalien)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -96,8 +96,8 @@ public class Workspaces.Models.Workspace : GLib.Object, Json.Serializable {
         return default_deserialize_property (property_name, out @value, pspec, property_node);
     }
 
-    public virtual unowned ParamSpec? find_property (string name) {
-        return get_class().find_property(name);
+    public virtual unowned ParamSpec ? find_property (string name) {
+        return get_class ().find_property (name);
     }
 }
 

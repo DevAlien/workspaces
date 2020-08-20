@@ -67,6 +67,24 @@
   </content_rating>
 
   <releases>
+    <release version="1.2.0" date="2020-08-21">
+      <description>
+        <p>Features</p>
+        <ul>
+          <li>Added default shortcut to launch the app and a way to modify it</li>
+          <li>Add missing icons</li>
+          <li>Add URL type</li>
+          <li>Add Application type</li>
+          <li>Add Application + Directory type</li>
+          <li>Add Directory type</li>
+          <li>Add Custom type</li>
+        </ul>
+        <p>Bug Fixes</p>
+        <ul>
+          <li>When closing preferences, if you were in the quick launcher, it will open back that one</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.1.0" date="2020-08-17">
       <description>
         <p>Improvementes</p>

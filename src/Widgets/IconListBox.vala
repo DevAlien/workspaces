@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 - Today Goncalo Margalho ()
+ * Copyright (c) 2020 - Today Goncalo Margalho (https://github.com/devalien)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -18,6 +18,7 @@
  *
  * Authored by: Goncalo Margalho <g@margalho.info>
  */
+
 public class Workspaces.Widgets.IconRow : Gtk.ListBoxRow {
     public string icon_name { get; construct; }
 

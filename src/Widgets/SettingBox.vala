@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 - Today Goncalo Margalho ()
+ * Copyright (c) 2020 - Today Goncalo Margalho (https://github.com/devalien)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
@@ -23,7 +23,6 @@ public class Workspaces.Widgets.SettingBox : Gtk.ListBoxRow {
     public Gtk.Widget widget { get; construct; }
     public string title { get; construct; }
 
-    private Gtk.Grid grid;
     private Gtk.Label label;
 
     construct {
@@ -33,28 +32,23 @@ public class Workspaces.Widgets.SettingBox : Gtk.ListBoxRow {
         label = new Gtk.Label (title);
         label.halign = Gtk.Align.START;
         label.margin = 6;
-
-        grid = new Gtk.Grid ();
-        grid.hexpand = true;
-        grid.halign = Gtk.Align.END;
-        grid.margin_end = 12;
-        grid.margin_top = 8;
-        grid.margin_bottom = 8;
-        grid.add (widget);
     }
 
     public SettingBox (string title, Gtk.Widget widget, bool add_separator) {
         Object (title: title, widget: widget);
 
         var main_grid = new Gtk.Grid ();
+        main_grid.hexpand = true;
         main_grid.column_spacing = 12;
+        main_grid.margin_top = 4;
+        main_grid.margin_bottom = 4;
 
         if (add_separator) {
             main_grid.attach (new Gtk.Separator (Gtk.Orientation.HORIZONTAL), 0, 0, 2, 1);
         }
 
         main_grid.attach (label, 0, 1, 1, 1);
-        main_grid.attach (grid, 1, 1, 1, 1);
+        main_grid.attach (widget, 1, 1, 1, 1);
         add (main_grid);
 
         show_all ();
