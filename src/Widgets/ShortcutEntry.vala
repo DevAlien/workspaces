@@ -44,7 +44,8 @@ public class Workspaces.Widgets.ShortcutEntry : Gtk.TreeView {
         Gtk.TreeIter iter;
 
         model.get_iter (out iter, new Gtk.TreePath.from_string (path));
-
-        (model as Gtk.ListStore).set (iter, 0, shortcut.to_readable ());
+        if (model != null) {
+            (model as Gtk.ListStore).set (iter, 0, shortcut.to_readable ());
+        }
     }
 }

@@ -73,6 +73,10 @@ public class Workspaces.Models.Item : Object {
 
         switch (item_type) {
         case "URL" :
+            if (command != null && command.length > 0) {
+                c = "xdg-open " + command;
+            }
+            break;
         case "Directory" :
             if (directory != null && directory.length > 0) {
                 c = "xdg-open " + directory;
