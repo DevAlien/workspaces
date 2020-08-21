@@ -1,3 +1,10 @@
+com.github.devalien.workspaces (1.2.1) RELEASED; urgency=low
+
+  * Fixed shortcut for flatpak. *
+  * Fixed load apps for flatpak. *
+
+ -- Goncalo Margalho <g@margalho.info>  Mon, 21 Aug 2020 12:20:20 +0200
+
 com.github.devalien.workspaces (1.2.0) RELEASED; urgency=low
 
   * Added default shortcut to launch the app and a way to modify it. *

@@ -78,17 +78,34 @@ public class Workspaces.Dialogs.Preferences : Gtk.Dialog {
 
         CustomShortcutSettings.init ();
         foreach (var shortcut in CustomShortcutSettings.list_custom_shortcuts ()) {
-            if (shortcut.command == Workspaces.Application.SHOW_WORKSPACES_CMD) {
-                accel = shortcut.shortcut;
-                accel_path = shortcut.relocatable_schema;
+            if (is_flatpak ()) {
+                if (shortcut.command == Workspaces.Application.FLATPAK_SHOW_WORKSPACES_CMD) {
+                    accel = shortcut.shortcut;
+                    accel_path = shortcut.relocatable_schema;
+                }
+            } else {
+                if (shortcut.command == Workspaces.Application.SHOW_WORKSPACES_CMD) {
+                    accel = shortcut.shortcut;
+                    accel_path = shortcut.relocatable_schema;
+                }
             }
         }
 
         var paste_shortcut_label = create_label (_ ("Open Workspaces Shortcut:"));
         var paste_shortcut_entry = new Workspaces.Widgets.ShortcutEntry (accel);
         paste_shortcut_entry.shortcut_changed.connect ((new_shortcut) => {
-            if (accel_path != null) {
+            if (accel_path != null && accel_path != "") {
                 CustomShortcutSettings.edit_shortcut (accel_path, new_shortcut);
+            } else {
+                var shortcut = CustomShortcutSettings.create_shortcut ();
+                if (shortcut != null) {
+                    CustomShortcutSettings.edit_shortcut (shortcut, new_shortcut);
+                    if (is_flatpak ()) {
+                        CustomShortcutSettings.edit_command (shortcut, Workspaces.Application.FLATPAK_SHOW_WORKSPACES_CMD);
+                    } else {
+                        CustomShortcutSettings.edit_command (shortcut, Workspaces.Application.SHOW_WORKSPACES_CMD);
+                    }
+                }
             }
         });
         if (first_run) {

@@ -30,6 +30,7 @@ public class Workspaces.Application : Gtk.Application {
     public const string APP_VERSION = "1.2.0";
     public const string APP_ID = "com.github.devalien.workspaces";
     public const string SHOW_WORKSPACES_CMD = APP_ID;
+    public const string FLATPAK_SHOW_WORKSPACES_CMD = "flatpak run " + APP_ID;
     private const string SHOW_WORKSPACES_SHORTCUT = "<Control><Alt>w";
 
     private bool show_quick_launch = false;
@@ -195,15 +196,26 @@ public class Workspaces.Application : Gtk.Application {
     private void set_default_shortcut () {
         CustomShortcutSettings.init ();
         foreach (var shortcut in CustomShortcutSettings.list_custom_shortcuts ()) {
-            if (shortcut.command == SHOW_WORKSPACES_CMD) {
-                CustomShortcutSettings.edit_shortcut (shortcut.relocatable_schema, SHOW_WORKSPACES_SHORTCUT);
-                return;
+            if (is_flatpak ()) {
+                if (shortcut.command == FLATPAK_SHOW_WORKSPACES_CMD) {
+                    CustomShortcutSettings.edit_shortcut (shortcut.relocatable_schema, SHOW_WORKSPACES_SHORTCUT);
+                    return;
+                }
+            } else {
+                if (shortcut.command == SHOW_WORKSPACES_CMD) {
+                    CustomShortcutSettings.edit_shortcut (shortcut.relocatable_schema, SHOW_WORKSPACES_SHORTCUT);
+                    return;
+                }
             }
         }
         var shortcut = CustomShortcutSettings.create_shortcut ();
         if (shortcut != null) {
             CustomShortcutSettings.edit_shortcut (shortcut, SHOW_WORKSPACES_SHORTCUT);
-            CustomShortcutSettings.edit_command (shortcut, SHOW_WORKSPACES_CMD);
+            if (is_flatpak ()) {
+                CustomShortcutSettings.edit_command (shortcut, FLATPAK_SHOW_WORKSPACES_CMD);
+            } else {
+                CustomShortcutSettings.edit_command (shortcut, SHOW_WORKSPACES_CMD);
+            }
         }
     }
 

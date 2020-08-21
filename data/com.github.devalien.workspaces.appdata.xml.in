@@ -67,6 +67,16 @@
   </content_rating>
 
   <releases>
+  <release version="1.2.1" date="2020-08-21">
+      <description>
+        <p>Bug Fixes</p>
+        <ul>
+          <li>Fixed shortcut for flatpak</li>
+          <li>Fixed load apps for flatpak</li>
+        </ul>
+      </description>
+    </release>
+
     <release version="1.2.0" date="2020-08-21">
       <description>
         <p>Features</p>

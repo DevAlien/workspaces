@@ -201,9 +201,16 @@ public class Workspaces.PreferencesWindow : Gtk.ApplicationWindow {
 
         CustomShortcutSettings.init ();
         foreach (var shortcut in CustomShortcutSettings.list_custom_shortcuts ()) {
-            if (shortcut.command == Workspaces.Application.SHOW_WORKSPACES_CMD) {
-                accel = shortcut.shortcut;
-                accel_path = shortcut.relocatable_schema;
+            if (is_flatpak ()) {
+                if (shortcut.command == Workspaces.Application.FLATPAK_SHOW_WORKSPACES_CMD) {
+                    accel = shortcut.shortcut;
+                    accel_path = shortcut.relocatable_schema;
+                }
+            } else {
+                if (shortcut.command == Workspaces.Application.SHOW_WORKSPACES_CMD) {
+                    accel = shortcut.shortcut;
+                    accel_path = shortcut.relocatable_schema;
+                }
             }
         }
 
