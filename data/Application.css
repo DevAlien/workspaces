@@ -71,7 +71,7 @@ padding-left: 20px;
     transition: all 250ms ease-in-out;
 }
 
-.right-header, .item-editor, .background, .welcome {
+.right-header, .item-editor, .welcome {
     background-color: @shaded_base;
 } 
 
@@ -117,10 +117,10 @@ paned.vertical > separator {
     margin-bottom: 0px;
     min-height: 1px;
 }
-/* 
+
 .titlebar {
     border: none;
-} */
+}
 
 grid.titlebar {
 	padding: 0;
