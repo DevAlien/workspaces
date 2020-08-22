@@ -132,7 +132,8 @@ public class Workspaces.QuickLaunchWindow : Gtk.Window {
         add (main_box);
 
         set_titlebar (search_headerbar);
-
+        search_headerbar.get_style_context ().remove_class ("titlebar");
+        search_headerbar.get_style_context ().add_class ("ql-entry");
         show_all ();
         update_stack_visibility ();
         search_headerbar.grab_focus ();

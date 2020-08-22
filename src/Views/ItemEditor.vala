@@ -80,6 +80,7 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
     private Workspaces.Widgets.TypeComboBox type_combo;
 
     private Workspaces.Widgets.SettingsGrid settings_sg;
+
     construct {
         get_style_context ().add_class ("item-editor");
         icon_button = new Workspaces.Widgets.IconButton ();
@@ -306,21 +307,25 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
         text.lines = 1;
         text.single_line_mode = true;
 
+        var app_chooser_popover = new Workspaces.Popovers.AppChooserPopover ();
+        app_chooser_popover.selected.connect ((app_info) => {
+            item.item.app_info = app_info;
+            if (item.item.app_info.icon_name != null) {
+                icon.set_from_icon_name (item.item.app_info.icon_name, Gtk.IconSize.SMALL_TOOLBAR);
+            }
+            if (app_info.name != null) {
+                text.set_text (app_info.name);
+            }
+            Workspaces.Application.instance.workspaces_controller.save ();
+            app_chooser_popover.popdown ();
+        });
         var application_button = new Gtk.Button.with_label (_ ("Select Application"));
         application_button.clicked.connect ( () => {
-            var d = new Workspaces.Dialogs.AppChooserDialog ();
-            d.show_all ();
-            d.selected.connect ((app_info) => {
-                item.item.app_info = app_info;
-                if (item.item.app_info.icon_name != null) {
-                    icon.set_from_icon_name (item.item.app_info.icon_name, Gtk.IconSize.SMALL_TOOLBAR);
-                }
-                if (app_info.name != null) {
-                    text.set_text (app_info.name);
-                }
-                Workspaces.Application.instance.workspaces_controller.save ();
-            });
+            app_chooser_popover.set_relative_to (application_button);
+            app_chooser_popover.show_all ();
+            app_chooser_popover.popup ();
         });
+
         var application_entry_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL,8);
         application_entry_box.margin_start = 8;
         application_entry_box.margin_end = 8;
@@ -363,21 +368,26 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
         text.lines = 1;
         text.single_line_mode = true;
 
+
+        var app_chooser_popover = new Workspaces.Popovers.AppChooserPopover ();
+        app_chooser_popover.selected.connect ((app_info) => {
+            item.item.app_info = app_info;
+            if (item.item.app_info.icon_name != null) {
+                icon.set_from_icon_name (item.item.app_info.icon_name, Gtk.IconSize.SMALL_TOOLBAR);
+            }
+            if (app_info.name != null) {
+                text.set_text (app_info.name);
+            }
+            Workspaces.Application.instance.workspaces_controller.save ();
+            app_chooser_popover.popdown ();
+        });
         var application_button = new Gtk.Button.with_label (_ ("Select Application"));
         application_button.clicked.connect ( () => {
-            var d = new Workspaces.Dialogs.AppChooserDialog ();
-            d.show_all ();
-            d.selected.connect ((app_info) => {
-                item.item.app_info = app_info;
-                if (item.item.app_info.icon_name != null) {
-                    icon.set_from_icon_name (item.item.app_info.icon_name, Gtk.IconSize.SMALL_TOOLBAR);
-                }
-                if (app_info.name != null) {
-                    text.set_text (app_info.name);
-                }
-                Workspaces.Application.instance.workspaces_controller.save ();
-            });
+            app_chooser_popover.set_relative_to (application_button);
+            app_chooser_popover.show_all ();
+            app_chooser_popover.popup ();
         });
+
         var application_entry_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL,8);
         application_entry_box.margin_start = 8;
         application_entry_box.margin_end = 8;
@@ -416,7 +426,7 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
         var directory_button = new Gtk.Button.with_label (_ ("Choose Directory"));
         directory_button.clicked.connect ( () => {
             var file_chooser = new Gtk.FileChooserDialog (
-                _ ("Select an image"), null, Gtk.FileChooserAction.SELECT_FOLDER,
+                _ ("Select an image"), Application.instance.preferences_window, Gtk.FileChooserAction.SELECT_FOLDER,
                 "_Cancel",
                 Gtk.ResponseType.CANCEL,
                 "_Open",
@@ -474,7 +484,7 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
         var directory_button = new Gtk.Button.with_label (_ ("Choose Directory"));
         directory_button.clicked.connect ( () => {
             var file_chooser = new Gtk.FileChooserDialog (
-                _ ("Select an image"), null, Gtk.FileChooserAction.SELECT_FOLDER,
+                _ ("Select an image"), Application.instance.preferences_window, Gtk.FileChooserAction.SELECT_FOLDER,
                 "_Cancel",
                 Gtk.ResponseType.CANCEL,
                 "_Open",

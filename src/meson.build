@@ -5,7 +5,6 @@ sources = files (
     'Dialogs/About.vala',
     'Dialogs/AddItem.vala',
     'Dialogs/AddWorkspace.vala',
-    'Dialogs/AppChooser.vala',
     'Dialogs/Dialog.vala',
     'Dialogs/Preferences.vala',
 
@@ -16,6 +15,9 @@ sources = files (
     'Models/SearchItem.vala',
     'Models/Workspace.vala',
     'Models/WorkspacesStore.vala',
+
+    'Popovers/IconChooserPopover.vala',
+    'Popovers/AppChooserPopover.vala',
 
     'Settings/CustomShortcutSettings.vala',
     'Settings/Shortcut.vala',
@@ -28,7 +30,6 @@ sources = files (
     'Widgets/Entry.vala',
     'Widgets/ExpandableCategory.vala',
     'Widgets/IconButton.vala',
-    'Widgets/IconChooserDialog.vala',
     'Widgets/IconListBox.vala',
     'Widgets/QuickWelcome.vala',
     'Widgets/SearchListBox.vala',

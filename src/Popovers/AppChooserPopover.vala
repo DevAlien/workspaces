@@ -19,7 +19,7 @@
  * Authored by: Goncalo Margalho <g@margalho.info>
  */
 
-public class Workspaces.Dialogs.AppChooserDialog : Gtk.Popover {
+public class Workspaces.Popovers.AppChooserPopover : Gtk.Popover {
     public signal void selected (Workspaces.Models.AppInfo app_info);
 
     private Workspaces.Widgets.AppListBox app_list_box;
@@ -63,7 +63,7 @@ public class Workspaces.Dialogs.AppChooserDialog : Gtk.Popover {
         add (box);
     }
 
-    public AppChooserDialog () {
+    public AppChooserPopover () {
         Object ();
     }
 
