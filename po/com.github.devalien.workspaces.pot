@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.devalien.workspaces\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-23 03:13+0200\n"
+"POT-Creation-Date: 2020-08-23 22:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -183,7 +183,7 @@ msgid "Auto Launch with workspace"
 msgstr ""
 
 #: src/Views/ItemEditor.vala:157
-msgid "Run in termianl"
+msgid "Run in terminal"
 msgstr ""
 
 #: src/Views/ItemEditor.vala:172 src/Widgets/ExpandableCategory.vala:79

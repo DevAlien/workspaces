@@ -71,7 +71,7 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
     private Workspaces.Widgets.IconButton icon_button;
     private Gtk.Entry name_entry;
     private Gtk.Switch auto_start_switch;
-    private Gtk.Switch run_in_termianl_switch;
+    private Gtk.Switch run_in_terminal_switch;
     private Gtk.Button delete_button;
     private Granite.Widgets.Toast toast;
     private Gtk.Grid settings_grid;
@@ -145,16 +145,16 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
             Workspaces.Application.instance.workspaces_controller.save ();
         });
         var auto_box = new Workspaces.Widgets.SettingBox (_ ("Auto Launch with workspace"), auto_start_switch, false);
-        run_in_termianl_switch = new Gtk.Switch ();
-        run_in_termianl_switch.halign = Gtk.Align.END;
-        run_in_termianl_switch.margin_start = 8;
-        run_in_termianl_switch.margin_end = 8;
-        run_in_termianl_switch.hexpand = true;
-        run_in_termianl_switch.notify["active"].connect (() => {
-            item.item.run_in_terminal = run_in_termianl_switch.state;
+        run_in_terminal_switch = new Gtk.Switch ();
+        run_in_terminal_switch.halign = Gtk.Align.END;
+        run_in_terminal_switch.margin_start = 8;
+        run_in_terminal_switch.margin_end = 8;
+        run_in_terminal_switch.hexpand = true;
+        run_in_terminal_switch.notify["active"].connect (() => {
+            item.item.run_in_terminal = run_in_terminal_switch.state;
             Workspaces.Application.instance.workspaces_controller.save ();
         });
-        var run_box = new Workspaces.Widgets.SettingBox (_ ("Run in termianl"), run_in_termianl_switch, false);
+        var run_box = new Workspaces.Widgets.SettingBox (_ ("Run in terminal"), run_in_terminal_switch, false);
         settings_sg.add_widget (auto_box);
         settings_sg.add_widget (run_box);
 
@@ -553,7 +553,7 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
         }
 
         auto_start_switch.set_state (item.item.auto_start);
-        run_in_termianl_switch.set_state (item.item.run_in_terminal);
+        run_in_terminal_switch.set_state (item.item.run_in_terminal);
         load_widgets_by_type (item.item.item_type);
     }
 }
