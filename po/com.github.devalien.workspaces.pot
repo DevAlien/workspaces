@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.devalien.workspaces\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-17 00:41+0200\n"
+"POT-Creation-Date: 2020-08-23 03:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,45 +17,63 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/PreferencesWindow.vala:37 src/QuickLaunchWindow.vala:17
+#: src/PreferencesWindow.vala:49 src/QuickLaunchWindow.vala:38
 msgid "Workspaces"
 msgstr ""
 
-#: src/PreferencesWindow.vala:99 src/Dialogs/AddWorkspace.vala:27
+#: src/PreferencesWindow.vala:116 src/Dialogs/AddWorkspace.vala:27
 #: src/Widgets/QuickWelcome.vala:29 src/Widgets/Welcome.vala:29
 msgid "Add Workspace"
 msgstr ""
 
-#: src/PreferencesWindow.vala:112 src/Dialogs/AddItem.vala:27
+#: src/PreferencesWindow.vala:129 src/Dialogs/AddItem.vala:27
 #: src/Widgets/Welcome.vala:30
 msgid "Add Item"
 msgstr ""
 
-#: src/PreferencesWindow.vala:227
-msgid "Cannot create an item without a workspace"
+#: src/PreferencesWindow.vala:182 src/Views/ItemEditor.vala:136
+msgid "Settings"
 msgstr ""
 
-#: src/PreferencesWindow.vala:229
-msgid "Ok"
+#: src/PreferencesWindow.vala:186
+msgid "About"
 msgstr ""
 
-#: src/PreferencesWindow.vala:233
-msgid "To add an item you first need to create a workspace."
+#: src/PreferencesWindow.vala:195
+msgid "Light mode"
 msgstr ""
 
-#: src/QuickLaunchWindow.vala:25
-msgid "Search Workspaces…"
+#: src/PreferencesWindow.vala:196
+msgid "Dark mode"
 msgstr ""
 
-#: src/QuickLaunchWindow.vala:61
-msgid "No Workspaces or Items Found"
-msgstr ""
-
-#: src/QuickLaunchWindow.vala:87
+#. Window properties
+#: src/PreferencesWindow.vala:247 src/QuickLaunchWindow.vala:108
+#: src/Dialogs/Preferences.vala:32
 msgid "Preferences"
 msgstr ""
 
-#: src/QuickLaunchWindow.vala:129
+#: src/PreferencesWindow.vala:316
+msgid "Cannot create an item without a workspace"
+msgstr ""
+
+#: src/PreferencesWindow.vala:318
+msgid "Ok"
+msgstr ""
+
+#: src/PreferencesWindow.vala:322
+msgid "To add an item you first need to create a workspace."
+msgstr ""
+
+#: src/QuickLaunchWindow.vala:46
+msgid "Search Workspaces…"
+msgstr ""
+
+#: src/QuickLaunchWindow.vala:82
+msgid "No Workspaces or Items Found"
+msgstr ""
+
+#: src/QuickLaunchWindow.vala:193
 msgid "Try changing search terms."
 msgstr ""
 
@@ -100,73 +118,145 @@ msgstr ""
 msgid "Name:"
 msgstr ""
 
-#: src/Dialogs/Dialog.vala:42
+#: src/Dialogs/Dialog.vala:42 src/Dialogs/Preferences.vala:37
 msgid "Close"
 msgstr ""
 
-#: src/Views/ItemEditor.vala:123 src/Views/ItemEditor.vala:128
+#: src/Dialogs/Preferences.vala:60
+msgid ""
+"Workspaces can be opened with a quick shortcut so you'll be able to open "
+"your projects faster."
+msgstr ""
+
+#: src/Dialogs/Preferences.vala:74
+msgid "General Settings"
+msgstr ""
+
+#: src/Dialogs/Preferences.vala:94
+msgid "Open Workspaces Shortcut:"
+msgstr ""
+
+#: src/Popovers/AppChooserPopover.vala:30
+#: src/Popovers/IconChooserPopover.vala:31
+msgid "Choose"
+msgstr ""
+
+#: src/Popovers/AppChooserPopover.vala:52
+msgid "Search apps…"
+msgstr ""
+
+#: src/Popovers/IconChooserPopover.vala:38
+msgid "From file"
+msgstr ""
+
+#: src/Popovers/IconChooserPopover.vala:58
+msgid "Search icons…"
+msgstr ""
+
+#: src/Popovers/IconChooserPopover.vala:78
+msgid "All Files"
+msgstr ""
+
+#: src/Popovers/IconChooserPopover.vala:82
+msgid "Images"
+msgstr ""
+
+#: src/Popovers/IconChooserPopover.vala:86 src/Views/ItemEditor.vala:441
+#: src/Views/ItemEditor.vala:499
+msgid "Select an image"
+msgstr ""
+
+#: src/Settings/Shortcut.vala:30
+msgid "Disabled"
+msgstr ""
+
+#: src/Settings/Shortcut.vala:39
+msgid "Ctrl"
+msgstr ""
+
+#: src/Views/ItemEditor.vala:98 src/Views/ItemEditor.vala:103
 msgid "Display name"
 msgstr ""
 
-#: src/Views/ItemEditor.vala:144
-msgid "Program to execute along with it's arguments"
-msgstr ""
-
-#: src/Views/ItemEditor.vala:156
-msgid "Command Line"
-msgstr ""
-
-#: src/Views/ItemEditor.vala:157
+#: src/Views/ItemEditor.vala:147
 msgid "Auto Launch with workspace"
 msgstr ""
 
-#: src/Views/ItemEditor.vala:159
-msgid "Settings"
+#: src/Views/ItemEditor.vala:157
+msgid "Run in termianl"
 msgstr ""
 
-#: src/Views/ItemEditor.vala:183 src/Widgets/ExpandableCategory.vala:79
+#: src/Views/ItemEditor.vala:172 src/Widgets/ExpandableCategory.vala:79
 #: src/Widgets/WorkspaceItem.vala:55
 msgid "Delete"
 msgstr ""
 
-#: src/Views/ItemEditor.vala:189
+#: src/Views/ItemEditor.vala:178
 msgid "Duplicate"
 msgstr ""
 
-#: src/Widgets/IconButton.vala:54
-msgid "Choose from file"
+#: src/Views/ItemEditor.vala:186
+msgid "Test"
 msgstr ""
 
-#: src/Widgets/IconButton.vala:58
-msgid "Choose from available icons"
+#: src/Views/ItemEditor.vala:262
+msgid "Program to execute along with it's arguments"
 msgstr ""
 
-#: src/Widgets/IconButton.vala:71
-msgid "All Files"
+#: src/Views/ItemEditor.vala:268
+msgid "Command Line"
 msgstr ""
 
-#: src/Widgets/IconButton.vala:75
-msgid "Images"
+#. var terminal_box = new Workspaces.Widgets.SettingBox (_ ("Auto Launch with workspace"), auto_start_switch, true);
+#: src/Views/ItemEditor.vala:270
+msgid "Custom Settings"
 msgstr ""
 
-#: src/Widgets/IconButton.vala:79
-msgid "Select an image"
+#. website_url_entry.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+#: src/Views/ItemEditor.vala:291
+msgid "Url that will be opened when lauched"
 msgstr ""
 
-#: src/Widgets/IconChooserDialog.vala:31
-msgid "Cancel"
+#: src/Views/ItemEditor.vala:297
+msgid "Website URL"
 msgstr ""
 
-#: src/Widgets/IconChooserDialog.vala:33
-msgid "Choose"
+#: src/Views/ItemEditor.vala:299
+msgid "URL Settings"
 msgstr ""
 
-#: src/Widgets/IconChooserDialog.vala:47
-msgid "Search icons…"
+#: src/Views/ItemEditor.vala:335 src/Views/ItemEditor.vala:395
+msgid "Select Application"
 msgstr ""
 
-#: src/Widgets/IconChooserDialog.vala:61
-msgid "Choose an icon from the list"
+#: src/Views/ItemEditor.vala:362 src/Views/ItemEditor.vala:423
+msgid "Application to launch"
+msgstr ""
+
+#: src/Views/ItemEditor.vala:364
+msgid "Application Settings"
+msgstr ""
+
+#: src/Views/ItemEditor.vala:431 src/Views/ItemEditor.vala:489
+msgid "Path to the directory"
+msgstr ""
+
+#: src/Views/ItemEditor.vala:438 src/Views/ItemEditor.vala:496
+msgid "Choose Directory"
+msgstr ""
+
+#: src/Views/ItemEditor.vala:462 src/Views/ItemEditor.vala:520
+msgid "Directory to open"
+msgstr ""
+
+#. url_settings_grid.add_widget (application_box);
+#: src/Views/ItemEditor.vala:465
+msgid "Application Directory Settings"
+msgstr ""
+
+#. url_settings_grid.add_widget (application_box);
+#: src/Views/ItemEditor.vala:523
+msgid "Directory Settings"
 msgstr ""
 
 #: src/Widgets/QuickWelcome.vala:28
@@ -175,6 +265,26 @@ msgstr ""
 
 #: src/Widgets/QuickWelcome.vala:29 src/Widgets/Welcome.vala:29
 msgid "Add a new workspace"
+msgstr ""
+
+#: src/Widgets/TypeComboBox.vala:30
+msgid "URL"
+msgstr ""
+
+#: src/Widgets/TypeComboBox.vala:31
+msgid "Directory"
+msgstr ""
+
+#: src/Widgets/TypeComboBox.vala:32
+msgid "Application"
+msgstr ""
+
+#: src/Widgets/TypeComboBox.vala:33
+msgid "Application + Directory"
+msgstr ""
+
+#: src/Widgets/TypeComboBox.vala:34
+msgid "Custom command"
 msgstr ""
 
 #: src/Widgets/Welcome.vala:28

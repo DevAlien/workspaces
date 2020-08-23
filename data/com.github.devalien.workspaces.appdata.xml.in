@@ -67,7 +67,27 @@
   </content_rating>
 
   <releases>
-  <release version="1.2.1" date="2020-08-21">
+    <release version="1.3.0" date="2020-08-23">
+      <description>
+        <p>New Features</p>
+        <ul>
+          <li>Run commands in terminal</li>
+        </ul>
+        <p>Improvements</p>
+        <ul>
+          <li>App selection is now a popover</li>
+          <li>Icon selection is now a popover</li>
+          <li>Quick launcher now has a better keyboard handling</li>
+        </ul>
+        <p>Fixes</p>
+        <ul>
+          <li>Fixed theme for other gtk themes</li>
+          <li>Fixed icon critical message</li>
+        </ul>
+      </description>
+    </release>
+
+    <release version="1.2.1" date="2020-08-21">
       <description>
         <p>Bug Fixes</p>
         <ul>

@@ -1,3 +1,14 @@
+com.github.devalien.workspaces (1.3.0) RELEASED; urgency=low
+
+  * Run commands in terminal. *
+  * App selection is now a popover. *
+  * Icon selection is now a popover. *
+  * Quick launcher now has a better keyboard handling. *
+  * Fixed theme for other gtk themes. *
+  * Fixed icon critical message. *
+
+ -- Goncalo Margalho <g@margalho.info>  Mon, 23 Aug 2020 03:10:00 +0200
+      
 com.github.devalien.workspaces (1.2.1) RELEASED; urgency=low
 
   * Fixed shortcut for flatpak. *
