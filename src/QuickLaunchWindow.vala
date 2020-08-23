@@ -127,6 +127,7 @@ public class Workspaces.QuickLaunchWindow : Gtk.Window {
         action_box.pack_start (add_revealer, false, false, 0);
         var main_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         main_box.add (stack);
+        main_box.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
         main_box.add (action_box);
 
         add (main_box);

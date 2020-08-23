@@ -153,6 +153,7 @@ public class Workspaces.PreferencesWindow : Gtk.ApplicationWindow {
         var sidebar = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         sidebar.get_style_context ().add_class ("pane");
         sidebar.pack_start (source_list, true, true, 0);
+        sidebar.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
         sidebar.pack_end (action_box, false, false, 0);
         /* End Sidebar */
 
