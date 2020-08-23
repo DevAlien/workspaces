@@ -71,7 +71,7 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
     private Workspaces.Widgets.IconButton icon_button;
     private Gtk.Entry name_entry;
     private Gtk.Switch auto_start_switch;
-
+    private Gtk.Switch run_in_termianl_switch;
     private Gtk.Button delete_button;
     private Granite.Widgets.Toast toast;
     private Gtk.Grid settings_grid;
@@ -135,12 +135,28 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
 
         settings_sg = new Workspaces.Widgets.SettingsGrid (_ ("Settings"));
         auto_start_switch = new Gtk.Switch ();
+        auto_start_switch.halign = Gtk.Align.END;
+        auto_start_switch.margin_start = 8;
+        auto_start_switch.margin_end = 8;
+        auto_start_switch.hexpand = true;
+        //  auto_start_switch.
         auto_start_switch.notify["active"].connect (() => {
             item.item.auto_start = auto_start_switch.state;
             Workspaces.Application.instance.workspaces_controller.save ();
         });
         var auto_box = new Workspaces.Widgets.SettingBox (_ ("Auto Launch with workspace"), auto_start_switch, false);
+        run_in_termianl_switch = new Gtk.Switch ();
+        run_in_termianl_switch.halign = Gtk.Align.END;
+        run_in_termianl_switch.margin_start = 8;
+        run_in_termianl_switch.margin_end = 8;
+        run_in_termianl_switch.hexpand = true;
+        run_in_termianl_switch.notify["active"].connect (() => {
+            item.item.run_in_terminal = run_in_termianl_switch.state;
+            Workspaces.Application.instance.workspaces_controller.save ();
+        });
+        var run_box = new Workspaces.Widgets.SettingBox (_ ("Run in termianl"), run_in_termianl_switch, false);
         settings_sg.add_widget (auto_box);
+        settings_sg.add_widget (run_box);
 
         settings_grid = new Gtk.Grid ();
         settings_grid.row_spacing = 12;
@@ -254,7 +270,6 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
         var custom_settings_grid = new Workspaces.Widgets.SettingsGrid (_ ("Custom Settings"));
         custom_settings_grid.add_widget (executable_box);
 
-        name_entry.set_text (item.item.name);
         if (item.item.command == null) {
             custom_command_entry.set_text ("");
         } else {
@@ -275,7 +290,7 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
         //  website_url_entry.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
         website_url_entry.placeholder_text = _ ("Url that will be opened when lauched");
         website_url_entry.changed.connect (() => {
-            item.item.command = website_url_entry.get_text ();
+            item.item.url = website_url_entry.get_text ();
             Workspaces.Application.instance.workspaces_controller.save ();
         });
 
@@ -284,26 +299,24 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
         var url_settings_grid = new Workspaces.Widgets.SettingsGrid (_ ("URL Settings"));
         url_settings_grid.add_widget (website_box);
 
-        name_entry.set_text (item.item.name);
-        if (item.item.command == null) {
+        if (item.item.url == null) {
             website_url_entry.set_text ("");
         } else {
-            website_url_entry.set_text (item.item.command);
+            website_url_entry.set_text (item.item.url);
         }
 
         settings_grid.foreach ((element) => settings_grid.remove (element));
         settings_grid.attach (url_settings_grid, 0, 0, 1, 1);
+        settings_grid.attach (settings_sg, 0, 1, 1, 1);
         settings_grid.show_all ();
     }
 
     private void load_widgets_application () {
         var icon = new Gtk.Image ();
         icon.set_pixel_size (24);
-        icon.set_from_icon_name (item.item.app_info.icon_name, Gtk.IconSize.SMALL_TOOLBAR);
 
         var text = new Gtk.Label ("");
         text.halign = Gtk.Align.START;
-        //  text.get_style_context ().add_class ("h3");
         text.lines = 1;
         text.single_line_mode = true;
 
@@ -332,8 +345,8 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
         application_entry_box.hexpand = true;
         if (item.item.app_info != null) {
             var app_info = item.item.app_info;
-            if (item.item.app_info.icon_name != null) {
-                icon.set_from_icon_name (item.item.app_info.icon_name, Gtk.IconSize.SMALL_TOOLBAR);
+            if ( app_info.icon_name != null) {
+                icon.set_from_icon_name (app_info.icon_name, Gtk.IconSize.SMALL_TOOLBAR);
             }
             if (app_info.name != null) {
                 text.set_text (app_info.name);
@@ -360,11 +373,9 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
     private void load_widgets_application_directory () {
         var icon = new Gtk.Image ();
         icon.set_pixel_size (24);
-        icon.set_from_icon_name (item.item.app_info.icon_name, Gtk.IconSize.SMALL_TOOLBAR);
 
         var text = new Gtk.Label ("");
         text.halign = Gtk.Align.START;
-        //  text.get_style_context ().add_class ("h3");
         text.lines = 1;
         text.single_line_mode = true;
 
@@ -392,6 +403,7 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
         application_entry_box.margin_start = 8;
         application_entry_box.margin_end = 8;
         application_entry_box.hexpand = true;
+
         if (item.item.app_info != null) {
             var app_info = item.item.app_info;
             if (item.item.app_info.icon_name != null) {
@@ -518,6 +530,7 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
         }
         settings_grid.foreach ((element) => settings_grid.remove (element));
         settings_grid.attach (directory_settings_grid, 0, 0, 1, 1);
+        settings_grid.attach (settings_sg, 0, 1, 1, 1);
         settings_grid.show_all ();
     }
 
@@ -540,6 +553,7 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
         }
 
         auto_start_switch.set_state (item.item.auto_start);
+        run_in_termianl_switch.set_state (item.item.run_in_terminal);
         load_widgets_by_type (item.item.item_type);
     }
 }

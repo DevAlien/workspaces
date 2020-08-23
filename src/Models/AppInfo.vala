@@ -25,9 +25,10 @@ public class Workspaces.Models.AppInfo : Object {
     public string executable { get; set; }
 
     public AppInfo (string name, string icon, string executable) {
-        Object ();
-        this.name = name;
-        this.icon_name = icon;
-        this.executable = executable;
+        Object (
+            name: name,
+            icon_name: icon,
+            executable: executable
+            );
     }
 }

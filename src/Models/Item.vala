@@ -25,8 +25,9 @@ public class Workspaces.Models.Item : Object {
     public string icon { get; set; }
     public string item_type { get; set; }
     public string command { get; set; }
+    public string url { get; set; }
     public bool auto_start { get; set; }
-    public bool run_in_termianl { get; set; }
+    public bool run_in_terminal { get; set; }
     public Workspaces.Models.AppInfo app_info {get; set;}
     public string directory {get; set;}
 
@@ -36,7 +37,8 @@ public class Workspaces.Models.Item : Object {
         this.name = name;
         this.command = "";
         this.item_type = "Custom";
-        this.run_in_termianl = false;
+        this.run_in_terminal = false;
+        this.auto_start = false;
     }
 
     public void execute_command () {
@@ -73,8 +75,8 @@ public class Workspaces.Models.Item : Object {
 
         switch (item_type) {
         case "URL" :
-            if (command != null && command.length > 0) {
-                c = "xdg-open " + command;
+            if (url != null && url.length > 0) {
+                c = "xdg-open " + url;
             }
             break;
         case "Directory" :
@@ -105,7 +107,7 @@ public class Workspaces.Models.Item : Object {
             break;
         }
 
-        if (run_in_termianl && item_type != "URL" && item_type != "Directory") {
+        if (run_in_terminal) {
             c = "x-terminal-emulator -x " + c;
         }
         return c;
