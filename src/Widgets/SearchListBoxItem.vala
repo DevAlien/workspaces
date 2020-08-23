@@ -51,9 +51,14 @@ public class Workspaces.Widgets.SearchListBoxItem : Gtk.ListBoxRow {
             get_style_context ().add_class ("search-list-item-item");
             name = entry.item.name;
             if (entry.item.icon != null) {
-                var icon = new Gtk.Image.from_icon_name (entry.item.icon, Gtk.IconSize.SMALL_TOOLBAR);
-                icon.set_pixel_size (32);
-                grid.attach (icon, 0, 0, 1, 1);
+                try {
+                    var gicon = Icon.new_for_string (entry.item.icon);
+                    var icon = new Gtk.Image.from_gicon (gicon, Gtk.IconSize.SMALL_TOOLBAR);
+                    icon.set_pixel_size (32);
+                    grid.attach (icon, 0, 0, 1, 1);
+                } catch (Error e) {
+                    debug (e.message);
+                }
             }
             var sanitised_text = name.replace ("\n", "");
             var text = new Gtk.Label (sanitised_text);

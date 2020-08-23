@@ -131,6 +131,40 @@ public class Workspaces.QuickLaunchWindow : Gtk.Window {
 
         add (main_box);
 
+        key_press_event.connect ((event) => {
+            switch (event.keyval) {
+            case Gdk.Key.Down :
+            case Gdk.Key.Up :
+                bool has_selection = list_box.get_selected_rows ().length () > 0;
+                if (!has_selection) {
+                    list_box.select_row (list_box.get_row_at_index (0));
+                }
+                var rows = list_box.get_selected_rows ();
+                if (rows.length () > 0) {
+                    rows.nth_data (0).grab_focus ();
+                }
+                if (has_selection) {
+                    list_box.key_press_event (event);
+                }
+                return true;
+            case Gdk.Key.Return :
+                return false;
+            case Gdk.Key.Escape :
+                close ();
+                return true;
+            default :
+                break;
+            }
+
+            if (event.keyval != Gdk.Key.Escape && !search_headerbar.is_focus) {
+                search_headerbar.grab_focus ();
+                search_headerbar.key_press_event (event);
+                return true;
+            }
+
+            return false;
+        });
+
         set_titlebar (search_headerbar);
         search_headerbar.get_style_context ().remove_class ("titlebar");
         search_headerbar.get_style_context ().add_class ("ql-entry");
