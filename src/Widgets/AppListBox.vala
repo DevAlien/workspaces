@@ -24,7 +24,6 @@ public class Workspaces.Widgets.AppRow : Gtk.ListBoxRow {
 
     public AppRow (Workspaces.Models.AppInfo app_info) {
         Object (app_info: app_info);
-        debug ("there");
         var image = new Gtk.Image.from_icon_name (app_info.icon_name, Gtk.IconSize.LARGE_TOOLBAR);
         image.pixel_size = 24;
 

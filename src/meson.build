@@ -9,7 +9,6 @@ sources = files (
     'Dialogs/Preferences.vala',
 
     'Models/AppInfo.vala',
-    'Models/Category.vala',
     'Models/Item.vala',
     'Models/ItemType.vala',
     'Models/SearchItem.vala',
