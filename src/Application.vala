@@ -27,7 +27,7 @@ public class Workspaces.Application : Gtk.Application {
 
     public Workspaces.Controllers.WorkspacesController workspaces_controller;
 
-    public const string APP_VERSION = "1.3.1";
+    public const string APP_VERSION = "3.0.0";
     public const string APP_ID = "com.github.devalien.workspaces";
     public const string SHOW_WORKSPACES_CMD = APP_ID;
     public const string FLATPAK_SHOW_WORKSPACES_CMD = "flatpak run " + APP_ID;

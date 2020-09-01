@@ -51,11 +51,12 @@
                 {
                     "type": "git",
                     "url": "https://github.com/devalien/workspaces.git",
-                    "branch": "master"
+                    "tag": "1.2.1",
+                    "commit": "919375876e4bc7625ddd4800c41750efac9c6ba3"
                 }
             ],
             "post-install": [
-                "sed -i s:Exec=data/com.github.devalien.workspaces:Exec=/app/bin/workspaces-wrapper: /app/share/applications/com.github.devalien.workspaces.desktop"
+                "sed -i s:Exec=com.github.devalien.workspaces:Exec=/app/bin/workspaces-wrapper: /app/share/applications/com.github.devalien.workspaces.desktop"
             ]
         }
     ]
