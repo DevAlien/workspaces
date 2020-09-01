@@ -1,0 +1,298 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.devalien.workspaces package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: com.github.devalien.workspaces\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-08-23 22:51+0200\n"
+"PO-Revision-Date: 2020-09-01 14:06+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.1\n"
+"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: nl\n"
+
+#: src/PreferencesWindow.vala:49 src/QuickLaunchWindow.vala:38
+msgid "Workspaces"
+msgstr "Werkbladen"
+
+#: src/PreferencesWindow.vala:116 src/Dialogs/AddWorkspace.vala:27
+#: src/Widgets/QuickWelcome.vala:29 src/Widgets/Welcome.vala:29
+msgid "Add Workspace"
+msgstr "Werkblad toevoegen"
+
+#: src/PreferencesWindow.vala:129 src/Dialogs/AddItem.vala:27
+#: src/Widgets/Welcome.vala:30
+msgid "Add Item"
+msgstr "Item toevoegen"
+
+#: src/PreferencesWindow.vala:182 src/Views/ItemEditor.vala:136
+msgid "Settings"
+msgstr "Instellingen"
+
+#: src/PreferencesWindow.vala:186
+msgid "About"
+msgstr "Over"
+
+#: src/PreferencesWindow.vala:195
+msgid "Light mode"
+msgstr "Licht thema"
+
+#: src/PreferencesWindow.vala:196
+msgid "Dark mode"
+msgstr "Donker thema"
+
+#. Window properties
+#: src/PreferencesWindow.vala:247 src/QuickLaunchWindow.vala:108
+#: src/Dialogs/Preferences.vala:32
+msgid "Preferences"
+msgstr "Voorkeuren"
+
+#: src/PreferencesWindow.vala:316
+msgid "Cannot create an item without a workspace"
+msgstr "Zonder werkblad kun je geen item toevoegen"
+
+#: src/PreferencesWindow.vala:318
+msgid "Ok"
+msgstr "Oké"
+
+#: src/PreferencesWindow.vala:322
+msgid "To add an item you first need to create a workspace."
+msgstr "Maak een werkblad en voeg een item toe."
+
+#: src/QuickLaunchWindow.vala:46
+msgid "Search Workspaces…"
+msgstr "Werkbladen doorzoeken…"
+
+#: src/QuickLaunchWindow.vala:82
+msgid "No Workspaces or Items Found"
+msgstr "Geen werkblad of item gevonden"
+
+#: src/QuickLaunchWindow.vala:193
+msgid "Try changing search terms."
+msgstr "Probeer een andere zoekopdracht."
+
+#: src/Dialogs/AddCategory.vala:27
+msgid "Add Collection"
+msgstr "Verzameling toevoegen"
+
+#: src/Dialogs/AddCategory.vala:28
+msgid "My Collection"
+msgstr "Mijn verzameling"
+
+#: src/Dialogs/AddCategory.vala:30 src/Dialogs/AddItem.vala:30
+#: src/Dialogs/AddWorkspace.vala:30
+msgid "Create"
+msgstr "Maken"
+
+#: src/Dialogs/AddCategory.vala:47
+msgid "Request name must not be empty."
+msgstr "Geef een naam op."
+
+#: src/Dialogs/AddItem.vala:28
+msgid "New Item"
+msgstr "Nieuw item"
+
+#: src/Dialogs/AddItem.vala:37
+msgid "Add to workspace"
+msgstr "Toevoegen aan werkblad"
+
+#: src/Dialogs/AddItem.vala:69
+msgid "Item name must not be empty."
+msgstr "Geef een naam op."
+
+#: src/Dialogs/AddWorkspace.vala:28
+msgid "My Workspace"
+msgstr "Mijn werkblad"
+
+#: src/Dialogs/AddWorkspace.vala:50
+msgid "Workspace name must not be empty."
+msgstr "Geef een naam op."
+
+#: src/Dialogs/Dialog.vala:38
+msgid "Name:"
+msgstr "Naam:"
+
+#: src/Dialogs/Dialog.vala:42 src/Dialogs/Preferences.vala:37
+msgid "Close"
+msgstr "Sluiten"
+
+#: src/Dialogs/Preferences.vala:60
+msgid ""
+"Workspaces can be opened with a quick shortcut so you'll be able to open "
+"your projects faster."
+msgstr ""
+"Als je werkbladen sneller wilt openen, kun je dat doen met een sneltoets."
+
+#: src/Dialogs/Preferences.vala:74
+msgid "General Settings"
+msgstr "Algemene instellingen"
+
+#: src/Dialogs/Preferences.vala:94
+msgid "Open Workspaces Shortcut:"
+msgstr "Sneltoets om werkbladen te openen:"
+
+#: src/Popovers/AppChooserPopover.vala:30
+#: src/Popovers/IconChooserPopover.vala:31
+msgid "Choose"
+msgstr "Kiezen"
+
+#: src/Popovers/AppChooserPopover.vala:52
+msgid "Search apps…"
+msgstr "Toepassingen doorzoeken…"
+
+#: src/Popovers/IconChooserPopover.vala:38
+msgid "From file"
+msgstr "Uit bestand"
+
+#: src/Popovers/IconChooserPopover.vala:58
+msgid "Search icons…"
+msgstr "Pictogrammen doorzoeken…"
+
+#: src/Popovers/IconChooserPopover.vala:78
+msgid "All Files"
+msgstr "Alle bestanden"
+
+#: src/Popovers/IconChooserPopover.vala:82
+msgid "Images"
+msgstr "Afbeeldingen"
+
+#: src/Popovers/IconChooserPopover.vala:86 src/Views/ItemEditor.vala:441
+#: src/Views/ItemEditor.vala:499
+msgid "Select an image"
+msgstr "Kies een afbeelding"
+
+#: src/Settings/Shortcut.vala:30
+msgid "Disabled"
+msgstr "Uitgeschakeld"
+
+#: src/Settings/Shortcut.vala:39
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#: src/Views/ItemEditor.vala:98 src/Views/ItemEditor.vala:103
+msgid "Display name"
+msgstr "Getoonde naam"
+
+#: src/Views/ItemEditor.vala:147
+msgid "Auto Launch with workspace"
+msgstr "Automatisch opstarten met werkblad"
+
+#: src/Views/ItemEditor.vala:157
+msgid "Run in terminal"
+msgstr "Uitvoeren in terminalvenster"
+
+#: src/Views/ItemEditor.vala:172 src/Widgets/ExpandableCategory.vala:79
+#: src/Widgets/WorkspaceItem.vala:55
+msgid "Delete"
+msgstr "Verwijderen"
+
+#: src/Views/ItemEditor.vala:178
+msgid "Duplicate"
+msgstr "Klonen"
+
+#: src/Views/ItemEditor.vala:186
+msgid "Test"
+msgstr "Testen"
+
+#: src/Views/ItemEditor.vala:262
+msgid "Program to execute along with it's arguments"
+msgstr "De uit te voeren toepassing, inclusief opdrachtregelopties"
+
+#: src/Views/ItemEditor.vala:268
+msgid "Command Line"
+msgstr "Opdrachtregel"
+
+#. var terminal_box = new Workspaces.Widgets.SettingBox (_ ("Auto Launch with workspace"), auto_start_switch, true);
+#: src/Views/ItemEditor.vala:270
+msgid "Custom Settings"
+msgstr "Aangepaste instellingen"
+
+#. website_url_entry.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+#: src/Views/ItemEditor.vala:291
+msgid "Url that will be opened when lauched"
+msgstr "De bij het opstarten te openen url"
+
+#: src/Views/ItemEditor.vala:297
+msgid "Website URL"
+msgstr "Website-url:"
+
+#: src/Views/ItemEditor.vala:299
+msgid "URL Settings"
+msgstr "URL-instellingen"
+
+#: src/Views/ItemEditor.vala:335 src/Views/ItemEditor.vala:395
+msgid "Select Application"
+msgstr "Kies een toepassing"
+
+#: src/Views/ItemEditor.vala:362 src/Views/ItemEditor.vala:423
+msgid "Application to launch"
+msgstr "De te starten toepassing"
+
+#: src/Views/ItemEditor.vala:364
+msgid "Application Settings"
+msgstr "Toepassingsinstellingen"
+
+#: src/Views/ItemEditor.vala:431 src/Views/ItemEditor.vala:489
+msgid "Path to the directory"
+msgstr "Het mappad"
+
+#: src/Views/ItemEditor.vala:438 src/Views/ItemEditor.vala:496
+msgid "Choose Directory"
+msgstr "Kies een map"
+
+#: src/Views/ItemEditor.vala:462 src/Views/ItemEditor.vala:520
+msgid "Directory to open"
+msgstr "De te openen map"
+
+#. url_settings_grid.add_widget (application_box);
+#: src/Views/ItemEditor.vala:465
+msgid "Application Directory Settings"
+msgstr "Werkmapinstellingen"
+
+#. url_settings_grid.add_widget (application_box);
+#: src/Views/ItemEditor.vala:523
+msgid "Directory Settings"
+msgstr "Mapinstellingen"
+
+#: src/Widgets/QuickWelcome.vala:28
+msgid "There are no workspaces"
+msgstr "Je hebt nog geen werkbladen"
+
+#: src/Widgets/QuickWelcome.vala:29 src/Widgets/Welcome.vala:29
+msgid "Add a new workspace"
+msgstr "Voeg een werkblad toe"
+
+#: src/Widgets/TypeComboBox.vala:30
+msgid "URL"
+msgstr "URL"
+
+#: src/Widgets/TypeComboBox.vala:31
+msgid "Directory"
+msgstr "Map"
+
+#: src/Widgets/TypeComboBox.vala:32
+msgid "Application"
+msgstr "Toepassing"
+
+#: src/Widgets/TypeComboBox.vala:33
+msgid "Application + Directory"
+msgstr "Toepassing + map"
+
+#: src/Widgets/TypeComboBox.vala:34
+msgid "Custom command"
+msgstr "Aangepaste opdracht"
+
+#: src/Widgets/Welcome.vala:28
+msgid "No Workspace selected"
+msgstr "Geen werkblad geselecteerd"
+
+#: src/Widgets/Welcome.vala:30
+msgid "Add a new item"
+msgstr "Voeg een item toe"
