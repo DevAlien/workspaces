@@ -72,6 +72,6 @@ sudo ninja com.github.devalien.workspaces-update-po
 ## Thanks/Credits
 
 - [Workspaces](https://www.apptorium.com/workspaces) Where I got the idea.
-- [Tuner](https://github.com/louis77/tuner) This app by Lousi Brauer inspired me to build an app myself.
+- [Tuner](https://github.com/louis77/tuner) The creator of this app inspired me to build one myself.
 - [Clipped](https://github.com/davidmhewitt/clipped) I took inspiration for the Quick Launch from this app.
 - [AppEditor](https://github.com/donadigo/appeditor) Copied the edit part of the app, I will iterate over it in the next releases.
