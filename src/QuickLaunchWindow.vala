@@ -20,6 +20,8 @@
  */
 
 public class Workspaces.QuickLaunchWindow : Gtk.Window {
+    public unowned GLib.Settings settings;
+
     public signal void search_changed (string search_term);
     public signal void paste_item (int id);
     public signal void delete_item (int id);
@@ -37,6 +39,8 @@ public class Workspaces.QuickLaunchWindow : Gtk.Window {
                 resizable: true,
                 title: _ ("Workspaces"),
                 width_request: 500);
+
+        settings = Application.instance.settings;
 
         workspaces_controller = Application.instance.workspaces_controller;
         set_keep_above (true);
@@ -77,6 +81,10 @@ public class Workspaces.QuickLaunchWindow : Gtk.Window {
         list_box.row_activated.connect ((row) => {
             var search_item = row as Workspaces.Widgets.SearchListBoxItem;
             search_item.item.launch ();
+
+            if (settings.get_boolean ("close-on-launch")) {
+                close ();
+            }
         });
 
         empty_alert = new Workspaces.Views.AlertView (_ ("No Workspaces or Items Found"), "", "edit-find-symbolic");

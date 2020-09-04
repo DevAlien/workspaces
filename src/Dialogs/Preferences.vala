@@ -108,6 +108,11 @@ public class Workspaces.Dialogs.Preferences : Gtk.Dialog {
                 }
             }
         });
+
+        var close_on_launch_label = create_label (_ ("Close on quick launch:"));
+        var close_on_launch_switch = new Gtk.Switch ();
+        settings.bind ("close-on-launch", close_on_launch_switch, "active", SettingsBindFlags.DEFAULT);
+
         if (first_run) {
             general_grid.attach (intro_label, 0, 0, 2, 1);
         }
@@ -115,6 +120,9 @@ public class Workspaces.Dialogs.Preferences : Gtk.Dialog {
 
         general_grid.attach (paste_shortcut_label, 0, 2, 1, 1);
         general_grid.attach (paste_shortcut_entry, 1, 2, 1, 1);
+
+        general_grid.attach (close_on_launch_label, 0, 3, 1, 1);
+        general_grid.attach (close_on_launch_switch, 1, 3, 1, 1);
 
         return general_grid;
     }
