@@ -77,6 +77,10 @@ public class Workspaces.QuickLaunchWindow : Gtk.Window {
         list_box.row_activated.connect ((row) => {
             var search_item = row as Workspaces.Widgets.SearchListBoxItem;
             search_item.item.launch ();
+
+            if (!is_control_pressed ()) {
+                close ();
+            }
         });
 
         empty_alert = new Workspaces.Views.AlertView (_ ("No Workspaces or Items Found"), "", "edit-find-symbolic");
@@ -134,6 +138,9 @@ public class Workspaces.QuickLaunchWindow : Gtk.Window {
 
         key_press_event.connect ((event) => {
             switch (event.keyval) {
+            case Gdk.Key.Control_L :
+            case Gdk.Key.Control_R :
+                return false;
             case Gdk.Key.Down :
             case Gdk.Key.Up :
                 bool has_selection = list_box.get_selected_rows ().length () > 0;
@@ -149,6 +156,11 @@ public class Workspaces.QuickLaunchWindow : Gtk.Window {
                 }
                 return true;
             case Gdk.Key.Return :
+                bool has_selection = list_box.get_selected_rows ().length () > 0;
+                if (has_selection) {
+                    list_box.activate ();
+                }
+
                 return false;
             case Gdk.Key.Escape :
                 close ();
@@ -192,5 +204,17 @@ public class Workspaces.QuickLaunchWindow : Gtk.Window {
             stack.visible_child_name = "empty";
             empty_alert.description = _ ("Try changing search terms.");
         }
+    }
+
+    private bool is_control_pressed () {
+        Gdk.ModifierType state;
+        if (Gtk.get_current_event_state (out state)) {
+            var s = state & get_modifier_mask (Gdk.ModifierIntent.MODIFY_SELECTION);
+            if (s == Gdk.ModifierType.CONTROL_MASK) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
