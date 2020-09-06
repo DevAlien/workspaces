@@ -32,10 +32,5 @@
             <summary>Whether this is the first time that Workspaces has opened</summary>
             <description>Used to determine whether or not to perform initial install steps</description>
         </key>
-        <key name="close-on-launch" type="b" >
-            <default>false</default>
-            <summary>Close window after launching an app</summary>
-            <description>Used to automatically close the quick launch window after opening an app or workspace</description>
-        </key>
     </schema>
 </schemalist>

@@ -20,8 +20,6 @@
  */
 
 public class Workspaces.QuickLaunchWindow : Gtk.Window {
-    public unowned GLib.Settings settings;
-
     public signal void search_changed (string search_term);
     public signal void paste_item (int id);
     public signal void delete_item (int id);
@@ -39,8 +37,6 @@ public class Workspaces.QuickLaunchWindow : Gtk.Window {
                 resizable: true,
                 title: _ ("Workspaces"),
                 width_request: 500);
-
-        settings = Application.instance.settings;
 
         workspaces_controller = Application.instance.workspaces_controller;
         set_keep_above (true);
@@ -82,7 +78,7 @@ public class Workspaces.QuickLaunchWindow : Gtk.Window {
             var search_item = row as Workspaces.Widgets.SearchListBoxItem;
             search_item.item.launch ();
 
-            if (settings.get_boolean ("close-on-launch")) {
+            if (!is_control_pressed ()) {
                 close ();
             }
         });
@@ -142,6 +138,9 @@ public class Workspaces.QuickLaunchWindow : Gtk.Window {
 
         key_press_event.connect ((event) => {
             switch (event.keyval) {
+            case Gdk.Key.Control_L :
+            case Gdk.Key.Control_R :
+                return false;
             case Gdk.Key.Down :
             case Gdk.Key.Up :
                 bool has_selection = list_box.get_selected_rows ().length () > 0;
@@ -157,6 +156,11 @@ public class Workspaces.QuickLaunchWindow : Gtk.Window {
                 }
                 return true;
             case Gdk.Key.Return :
+                bool has_selection = list_box.get_selected_rows ().length () > 0;
+                if (has_selection) {
+                    list_box.activate ();
+                }
+
                 return false;
             case Gdk.Key.Escape :
                 close ();
@@ -200,5 +204,17 @@ public class Workspaces.QuickLaunchWindow : Gtk.Window {
             stack.visible_child_name = "empty";
             empty_alert.description = _ ("Try changing search terms.");
         }
+    }
+
+    private bool is_control_pressed () {
+        Gdk.ModifierType state;
+        if (Gtk.get_current_event_state (out state)) {
+            var s = state & get_modifier_mask (Gdk.ModifierIntent.MODIFY_SELECTION);
+            if (s == Gdk.ModifierType.CONTROL_MASK) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
