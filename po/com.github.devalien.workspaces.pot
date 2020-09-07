@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.devalien.workspaces\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-23 22:51+0200\n"
+"POT-Creation-Date: 2020-09-07 10:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,47 +21,46 @@ msgstr ""
 msgid "Workspaces"
 msgstr ""
 
-#: src/PreferencesWindow.vala:116 src/Dialogs/AddWorkspace.vala:27
+#: src/PreferencesWindow.vala:120 src/Dialogs/AddWorkspace.vala:27
 #: src/Widgets/QuickWelcome.vala:29 src/Widgets/Welcome.vala:29
 msgid "Add Workspace"
 msgstr ""
 
-#: src/PreferencesWindow.vala:129 src/Dialogs/AddItem.vala:27
+#: src/PreferencesWindow.vala:133 src/Dialogs/AddItem.vala:27
 #: src/Widgets/Welcome.vala:30
 msgid "Add Item"
 msgstr ""
 
-#: src/PreferencesWindow.vala:182 src/Views/ItemEditor.vala:136
+#: src/PreferencesWindow.vala:186 src/Views/ItemEditor.vala:136
 msgid "Settings"
 msgstr ""
 
-#: src/PreferencesWindow.vala:186
+#: src/PreferencesWindow.vala:190
 msgid "About"
 msgstr ""
 
-#: src/PreferencesWindow.vala:195
+#: src/PreferencesWindow.vala:199
 msgid "Light mode"
 msgstr ""
 
-#: src/PreferencesWindow.vala:196
+#: src/PreferencesWindow.vala:200
 msgid "Dark mode"
 msgstr ""
 
-#. Window properties
-#: src/PreferencesWindow.vala:247 src/QuickLaunchWindow.vala:108
-#: src/Dialogs/Preferences.vala:32
+#: src/PreferencesWindow.vala:251 src/QuickLaunchWindow.vala:112
+#: src/Dialogs/Preferences.vala:35
 msgid "Preferences"
 msgstr ""
 
-#: src/PreferencesWindow.vala:316
+#: src/PreferencesWindow.vala:320
 msgid "Cannot create an item without a workspace"
 msgstr ""
 
-#: src/PreferencesWindow.vala:318
+#: src/PreferencesWindow.vala:322
 msgid "Ok"
 msgstr ""
 
-#: src/PreferencesWindow.vala:322
+#: src/PreferencesWindow.vala:326
 msgid "To add an item you first need to create a workspace."
 msgstr ""
 
@@ -69,11 +68,11 @@ msgstr ""
 msgid "Search Workspaces…"
 msgstr ""
 
-#: src/QuickLaunchWindow.vala:82
+#: src/QuickLaunchWindow.vala:86
 msgid "No Workspaces or Items Found"
 msgstr ""
 
-#: src/QuickLaunchWindow.vala:193
+#: src/QuickLaunchWindow.vala:205
 msgid "Try changing search terms."
 msgstr ""
 
@@ -118,22 +117,31 @@ msgstr ""
 msgid "Name:"
 msgstr ""
 
-#: src/Dialogs/Dialog.vala:42 src/Dialogs/Preferences.vala:37
+#: src/Dialogs/Dialog.vala:42 src/Dialogs/Preferences.vala:41
 msgid "Close"
 msgstr ""
 
-#: src/Dialogs/Preferences.vala:60
+#. Window properties
+#: src/Dialogs/Preferences.vala:33
+msgid "Welcome"
+msgstr ""
+
+#: src/Dialogs/Preferences.vala:64
 msgid ""
 "Workspaces can be opened with a quick shortcut so you'll be able to open "
 "your projects faster."
 msgstr ""
 
-#: src/Dialogs/Preferences.vala:74
+#: src/Dialogs/Preferences.vala:81
 msgid "General Settings"
 msgstr ""
 
-#: src/Dialogs/Preferences.vala:94
+#: src/Dialogs/Preferences.vala:101
 msgid "Open Workspaces Shortcut:"
+msgstr ""
+
+#: src/Dialogs/Preferences.vala:121
+msgid "Save last position of window"
 msgstr ""
 
 #: src/Popovers/AppChooserPopover.vala:30
