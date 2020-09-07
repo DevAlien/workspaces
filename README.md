@@ -42,6 +42,8 @@ Ensure you have these dependencies installed
 
 ## Install, build and run
 
+Elementary OS
+
 ```bash
 # install elementary-sdk, meson and ninja 
 sudo apt install elementary-sdk meson ninja
@@ -55,6 +57,31 @@ meson build --prefix=/usr
 cd build
 sudo ninja install && com.github.devalien.workspaces
 ```
+
+
+
+Ubuntu based
+
+```bash
+#Install meson
+sudo apt-get install python3 python3-pip python3-setuptools \
+                       python3-wheel ninja-build
+sudo  pip3 install meson
+#Install libraries
+sudo apt-get install libjson-glib-dev libgranite-dev libgee-0.8-dev libgtk-3-dev valac
+flatpak install --user flathub io.elementary.BaseApp//juno-19.08
+
+# clone repository
+git clone git@github.com:DevAlien/workspaces.git workspaces
+# cd to dir
+cd workspaces
+# run meson
+meson build --prefix=/usr
+# cd to build, build and test
+cd build
+sudo ninja install && com.github.devalien.workspaces
+```
+
 
 ## Generating pot file
 

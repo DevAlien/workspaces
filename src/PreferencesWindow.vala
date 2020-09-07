@@ -62,13 +62,19 @@ public class Workspaces.PreferencesWindow : Gtk.ApplicationWindow {
         window_position = Gtk.WindowPosition.CENTER;
         set_default_size (600, 700);
         settings = Application.instance.settings;
-        move (settings.get_int ("pos-x"), settings.get_int ("pos-y"));
+
+        //Define to move the windows to the last position or keep it centre
+        var do_last_position = settings.get_boolean("save-last-window-position");
+        if (do_last_position)
+            move (settings.get_int ("pos-x"), settings.get_int ("pos-y"));
 
         set_geometry_hints (null, Gdk.Geometry () {
             min_height = 440, min_width = 900
         }, Gdk.WindowHints.MIN_SIZE);
 
         resize (settings.get_int ("window-width"), settings.get_int ("window-height"));
+
+        key_press_event.connect(this.handle_key_events);
 
         delete_event.connect (e => {
             return before_destroy ();
@@ -283,6 +289,17 @@ public class Workspaces.PreferencesWindow : Gtk.ApplicationWindow {
 
 
         show_all ();
+    }
+
+    bool handle_key_events(Gtk.Widget widget , Gdk.EventKey event) {
+
+        switch (event.keyval) {
+            case Gdk.Key.Escape :
+                close ();
+                return true;
+            default :
+                return false;
+            }
     }
 
     private void set_source_list_workspace (Workspaces.Models.Workspace workspace) {
