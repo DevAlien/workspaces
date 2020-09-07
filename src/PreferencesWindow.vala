@@ -74,6 +74,8 @@ public class Workspaces.PreferencesWindow : Gtk.ApplicationWindow {
 
         resize (settings.get_int ("window-width"), settings.get_int ("window-height"));
 
+        key_press_event.connect(this.handle_key_events);
+
         delete_event.connect (e => {
             return before_destroy ();
         });
@@ -287,6 +289,17 @@ public class Workspaces.PreferencesWindow : Gtk.ApplicationWindow {
 
 
         show_all ();
+    }
+
+    bool handle_key_events(Gtk.Widget widget , Gdk.EventKey event) {
+
+        switch (event.keyval) {
+            case Gdk.Key.Escape :
+                close ();
+                return true;
+            default :
+                return false;
+            }
     }
 
     private void set_source_list_workspace (Workspaces.Models.Workspace workspace) {

@@ -118,9 +118,10 @@ public class Workspaces.Dialogs.Preferences : Gtk.Dialog {
 
         var do_last_postion = settings.get_boolean ("save-last-window-position");
 
-        var save_last_position = new Gtk.CheckButton.with_label(_ ("Save last position of window"));
-        save_last_position.toggled.connect (this.toggled_position);
-        save_last_position.set_active(do_last_postion);
+        var save_last_postion_switch = new Gtk.Switch();
+        var save_last_position_label = create_label(_ ("Save last position of window"));
+        save_last_postion_switch.notify["active"].connect(this.toggled_position);
+        save_last_postion_switch.set_active(do_last_postion);
 
 
 
@@ -132,12 +133,13 @@ public class Workspaces.Dialogs.Preferences : Gtk.Dialog {
 
         general_grid.attach (paste_shortcut_label, 0, 2, 1, 1);
         general_grid.attach (paste_shortcut_entry, 1, 2, 1, 1);
-        general_grid.attach (save_last_position, 0, 3, 1,1);
+        general_grid.attach (save_last_postion_switch, 1, 3, 1,1);
+        general_grid.attach (save_last_position_label, 0, 3, 1,1);
 
         return general_grid;
     }
-    void toggled_position(Gtk.ToggleButton checkButton) {
-        if (checkButton.get_active()) {
+    void toggled_position(Object switcher, ParamSpec pspec) {
+        if ((switcher as Gtk.Switch).get_active()) {
             settings.set_boolean ("save-last-window-position", true);
         } else
             settings.set_boolean ("save-last-window-position", false);
