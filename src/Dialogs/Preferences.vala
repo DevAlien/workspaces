@@ -29,7 +29,11 @@ public class Workspaces.Dialogs.Preferences : Gtk.Dialog {
         settings = new GLib.Settings (Workspaces.Application.APP_ID);
         transient_for = parent;
         // Window properties
+        if (first_run)
+        title = _ ("Welcome");
+        else
         title = _ ("Preferences");
+
         set_size_request (MIN_WIDTH, MIN_HEIGHT);
         resizable = false;
         window_position = Gtk.WindowPosition.CENTER;
@@ -71,6 +75,9 @@ public class Workspaces.Dialogs.Preferences : Gtk.Dialog {
         general_grid.column_spacing = 12;
         general_grid.row_spacing = 6;
 
+
+
+
         var general_header = create_heading (_ ("General Settings"));
 
         var accel = "";
@@ -108,15 +115,32 @@ public class Workspaces.Dialogs.Preferences : Gtk.Dialog {
                 }
             }
         });
+
+        var do_last_postion = settings.get_boolean ("do-last-postion");
+
+        var save_last_position = new Gtk.CheckButton.with_label("Save last position of window");
+        save_last_position.toggled.connect (this.toggled_position);
+        save_last_position.set_active(do_last_postion);
+
+
+
         if (first_run) {
             general_grid.attach (intro_label, 0, 0, 2, 1);
         }
+
         general_grid.attach (general_header, 0, 1, 1, 1);
 
         general_grid.attach (paste_shortcut_label, 0, 2, 1, 1);
         general_grid.attach (paste_shortcut_entry, 1, 2, 1, 1);
+        general_grid.attach (save_last_position, 0, 3, 1,1);
 
         return general_grid;
+    }
+    void toggled_position(Gtk.ToggleButton checkButton) {
+        if (checkButton.get_active()) {
+            settings.set_boolean ("do-last-postion", true);
+        } else
+            settings.set_boolean ("do-last-postion", false);
     }
 
     private Gtk.Label create_heading (string text) {

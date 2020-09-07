@@ -62,7 +62,11 @@ public class Workspaces.PreferencesWindow : Gtk.ApplicationWindow {
         window_position = Gtk.WindowPosition.CENTER;
         set_default_size (600, 700);
         settings = Application.instance.settings;
-        move (settings.get_int ("pos-x"), settings.get_int ("pos-y"));
+
+        //Define to move the windows to the last position or keep it centre
+        var do_last_position = settings.get_boolean("do-last-postion");
+        if (do_last_position)
+            move (settings.get_int ("pos-x"), settings.get_int ("pos-y"));
 
         set_geometry_hints (null, Gdk.Geometry () {
             min_height = 440, min_width = 900
