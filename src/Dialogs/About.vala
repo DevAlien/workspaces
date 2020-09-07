@@ -53,10 +53,43 @@ Authored by: Goncalo Margalho <g@margalho.info>""";
         website = "https://github.com/devalien/workspaces";
         website_label = "Visit us on github.com";
 
+        //Forcng to use xdg-open instead of GTK default browser due to some distro crashing the app
+        activate_link.connect((url) => {
+                this.open_link(url);
+                return true;
+            }
+        );
+
         response.connect ((response_id) => {
             if (response_id == Gtk.ResponseType.CANCEL || response_id == Gtk.ResponseType.DELETE_EVENT) {
                 hide_on_delete ();
             }
         });
+    }
+
+    void open_link(string url) {
+        var to_run_command = "xdg-open "+ url;
+        if (is_flatpak () == true) {
+            to_run_command = "flatpak-spawn --host " + to_run_command;
+        }
+        try {
+            string[] ? argvp = null;
+            Shell.parse_argv (to_run_command, out argvp);
+            info ("Command to launch: %s".printf (to_run_command));
+            string[] env = Environ.get ();
+
+            string cdir = GLib.Environment.get_home_dir ();
+            Process.spawn_async (cdir,
+                                 argvp,
+                                 env,
+                                 SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD | SpawnFlags.STDOUT_TO_DEV_NULL | SpawnFlags.STDERR_TO_DEV_NULL,
+                                 null,
+                                 null
+                                 );
+        } catch (SpawnError e) {
+            warning ("Error: %s\n", e.message);
+        } catch (ShellError e) {
+            warning ("Error: %s\n", e.message);
+        }
     }
 }
