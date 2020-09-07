@@ -217,11 +217,11 @@ public class Workspaces.PreferencesWindow : Gtk.ApplicationWindow {
 
         var undo_menuitem = new Gtk.ModelButton ();
         undo_menuitem.get_child ().destroy ();
-        undo_menuitem.add (new Granite.AccelLabel ("Open Quick Launcher", accel));
+        undo_menuitem.add (new Granite.AccelLabel (_ ("Open Quick Launcher"), accel));
         undo_menuitem.action_name = ACTION_PREFIX + ACTION_QUICK_LAUNCHER;
         Application.instance.update_command.connect ((command) => {
             undo_menuitem.get_child ().destroy ();
-            undo_menuitem.add (new Granite.AccelLabel ("Open Quick Launcher", command));
+            undo_menuitem.add (new Granite.AccelLabel (_ ("Open Quick Launcher"), command));
         });
 
         var menu_grid = new Gtk.Grid ();
