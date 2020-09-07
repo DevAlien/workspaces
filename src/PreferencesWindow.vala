@@ -64,7 +64,7 @@ public class Workspaces.PreferencesWindow : Gtk.ApplicationWindow {
         settings = Application.instance.settings;
 
         //Define to move the windows to the last position or keep it centre
-        var do_last_position = settings.get_boolean("do-last-postion");
+        var do_last_position = settings.get_boolean("save-last-window-position");
         if (do_last_position)
             move (settings.get_int ("pos-x"), settings.get_int ("pos-y"));
 

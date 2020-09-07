@@ -32,8 +32,8 @@
             <summary>Whether this is the first time that Workspaces has opened</summary>
             <description>Used to determine whether or not to perform initial install steps</description>
         </key>
-        <key type="b" name="do-last-postion">
-            <default>false</default>
+        <key type="b" name="save-last-window-position">
+            <default>true</default>
             <summary>Define to keep the window centre or not</summary>
             <description>Used when opening preference</description>
         </key>

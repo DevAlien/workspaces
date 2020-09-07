@@ -116,9 +116,9 @@ public class Workspaces.Dialogs.Preferences : Gtk.Dialog {
             }
         });
 
-        var do_last_postion = settings.get_boolean ("do-last-postion");
+        var do_last_postion = settings.get_boolean ("save-last-window-position");
 
-        var save_last_position = new Gtk.CheckButton.with_label("Save last position of window");
+        var save_last_position = new Gtk.CheckButton.with_label(_ ("Save last position of window"));
         save_last_position.toggled.connect (this.toggled_position);
         save_last_position.set_active(do_last_postion);
 
@@ -138,9 +138,9 @@ public class Workspaces.Dialogs.Preferences : Gtk.Dialog {
     }
     void toggled_position(Gtk.ToggleButton checkButton) {
         if (checkButton.get_active()) {
-            settings.set_boolean ("do-last-postion", true);
+            settings.set_boolean ("save-last-window-position", true);
         } else
-            settings.set_boolean ("do-last-postion", false);
+            settings.set_boolean ("save-last-window-position", false);
     }
 
     private Gtk.Label create_heading (string text) {
