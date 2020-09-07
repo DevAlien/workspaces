@@ -50,8 +50,6 @@ public class Workspaces.Models.Item : Object {
             string[] ? argvp = null;
             Shell.parse_argv (to_run_command, out argvp);
             info ("Commanda to launch: %s".printf (to_run_command));
-
-
             string[] env = Environ.get ();
 
             string cdir = GLib.Environment.get_home_dir ();
@@ -110,7 +108,7 @@ public class Workspaces.Models.Item : Object {
         }
 
         if (run_in_terminal) {
-            c = "x-terminal-emulator -e " + c;
+            c = "x-terminal-emulator -e \"%s\"".printf (c.replace ("\"", "\\\""));
 
         }
         return c;
