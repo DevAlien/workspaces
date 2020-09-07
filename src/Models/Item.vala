@@ -49,7 +49,7 @@ public class Workspaces.Models.Item : Object {
         try {
             string[] ? argvp = null;
             Shell.parse_argv (to_run_command, out argvp);
-            info ("Commanda to launch: %s".printf (to_run_command));
+            info ("Command to launch: %s".printf (to_run_command));
             string[] env = Environ.get ();
 
             string cdir = GLib.Environment.get_home_dir ();
