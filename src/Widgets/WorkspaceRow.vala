@@ -81,6 +81,7 @@ public class Workspaces.Widgets.WorkspaceRow : Gtk.ListBoxRow {
     construct {
         can_focus = false;
         get_style_context ().add_class ("area-row");
+        get_style_context ().remove_class ("activatable");
         //  projects_list = new Gee.ArrayList<Widgets.ProjectRow?> ();
 
         area_image = new Gtk.Image ();
@@ -108,7 +109,7 @@ public class Workspaces.Widgets.WorkspaceRow : Gtk.ListBoxRow {
 
         name_label = new Gtk.Label (workspace.name);
         name_label.halign = Gtk.Align.START;
-        name_label.get_style_context ().add_class ("pane-area");
+        name_label.get_style_context ().add_class ("left-list-label");
         name_label.valign = Gtk.Align.CENTER;
         name_label.set_ellipsize (Pango.EllipsizeMode.END);
 

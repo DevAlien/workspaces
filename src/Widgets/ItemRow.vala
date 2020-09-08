@@ -131,7 +131,7 @@ public class Workspaces.Widgets.ItemRow : Gtk.ListBoxRow {
 
         name_label = new Gtk.Label (item.name);
         name_label.halign = Gtk.Align.START;
-        name_label.get_style_context ().add_class ("pane-area");
+        name_label.get_style_context ().add_class ("left-list-label");
         name_label.valign = Gtk.Align.CENTER;
         name_label.set_ellipsize (Pango.EllipsizeMode.END);
 
