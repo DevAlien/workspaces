@@ -28,6 +28,7 @@ public class Workspaces.PreferencesWindow : Gtk.ApplicationWindow {
     public Workspaces.Controllers.WorkspacesController workspaces_controller {get; set;}
 
     private Granite.Widgets.SourceList source_list;
+    private Gtk.ListBox workspaces_list;
 
     public const string ACTION_PREFIX = "win.";
     public const string ACTION_ABOUT = "action_about";
@@ -64,7 +65,7 @@ public class Workspaces.PreferencesWindow : Gtk.ApplicationWindow {
         settings = Application.instance.settings;
 
         //Define to move the windows to the last position or keep it centre
-        var do_last_position = settings.get_boolean("save-last-window-position");
+        var do_last_position = settings.get_boolean ("save-last-window-position");
         if (do_last_position)
             move (settings.get_int ("pos-x"), settings.get_int ("pos-y"));
 
@@ -74,7 +75,7 @@ public class Workspaces.PreferencesWindow : Gtk.ApplicationWindow {
 
         resize (settings.get_int ("window-width"), settings.get_int ("window-height"));
 
-        key_press_event.connect(this.handle_key_events);
+        key_press_event.connect (this.handle_key_events);
 
         delete_event.connect (e => {
             return before_destroy ();
@@ -93,6 +94,13 @@ public class Workspaces.PreferencesWindow : Gtk.ApplicationWindow {
         var item_editor = new Workspaces.Views.ItemEditor ();
         stack.add_named (item_editor, "editor");
         /* End Stack Container */
+
+        workspaces_list = new Gtk.ListBox ();
+        workspaces_list.get_style_context ().add_class ("pane");
+        workspaces_list.activate_on_single_click = true;
+        workspaces_list.selection_mode = Gtk.SelectionMode.SINGLE;
+        workspaces_list.hexpand = true;
+        workspaces_list.vexpand = true;
 
         /* Start Sidebar SourceList */
         source_list = new Granite.Widgets.SourceList ();
@@ -158,7 +166,7 @@ public class Workspaces.PreferencesWindow : Gtk.ApplicationWindow {
         /* Start Sidebar */
         var sidebar = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         sidebar.get_style_context ().add_class ("pane");
-        sidebar.pack_start (source_list, true, true, 0);
+        sidebar.pack_start (workspaces_list, true, true, 0);
         sidebar.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
         sidebar.pack_end (action_box, false, false, 0);
         /* End Sidebar */
@@ -291,31 +299,30 @@ public class Workspaces.PreferencesWindow : Gtk.ApplicationWindow {
         show_all ();
     }
 
-    bool handle_key_events(Gtk.Widget widget , Gdk.EventKey event) {
-
+    bool handle_key_events (Gtk.Widget widget, Gdk.EventKey event) {
         switch (event.keyval) {
-            case Gdk.Key.Escape :
-                close ();
-                return true;
-            default :
-                return false;
-            }
+        case Gdk.Key.Escape :
+            close ();
+            return true;
+        default :
+            return false;
+        }
     }
 
     private void set_source_list_workspace (Workspaces.Models.Workspace workspace) {
-        var w = new Workspaces.Widgets.ExpandableCategory (workspace);
-        source_list.root.add (w);
-        w.added_new_item.connect ((item) => {
-            source_list.selected = item;
-        });
+        var w = new Workspaces.Widgets.WorkspaceRow (workspace);
+        workspaces_list.add (w);
+        //  w.added_new_item.connect ((item) => {
+        //      source_list.selected = item;
+        //  });
 
-        w.item_deleted.connect ((item) => {
-            if (source_list.selected != null) {
-                if (source_list.selected == item) {
-                    stack.set_visible_child_name ("welcome");
-                }
-            }
-        });
+        //  w.item_deleted.connect ((item) => {
+        //      if (source_list.selected != null) {
+        //          if (source_list.selected == item) {
+        //              stack.set_visible_child_name ("welcome");
+        //          }
+        //      }
+        //  });
     }
     public void show_add_workspace_dialog () {
         var dialog = new Workspaces.Dialogs.AddWorkspace (this);

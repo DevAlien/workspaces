@@ -62,9 +62,18 @@ public class Workspaces.Controllers.WorkspacesController : Object {
         item_added (item);
     }
 
+    public void insert_item (Workspaces.Models.Item item, Workspaces.Models.Workspace workspace, int position) {
+        store.add_item_at (item, workspace, position);
+        item_added (item);
+    }
+
     public bool remove_item (Workspaces.Models.Item item) {
         return store.remove_item (item);
     }
+
+    //  public bool remove_item (Workspaces.Models.Item item) {
+    //      return store.remove_item (item);
+    //  }
 
     public ArrayList<Workspaces.Models.Workspace> get_all () {
         return store.get_all ();

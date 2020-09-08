@@ -45,6 +45,13 @@ public class Workspaces.Models.Workspace : GLib.Object, Json.Serializable {
         stdout.printf ("SIZE: %d\n", items.size);
     }
 
+    public void insert_item (int position, Workspaces.Models.Item item) {
+        stdout.printf ("name: %s\n", item.name);
+        items.insert (position, item);
+        item_added (item);
+        stdout.printf ("SIZE: %d\n", items.size);
+    }
+
     public void launch () {
         foreach (var i in items) {
             if (i.auto_start) {

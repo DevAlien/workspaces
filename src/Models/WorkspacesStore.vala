@@ -54,6 +54,15 @@ public class Workspaces.Models.Store : Object {
         persist ();
     }
 
+    public void add_item_at (Workspaces.Models.Item item, Workspaces.Models.Workspace workspace, int position) {
+        foreach ( var w in _store ) {
+            if ( w.id == workspace.id ) {
+                w.insert_item (position, item);
+            }
+        }
+        persist ();
+    }
+
     public bool remove_item (Workspaces.Models.Item item) {
         var has_deleted = false;
         foreach ( var w in _store ) {
