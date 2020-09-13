@@ -23,6 +23,7 @@ sources = files (
 
     'Views/AlertView.vala',
     'Views/ItemEditor.vala',
+    'Views/WorkspaceEditor.vala',
 
     'Widgets/AppListBox.vala',
     'Widgets/Dot.vala',

@@ -40,9 +40,27 @@ public class Workspaces.Models.Store : Object {
         persist ();
     }
 
+    public void move_workspace (Workspaces.Models.Workspace workspace, int index) {
+        debug (workspace.items.size.to_string ());
+        _store.remove (workspace);
+        _store.insert (index, workspace);
+        //  _store.add (workspace);
+    }
     private void _add_workspace (Workspaces.Models.Workspace workspace) {
         debug (workspace.items.size.to_string ());
         _store.add (workspace);
+    }
+
+    public Workspaces.Models.Workspace ? get_item_workspace (Workspaces.Models.Item item) {
+        foreach ( var w in _store ) {
+            foreach (var i in w.items) {
+                if (i.id == item.id) {
+                    return w;
+                }
+            }
+        }
+
+        return null;
     }
 
     public void add_item (Workspaces.Models.Item item, Workspaces.Models.Workspace workspace) {
@@ -77,6 +95,17 @@ public class Workspaces.Models.Store : Object {
         persist ();
 
         return has_deleted;
+    }
+
+    public bool remove_workspace (Workspaces.Models.Workspace workspace) {
+        var index = _store.index_of (workspace);
+        if (index != -1) {
+            _store.remove_at (index);
+            persist ();
+            return true;
+        }
+
+        return false;
     }
 
     public void remove (Workspaces.Models.Workspace workspace) {

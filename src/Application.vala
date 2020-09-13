@@ -20,6 +20,7 @@
  */
 
 public class Workspaces.Application : Gtk.Application {
+    public signal void unselect_all_items (Workspaces.Widgets.WorkspaceRow ? workspace_row);
     public GLib.Settings settings;
     public PreferencesWindow preferences_window;
     public QuickLaunchWindow ql_window;

@@ -30,9 +30,9 @@ public class Workspaces.Dialogs.Preferences : Gtk.Dialog {
         transient_for = parent;
         // Window properties
         if (first_run)
-        title = _ ("Welcome");
+            title = _ ("Welcome");
         else
-        title = _ ("Preferences");
+            title = _ ("Preferences");
 
         set_size_request (MIN_WIDTH, MIN_HEIGHT);
         resizable = false;
@@ -118,10 +118,11 @@ public class Workspaces.Dialogs.Preferences : Gtk.Dialog {
 
         var do_last_postion = settings.get_boolean ("save-last-window-position");
 
-        var save_last_postion_switch = new Gtk.Switch();
-        var save_last_position_label = create_label(_ ("Save last position of window"));
-        save_last_postion_switch.notify["active"].connect(this.toggled_position);
-        save_last_postion_switch.set_active(do_last_postion);
+        var save_last_postion_switch = new Gtk.Switch ();
+        save_last_postion_switch.set_halign (Gtk.Align.END);
+        var save_last_position_label = create_label (_ ("Save last position of window"));
+        save_last_postion_switch.notify["active"].connect (this.toggled_position);
+        save_last_postion_switch.set_active (do_last_postion);
 
 
 
@@ -138,8 +139,8 @@ public class Workspaces.Dialogs.Preferences : Gtk.Dialog {
 
         return general_grid;
     }
-    void toggled_position(Object switcher, ParamSpec pspec) {
-        if ((switcher as Gtk.Switch).get_active()) {
+    void toggled_position (Object switcher, ParamSpec pspec) {
+        if (((Gtk.Switch)switcher).get_active ()) {
             settings.set_boolean ("save-last-window-position", true);
         } else
             settings.set_boolean ("save-last-window-position", false);

@@ -48,7 +48,7 @@ public class Workspaces.Models.Workspace : GLib.Object, Json.Serializable {
     public void insert_item (int position, Workspaces.Models.Item item) {
         stdout.printf ("name: %s\n", item.name);
         items.insert (position, item);
-        item_added (item);
+        //  item_added (item);
         stdout.printf ("SIZE: %d\n", items.size);
     }
 

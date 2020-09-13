@@ -66,8 +66,7 @@ public class Workspaces.Widgets.FieldEntry : Gtk.Box {
 public class Workspaces.Views.ItemEditor : Gtk.Box {
     public signal void removed ();
 
-    private Workspaces.Widgets.WorkspaceItem item;
-    //  private Workspaces.Widgets.Workspace workspace;
+    private Workspaces.Widgets.ItemRow item;
     private Workspaces.Widgets.IconButton icon_button;
     private Gtk.Entry name_entry;
     private Gtk.Switch auto_start_switch;
@@ -88,7 +87,7 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
         icon_button.changed.connect ((icon) => {
             item.item.icon = icon.to_string ();
             Workspaces.Application.instance.preferences_window.workspaces_controller.save ();
-            item.icon = icon;
+            item.set_icon (icon);
         });
 
         var name_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 6);
@@ -105,7 +104,7 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
         name_entry.valign = Gtk.Align.START;
         name_entry.changed.connect (() => {
             item.item.name = name_entry.get_text ();
-            item.name = name_entry.get_text ();
+            item.set_label (name_entry.get_text ());
             Workspaces.Application.instance.preferences_window.workspaces_controller.save ();
         });
         header_box.add (header_label);
@@ -139,13 +138,16 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
         auto_start_switch.margin_start = 8;
         auto_start_switch.margin_end = 8;
         auto_start_switch.hexpand = true;
+        auto_start_switch.set_valign (Gtk.Align.CENTER);
         //  auto_start_switch.
         auto_start_switch.notify["active"].connect (() => {
             item.item.auto_start = auto_start_switch.state;
+            item.update_auto_start_dot ();
             Workspaces.Application.instance.workspaces_controller.save ();
         });
         var auto_box = new Workspaces.Widgets.SettingBox (_ ("Auto Launch with workspace"), auto_start_switch, false);
         run_in_terminal_switch = new Gtk.Switch ();
+        run_in_terminal_switch.set_valign (Gtk.Align.CENTER);
         run_in_terminal_switch.halign = Gtk.Align.END;
         run_in_terminal_switch.margin_start = 8;
         run_in_terminal_switch.margin_end = 8;
@@ -177,10 +179,7 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
 
         var duplicate_button = new Gtk.Button.with_label (_ ("Duplicate"));
         duplicate_button.clicked.connect (() => {
-            var workspace_parent = item.parent as Workspaces.Widgets.ExpandableCategory;
-            if (workspace_parent != null) {
-                Workspaces.Application.instance.workspaces_controller.duplicate_item (item.item, workspace_parent.workspace);
-            }
+            Workspaces.Application.instance.workspaces_controller.duplicate_item (item.item);
         });
 
         var test_button = new Gtk.Button.with_label (_ ("Test"));
@@ -534,13 +533,17 @@ public class Workspaces.Views.ItemEditor : Gtk.Box {
         settings_grid.show_all ();
     }
 
-    public void load_item (Workspaces.Widgets.WorkspaceItem item) {
+    public void load_item (Workspaces.Widgets.ItemRow item) {
         this.item = item;
 
-        if (item.icon == null) {
+        if (item.item.icon == null) {
             icon_button.icon = Workspaces.Widgets.IconButton.default_icon;
         } else {
-            icon_button.icon = item.icon;
+            try {
+                icon_button.icon = Icon.new_for_string (item.item.icon);
+            } catch (Error e) {
+                debug (e.message);
+            }
         }
 
         name_entry.set_text (item.item.name);

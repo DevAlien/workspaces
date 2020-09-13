@@ -40,15 +40,22 @@ public class Workspaces.Controllers.WorkspacesController : Object {
     public void save () {
         store.persist ();
     }
-    public void duplicate_item (Workspaces.Models.Item item, Workspaces.Models.Workspace workspace) {
+    public void duplicate_item (Workspaces.Models.Item item) {
         var new_item = new Workspaces.Models.Item (item.name);
         new_item.icon = item.icon;
         new_item.item_type = item.item_type;
         new_item.command = item.command;
         new_item.auto_start = item.auto_start;
-
-        add_item (new_item, workspace);
+        var w = store.get_item_workspace (item);
+        if (w != null) {
+            add_item (new_item, w);
+        }
     }
+
+    public void move_workspace (Workspaces.Models.Workspace workspace, int index) {
+        store.move_workspace (workspace, index);
+    }
+
     public void add_workspace (Workspaces.Models.Workspace workspace) {
         store.add_workspace (workspace);
         workspace_added (workspace);
@@ -64,11 +71,15 @@ public class Workspaces.Controllers.WorkspacesController : Object {
 
     public void insert_item (Workspaces.Models.Item item, Workspaces.Models.Workspace workspace, int position) {
         store.add_item_at (item, workspace, position);
-        item_added (item);
+        //  item_added (item);
     }
 
     public bool remove_item (Workspaces.Models.Item item) {
         return store.remove_item (item);
+    }
+
+    public bool remove_workspace (Workspaces.Models.Workspace workspace) {
+        return store.remove_workspace (workspace);
     }
 
     //  public bool remove_item (Workspaces.Models.Item item) {
