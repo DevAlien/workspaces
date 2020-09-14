@@ -1,3 +1,24 @@
+com.github.devalien.workspaces (3.1.0) RELEASED; urgency=low
+
+  * Fix run in terminal *
+  * Fix Open quick launcher via the knob menu *
+  * Fix crash when clicking on link on about dialog by max246 *
+  * Close quick launcher when selecting an item, unless you press CTRL by Philip-Scott *
+  * Fixes visual issues on Switches, they were squashed *
+  * Save or don't save latest position by max246 *
+  * Make the workspaces in the left list sortables with drag and drop *
+  * Make the items in the left list sortables with drag and drop *
+  * Items can be moved in another workspace just with drag and drop *
+  * Workspaces are editable *
+  * Workspaces are deletable (should display a warning message) *
+  * Workspaces will display an image in the list, if they have one *
+  * Items now have a blue dot indicating that they are part of the auto-run *
+  * German translation by meisenzahl *
+  * Dutch Translation by Vistaus *
+
+ -- Goncalo Margalho <g@margalho.info>  Tue, 14 Aug 2020 11:50:00 +0200
+
+
 com.github.devalien.workspaces (3.0.0) RELEASED; urgency=low
 
   * Release for AppCenter. *

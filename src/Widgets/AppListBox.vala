@@ -43,7 +43,7 @@ public class Workspaces.Widgets.AppRow : Gtk.ListBoxRow {
 }
 
 public class Workspaces.Widgets.AppListBox : Gtk.ListBox {
-    private const int LOAD_BATCH = 20;
+    private const int LOAD_BATCH = 200;
 
     private static Gee.ArrayList<Workspaces.Models.AppInfo> apps;
     private static int max_index = -1;

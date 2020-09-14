@@ -1,14 +1,22 @@
-# ![icon](data/icons/com.github.devalien.workspaces.svg) Workspaces
+<div align="center">
 
-Make working on different projects easy again!
+![icon](data/icons/com.github.devalien.workspaces.svg)
 
-Workspaces lets you configure and quickly launch all you need to work on a project. It can open in a second different instances of code, a specific website and a directory.
+# Workspaces
+
+## Make working on different projects easy again!
+</div>
   
+<div align="center">
 
 ![Screenshot 01](data/screenshots/workspaces-quick-launcher-dark.png?raw=true)
 
 ![Screenshot 02](data/screenshots/workspaces-preferences-light.png?raw=true)
 
+</div>
+
+## Introduction
+Workspaces lets you configure and quickly launch all you need to work on a project. It can open in a second different instances of code, a specific website and a directory.
 
 ## Motivation
 I normally work on different projects throught the day, and some of them require a lot of apps to have open, they have different urls etc.
@@ -19,10 +27,11 @@ I used to use the [Workspaces](https://www.apptorium.com/workspaces) app for mac
 
 ## Installation
 
-### elementary OS
+[![Get it on Flathub](https://flathub.org/assets/badges/flathub-badge-en.png)](https://flathub.org/apps/details/com.github.devalien.workspaces)
+
 [![Get it on AppCenter](https://appcenter.elementary.io/badge.svg)](https://appcenter.elementary.io/com.github.devalien.workspaces)
 
-This app is available on the elementary OS AppCenter.
+This app is available on the elementary OS AppCenter and Flathub.
 
 # Install it from source
 

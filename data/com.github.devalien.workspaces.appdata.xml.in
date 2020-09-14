@@ -67,6 +67,43 @@
   </content_rating>
 
   <releases>
+    <release version="3.1.0" date="2020-09-14">
+      <description>
+        <p>Fixes</p>
+        <ul>
+          <li>Fix run in terminal</li>
+          <li>Fix Open quick launcher via the knob menu</li>
+          <li>Fix crash when clicking on link on about dialog by max246</li>
+          <li>Close quick launcher when selecting an item, unless you press CTRL by Philip-Scott</li>
+          <li>Fixes visual issues on Switches, they were squashed</li>
+        </ul>
+        <p>Improvements</p>
+        <ul>
+          <li>Save or don't save latest position by max246</li>
+          <li>Make the workspaces in the left list sortables with drag and drop</li>
+          <li>Make the items in the left list sortables with drag and drop</li>
+          <li>Items can be moved in another workspace just with drag and drop</li>
+          <li>Workspaces are editable</li>
+          <li>Workspaces are deletable (should display a warning message)</li>
+          <li>Workspaces will display an image in the list, if they have one</li>
+          <li>Items now have a blue dot indicating that they are part of the auto-run</li>
+        </ul>
+        <p>Translations</p>
+        <ul>
+          <li>German translation by meisenzahl</li>
+          <li>Dutch Translation by Vistaus</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.3.1" date="2020-08-23">
+      <description>
+        <p>Fixes</p>
+        <ul>
+          <li>Fixed typo</li>
+        </ul>
+      </description>
+    </release>
+
   <release version="3.0.0" date="2020-09-01">
       <description>
         <p>Release 3.0 for AppCenter</p>
