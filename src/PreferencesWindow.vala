@@ -27,14 +27,18 @@ public class Workspaces.PreferencesWindow : Gtk.ApplicationWindow {
 
     public Workspaces.Controllers.WorkspacesController workspaces_controller {get; set;}
 
-    private Granite.Widgets.SourceList source_list;
+    public Gtk.ListBox workspaces_list;
 
+    private Workspaces.Views.ItemEditor item_editor;
+    private Workspaces.Views.WorkspaceEditor workspace_editor;
     public const string ACTION_PREFIX = "win.";
     public const string ACTION_ABOUT = "action_about";
     public const string ACTION_SETTINGS = "action_settings";
     public const string ACTION_QUICK_LAUNCHER = "action_quick_launcher";
     private signal void refresh_favourites ();
-
+    private const Gtk.TargetEntry[] TARGET_WORKSPACES = {
+        {"WORKSPACEROW", Gtk.TargetFlags.SAME_APP, 0}
+    };
     private const ActionEntry[] ACTION_ENTRIES = {
         { ACTION_ABOUT, on_action_about },
         { ACTION_SETTINGS, on_action_settings },
@@ -62,13 +66,19 @@ public class Workspaces.PreferencesWindow : Gtk.ApplicationWindow {
         window_position = Gtk.WindowPosition.CENTER;
         set_default_size (600, 700);
         settings = Application.instance.settings;
-        move (settings.get_int ("pos-x"), settings.get_int ("pos-y"));
+
+        //Define to move the windows to the last position or keep it centre
+        var do_last_position = settings.get_boolean ("save-last-window-position");
+        if (do_last_position)
+            move (settings.get_int ("pos-x"), settings.get_int ("pos-y"));
 
         set_geometry_hints (null, Gdk.Geometry () {
             min_height = 440, min_width = 900
         }, Gdk.WindowHints.MIN_SIZE);
 
         resize (settings.get_int ("window-width"), settings.get_int ("window-height"));
+
+        key_press_event.connect (this.handle_key_events);
 
         delete_event.connect (e => {
             return before_destroy ();
@@ -84,28 +94,30 @@ public class Workspaces.PreferencesWindow : Gtk.ApplicationWindow {
 
         var welcome = new Workspaces.Widgets.Welcome ();
         stack.add_named (welcome, "welcome");
-        var item_editor = new Workspaces.Views.ItemEditor ();
-        stack.add_named (item_editor, "editor");
+        workspace_editor = new Workspaces.Views.WorkspaceEditor ();
+        stack.add_named (workspace_editor, "workspace_editor");
+        item_editor = new Workspaces.Views.ItemEditor ();
+        stack.add_named (item_editor, "item_editor");
         /* End Stack Container */
 
-        /* Start Sidebar SourceList */
-        source_list = new Granite.Widgets.SourceList ();
+        /* Start Sidebar workspaces */
+        workspaces_list = new Gtk.ListBox ();
+        workspaces_list.get_style_context ().add_class ("pane");
+        workspaces_list.activate_on_single_click = true;
+        workspaces_list.selection_mode = Gtk.SelectionMode.SINGLE;
+        workspaces_list.hexpand = true;
+        workspaces_list.vexpand = true;
+
+
         foreach (var workspace in workspaces) {
-            set_source_list_workspace (workspace);
+            add_workspace_to_list (workspace);
         }
 
-        source_list.set_size_request (160, -1);
-
-        source_list.item_selected.connect ((item) => {
-            var i = item as Workspaces.Widgets.WorkspaceItem;
-            item_editor.load_item (i);
-            stack.set_visible_child_name ("editor");
-        });
 
         workspaces_controller.workspace_added.connect ((workspace) => {
-            set_source_list_workspace (workspace);
+            add_workspace_to_list (workspace);
         });
-        /* End Sidebar SourceList */
+        /* End Sidebar workspaces */
 
         /* Start Sidebar Bottom Actions */
         var add_workspace_button = new Gtk.Button.from_icon_name ("list-add-symbolic", Gtk.IconSize.MENU);
@@ -149,10 +161,50 @@ public class Workspaces.PreferencesWindow : Gtk.ApplicationWindow {
         action_box.pack_start (add_item_button, false, false, 0);
         /* End Sidebar Bottom Actions */
 
+        var drop_area_grid = new Gtk.Grid ();
+        drop_area_grid.margin_start = 6;
+        drop_area_grid.margin_end = 6;
+        drop_area_grid.height_request = 12;
+
+        var motion_area_grid = new Gtk.Grid ();
+        motion_area_grid.margin_start = 6;
+        motion_area_grid.margin_end = 6;
+        motion_area_grid.margin_bottom = 12;
+        motion_area_grid.height_request = 24;
+        motion_area_grid.get_style_context ().add_class ("grid-motion");
+
+        var motion_area_revealer = new Gtk.Revealer ();
+        motion_area_revealer.transition_type = Gtk.RevealerTransitionType.SLIDE_UP;
+        motion_area_revealer.add (motion_area_grid);
+
+        Gtk.drag_dest_set (workspaces_list, Gtk.DestDefaults.ALL, TARGET_WORKSPACES, Gdk.DragAction.MOVE);
+        workspaces_list.drag_data_received.connect (on_drag_data_received_workspace);
+
+        Gtk.drag_dest_set (drop_area_grid, Gtk.DestDefaults.ALL, TARGET_WORKSPACES, Gdk.DragAction.MOVE);
+        drop_area_grid.drag_data_received.connect (on_drag_data_received_workspace_top);
+
+        drop_area_grid.drag_motion.connect ((context, x, y, time) => {
+            motion_area_revealer.reveal_child = true;
+            return true;
+        });
+
+        drop_area_grid.drag_leave.connect ((context, time) => {
+            motion_area_revealer.reveal_child = false;
+        });
+
+        var listbox_scrolled = new Gtk.ScrolledWindow (null, null);
+        //  listbox_scrolled.width_request = 238;
+        listbox_scrolled.hexpand = true;
+        listbox_scrolled.margin_bottom = 6;
+        listbox_scrolled.add (workspaces_list);
+
         /* Start Sidebar */
         var sidebar = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         sidebar.get_style_context ().add_class ("pane");
-        sidebar.pack_start (source_list, true, true, 0);
+        sidebar.add (drop_area_grid);
+        sidebar.add (motion_area_revealer);
+
+        sidebar.pack_start (listbox_scrolled, true, true, 0);
         sidebar.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
         sidebar.pack_end (action_box, false, false, 0);
         /* End Sidebar */
@@ -217,11 +269,11 @@ public class Workspaces.PreferencesWindow : Gtk.ApplicationWindow {
 
         var undo_menuitem = new Gtk.ModelButton ();
         undo_menuitem.get_child ().destroy ();
-        undo_menuitem.add (new Granite.AccelLabel ("Open Quick Launcher", accel));
-        undo_menuitem.action_name = ACTION_PREFIX + ACTION_ABOUT;
+        undo_menuitem.add (new Granite.AccelLabel (_ ("Open Quick Launcher"), accel));
+        undo_menuitem.action_name = ACTION_PREFIX + ACTION_QUICK_LAUNCHER;
         Application.instance.update_command.connect ((command) => {
             undo_menuitem.get_child ().destroy ();
-            undo_menuitem.add (new Granite.AccelLabel ("Open Quick Launcher", command));
+            undo_menuitem.add (new Granite.AccelLabel (_ ("Open Quick Launcher"), command));
         });
 
         var menu_grid = new Gtk.Grid ();
@@ -246,6 +298,7 @@ public class Workspaces.PreferencesWindow : Gtk.ApplicationWindow {
         prefs_button.sensitive = true;
         prefs_button.tooltip_text = _ ("Preferences");
         prefs_button.popover = menu;
+        prefs_button.get_style_context ().add_class ("flat");
         right_header.pack_end (prefs_button);
 
         //  var load_ql_button = new Gtk.Button.from_icon_name ("system-search-symbolic", Gtk.IconSize.MENU);
@@ -281,24 +334,77 @@ public class Workspaces.PreferencesWindow : Gtk.ApplicationWindow {
         Workspaces.Application.instance.settings.bind ("pane-position", header_paned, "position", GLib.SettingsBindFlags.DEFAULT);
         Workspaces.Application.instance.settings.bind ("pane-position", pane, "position", GLib.SettingsBindFlags.DEFAULT);
 
-
+        workspaces_list.row_selected.connect ((row) => {
+            if (row != null) {
+                var item = ((Workspaces.Widgets.WorkspaceRow)row);
+                Application.instance.unselect_all_items (item);
+            }
+        });
         show_all ();
     }
 
-    private void set_source_list_workspace (Workspaces.Models.Workspace workspace) {
-        var w = new Workspaces.Widgets.ExpandableCategory (workspace);
-        source_list.root.add (w);
-        w.added_new_item.connect ((item) => {
-            source_list.selected = item;
-        });
+    private void on_drag_data_received_workspace_top (Gdk.DragContext context, int x, int y,
+                                                      Gtk.SelectionData selection_data, uint target_type, uint time) {
+        Workspaces.Widgets.WorkspaceRow source;
+        var row = ((Gtk.Widget[])selection_data.get_data ())[0];
+        source = (Workspaces.Widgets.WorkspaceRow)row;
 
-        w.item_deleted.connect ((item) => {
-            if (source_list.selected != null) {
-                if (source_list.selected == item) {
-                    stack.set_visible_child_name ("welcome");
-                }
-            }
-        });
+
+        source.get_parent ().remove (source);
+
+        workspaces_list.insert (source, 0);
+        Application.instance.workspaces_controller.move_workspace (source.workspace, 0);
+
+        workspaces_list.show_all ();
+    }
+
+    private void on_drag_data_received_workspace (Gdk.DragContext context, int x, int y,
+                                                  Gtk.SelectionData selection_data, uint target_type, uint time) {
+        Workspaces.Widgets.WorkspaceRow target;
+        Workspaces.Widgets.WorkspaceRow source;
+        Gtk.Allocation alloc;
+
+        target = (Workspaces.Widgets.WorkspaceRow)workspaces_list.get_row_at_y (y);
+        target.get_allocation (out alloc);
+
+        var row = ((Gtk.Widget[])selection_data.get_data ())[0];
+        source = (Workspaces.Widgets.WorkspaceRow)row;
+
+        if (target != null) {
+            source.get_parent ().remove (source);
+
+            workspaces_list.insert (source, target.get_index () + 1);
+            Application.instance.workspaces_controller.move_workspace (source.workspace, target.get_index () + 1);
+
+            workspaces_list.show_all ();
+        }
+    }
+
+    public void load_item (Workspaces.Widgets.ItemRow item) {
+        item_editor.load_item (item);
+        stack.set_visible_child_name ("item_editor");
+    }
+
+    public void load_workspace (Workspaces.Widgets.WorkspaceRow workspace) {
+        workspace_editor.load_workspace (workspace);
+        stack.set_visible_child_name ("workspace_editor");
+    }
+    bool handle_key_events (Gtk.Widget widget, Gdk.EventKey event) {
+        switch (event.keyval) {
+        case Gdk.Key.Escape :
+            close ();
+            return true;
+        default :
+            return false;
+        }
+    }
+
+    private void add_workspace_to_list (Workspaces.Models.Workspace workspace) {
+        var w = new Workspaces.Widgets.WorkspaceRow (workspace);
+        workspaces_list.add (w);
+        //  w.added_new_item.connect ((item) => {
+        //      debug ("DE");
+        //  });
     }
     public void show_add_workspace_dialog () {
         var dialog = new Workspaces.Dialogs.AddWorkspace (this);
@@ -336,6 +442,27 @@ public class Workspaces.PreferencesWindow : Gtk.ApplicationWindow {
         dialog.creation.connect ((item, workspace) => {
             workspaces_controller.add_item (item, workspace);
         });
+    }
+
+    public void delete_workspace_dialog (Workspaces.Widgets.WorkspaceRow workspace_row) {
+        var message_dialog = new Granite.MessageDialog.with_image_from_icon_name (
+            _ ("You are deleting %s").printf (workspace_row.workspace.name),
+            _ ("Deleting a workspace is an irreversible action. Are you sure you want to delete it?"),
+            "dialog-warning",
+            Gtk.ButtonsType.CANCEL
+            );
+
+        var remove_button = new Gtk.Button.with_label (_ ("DELETE"));
+        remove_button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
+        message_dialog.add_action_widget (remove_button, Gtk.ResponseType.APPLY);
+        message_dialog.show_all ();
+        if (message_dialog.run () == Gtk.ResponseType.APPLY) {
+            var is_removed = workspaces_controller.remove_workspace (workspace_row.workspace);
+            if (is_removed) {
+                workspaces_list.remove (workspace_row);
+            }
+        }
+        message_dialog.destroy ();
     }
 
     private void on_response (Gtk.Dialog dialog, int response_id) {

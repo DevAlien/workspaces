@@ -29,7 +29,11 @@ public class Workspaces.Dialogs.Preferences : Gtk.Dialog {
         settings = new GLib.Settings (Workspaces.Application.APP_ID);
         transient_for = parent;
         // Window properties
-        title = _ ("Preferences");
+        if (first_run)
+            title = _ ("Welcome");
+        else
+            title = _ ("Preferences");
+
         set_size_request (MIN_WIDTH, MIN_HEIGHT);
         resizable = false;
         window_position = Gtk.WindowPosition.CENTER;
@@ -71,6 +75,9 @@ public class Workspaces.Dialogs.Preferences : Gtk.Dialog {
         general_grid.column_spacing = 12;
         general_grid.row_spacing = 6;
 
+
+
+
         var general_header = create_heading (_ ("General Settings"));
 
         var accel = "";
@@ -108,15 +115,35 @@ public class Workspaces.Dialogs.Preferences : Gtk.Dialog {
                 }
             }
         });
+
+        var do_last_postion = settings.get_boolean ("save-last-window-position");
+
+        var save_last_postion_switch = new Gtk.Switch ();
+        save_last_postion_switch.set_halign (Gtk.Align.END);
+        var save_last_position_label = create_label (_ ("Save last position of window"));
+        save_last_postion_switch.notify["active"].connect (this.toggled_position);
+        save_last_postion_switch.set_active (do_last_postion);
+
+
+
         if (first_run) {
             general_grid.attach (intro_label, 0, 0, 2, 1);
         }
+
         general_grid.attach (general_header, 0, 1, 1, 1);
 
         general_grid.attach (paste_shortcut_label, 0, 2, 1, 1);
         general_grid.attach (paste_shortcut_entry, 1, 2, 1, 1);
+        general_grid.attach (save_last_postion_switch, 1, 3, 1,1);
+        general_grid.attach (save_last_position_label, 0, 3, 1,1);
 
         return general_grid;
+    }
+    void toggled_position (Object switcher, ParamSpec pspec) {
+        if (((Gtk.Switch)switcher).get_active ()) {
+            settings.set_boolean ("save-last-window-position", true);
+        } else
+            settings.set_boolean ("save-last-window-position", false);
     }
 
     private Gtk.Label create_heading (string text) {

@@ -43,7 +43,7 @@ public class Workspaces.Widgets.IconRow : Gtk.ListBoxRow {
 }
 
 public class Workspaces.Widgets.IconListBox : Gtk.ListBox {
-    private const int LOAD_BATCH = 20;
+    private const int LOAD_BATCH = 100;
 
     private static Gee.ArrayList<string> icons;
     private static int max_index = -1;

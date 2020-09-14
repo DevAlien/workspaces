@@ -20,6 +20,7 @@
  */
 
 public class Workspaces.Application : Gtk.Application {
+    public signal void unselect_all_items (Workspaces.Widgets.WorkspaceRow ? workspace_row);
     public GLib.Settings settings;
     public PreferencesWindow preferences_window;
     public QuickLaunchWindow ql_window;
@@ -27,7 +28,7 @@ public class Workspaces.Application : Gtk.Application {
 
     public Workspaces.Controllers.WorkspacesController workspaces_controller;
 
-    public const string APP_VERSION = "3.0.0";
+    public const string APP_VERSION = "3.1.0";
     public const string APP_ID = "com.github.devalien.workspaces";
     public const string SHOW_WORKSPACES_CMD = APP_ID;
     public const string FLATPAK_SHOW_WORKSPACES_CMD = "flatpak run " + APP_ID;

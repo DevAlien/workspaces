@@ -23,6 +23,7 @@ sources = files (
 
     'Views/AlertView.vala',
     'Views/ItemEditor.vala',
+    'Views/WorkspaceEditor.vala',
 
     'Widgets/AppListBox.vala',
     'Widgets/Dot.vala',
@@ -30,6 +31,7 @@ sources = files (
     'Widgets/ExpandableCategory.vala',
     'Widgets/IconButton.vala',
     'Widgets/IconListBox.vala',
+    'Widgets/ItemRow.vala',
     'Widgets/QuickWelcome.vala',
     'Widgets/SearchListBox.vala',
     'Widgets/SearchListBoxItem.vala',
@@ -38,6 +40,7 @@ sources = files (
     'Widgets/TypeComboBox.vala',
     'Widgets/Welcome.vala',
     'Widgets/WorkspaceItem.vala',
+    'Widgets/WorkspaceRow.vala',
 
     'Application.vala',
     'PreferencesWindow.vala',

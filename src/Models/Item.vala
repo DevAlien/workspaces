@@ -81,7 +81,7 @@ public class Workspaces.Models.Item : Object {
             break;
         case "Directory" :
             if (directory != null && directory.length > 0) {
-                c = "xdg-open " + directory;
+                c = "xdg-open '" + directory + "'";
             }
             break;
         case "Application" :
@@ -95,7 +95,7 @@ public class Workspaces.Models.Item : Object {
             if (app_info != null && app_info.executable != null && app_info.executable.length > 0) {
                 var d = "";
                 if (directory != null && directory.length > 0) {
-                    d = " " + directory;
+                    d = " '" + directory + "'";
                 }
                 c = app_info.executable + d;
                 break;
@@ -108,7 +108,7 @@ public class Workspaces.Models.Item : Object {
         }
 
         if (run_in_terminal) {
-            c = "x-terminal-emulator -x " + c;
+            c = "x-terminal-emulator -e \"%s\"".printf (c.replace ("\"", "\\\""));
         }
         return c;
     }
