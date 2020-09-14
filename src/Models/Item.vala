@@ -76,12 +76,26 @@ public class Workspaces.Models.Item : Object {
         switch (item_type) {
         case "URL" :
             if (url != null && url.length > 0) {
-                c = "xdg-open " + url;
+                if (url.contains("http://") || url.contains("https://")) {
+                    c = "xdg-open " + url;
+                }  else {
+                    info(_("Not valid link"));
+                    var dialog_error = new Gtk.MessageDialog(null,Gtk.DialogFlags.MODAL,Gtk.MessageType.ERROR, Gtk.ButtonsType.OK, _("Not a valid link, must have http or https"));
+                    dialog_error.run();
+                    dialog_error.destroy();
+                }
             }
             break;
         case "Directory" :
-            if (directory != null && directory.length > 0) {
-                c = "xdg-open " + directory;
+              if (directory != null && directory.length > 0) {
+                if (GLib.FileUtils.test(directory, GLib.FileTest.IS_DIR)) {
+                    c = "xdg-open " + directory;
+                } else {
+                    info(_ ("Folder not found"));
+                    var dialog_error = new Gtk.MessageDialog(null,Gtk.DialogFlags.MODAL,Gtk.MessageType.ERROR, Gtk.ButtonsType.OK, _("Folder not found"));
+                    dialog_error.run();
+                    dialog_error.destroy();
+                }
             }
             break;
         case "Application" :
