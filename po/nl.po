@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.devalien.workspaces\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-07 10:23+0100\n"
+"POT-Creation-Date: 2020-09-14 11:56+0200\n"
 "PO-Revision-Date: 2020-09-01 14:06+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: \n"
@@ -18,52 +18,71 @@ msgstr ""
 "X-Generator: Poedit 2.4.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/PreferencesWindow.vala:49 src/QuickLaunchWindow.vala:38
+#: src/PreferencesWindow.vala:53 src/QuickLaunchWindow.vala:38
 msgid "Workspaces"
 msgstr "Werkbladen"
 
-#: src/PreferencesWindow.vala:120 src/Dialogs/AddWorkspace.vala:27
+#: src/PreferencesWindow.vala:128 src/Dialogs/AddWorkspace.vala:27
 #: src/Widgets/QuickWelcome.vala:29 src/Widgets/Welcome.vala:29
 msgid "Add Workspace"
 msgstr "Werkblad toevoegen"
 
-#: src/PreferencesWindow.vala:133 src/Dialogs/AddItem.vala:27
+#: src/PreferencesWindow.vala:141 src/Dialogs/AddItem.vala:27
 #: src/Widgets/Welcome.vala:30
 msgid "Add Item"
 msgstr "Item toevoegen"
 
-#: src/PreferencesWindow.vala:186 src/Views/ItemEditor.vala:136
+#: src/PreferencesWindow.vala:234 src/Views/ItemEditor.vala:135
 msgid "Settings"
 msgstr "Instellingen"
 
-#: src/PreferencesWindow.vala:190
+#: src/PreferencesWindow.vala:238
 msgid "About"
 msgstr "Over"
 
-#: src/PreferencesWindow.vala:199
+#: src/PreferencesWindow.vala:247
 msgid "Light mode"
 msgstr "Licht thema"
 
-#: src/PreferencesWindow.vala:200
+#: src/PreferencesWindow.vala:248
 msgid "Dark mode"
 msgstr "Donker thema"
 
-#: src/PreferencesWindow.vala:251 src/QuickLaunchWindow.vala:112
+#: src/PreferencesWindow.vala:272 src/PreferencesWindow.vala:276
+msgid "Open Quick Launcher"
+msgstr ""
+
+#: src/PreferencesWindow.vala:299 src/QuickLaunchWindow.vala:112
 #: src/Dialogs/Preferences.vala:35
 msgid "Preferences"
 msgstr "Voorkeuren"
 
-#: src/PreferencesWindow.vala:320
+#: src/PreferencesWindow.vala:422
 msgid "Cannot create an item without a workspace"
 msgstr "Zonder werkblad kun je geen item toevoegen"
 
-#: src/PreferencesWindow.vala:322
+#: src/PreferencesWindow.vala:424
 msgid "Ok"
 msgstr "Oké"
 
-#: src/PreferencesWindow.vala:326
+#: src/PreferencesWindow.vala:428
 msgid "To add an item you first need to create a workspace."
 msgstr "Maak een werkblad en voeg een item toe."
+
+#: src/PreferencesWindow.vala:449
+#, c-format
+msgid "You are deleting %s"
+msgstr ""
+
+#: src/PreferencesWindow.vala:450
+msgid ""
+"Deleting a workspace is an irreversible action. Are you sure you want to "
+"delete it?"
+msgstr ""
+
+#: src/PreferencesWindow.vala:455
+msgid "DELETE"
+msgstr ""
 
 #: src/QuickLaunchWindow.vala:46
 msgid "Search Workspaces…"
@@ -142,7 +161,7 @@ msgstr "Algemene instellingen"
 msgid "Open Workspaces Shortcut:"
 msgstr "Sneltoets om werkbladen te openen:"
 
-#: src/Dialogs/Preferences.vala:121
+#: src/Dialogs/Preferences.vala:123
 msgid "Save last position of window"
 msgstr ""
 
@@ -171,8 +190,8 @@ msgstr "Alle bestanden"
 msgid "Images"
 msgstr "Afbeeldingen"
 
-#: src/Popovers/IconChooserPopover.vala:86 src/Views/ItemEditor.vala:441
-#: src/Views/ItemEditor.vala:499
+#: src/Popovers/IconChooserPopover.vala:86 src/Views/ItemEditor.vala:440
+#: src/Views/ItemEditor.vala:498
 msgid "Select an image"
 msgstr "Kies een afbeelding"
 
@@ -184,88 +203,88 @@ msgstr "Uitgeschakeld"
 msgid "Ctrl"
 msgstr "Ctrl"
 
-#: src/Views/ItemEditor.vala:98 src/Views/ItemEditor.vala:103
+#: src/Views/ItemEditor.vala:97 src/Views/ItemEditor.vala:102
 msgid "Display name"
 msgstr "Getoonde naam"
 
-#: src/Views/ItemEditor.vala:147
+#: src/Views/ItemEditor.vala:148
 msgid "Auto Launch with workspace"
 msgstr "Automatisch opstarten met werkblad"
 
-#: src/Views/ItemEditor.vala:157
+#: src/Views/ItemEditor.vala:159
 msgid "Run in terminal"
 msgstr "Uitvoeren in terminalvenster"
 
-#: src/Views/ItemEditor.vala:172 src/Widgets/ExpandableCategory.vala:79
+#: src/Views/ItemEditor.vala:174 src/Widgets/ExpandableCategory.vala:79
 #: src/Widgets/WorkspaceItem.vala:55
 msgid "Delete"
 msgstr "Verwijderen"
 
-#: src/Views/ItemEditor.vala:178
+#: src/Views/ItemEditor.vala:180
 msgid "Duplicate"
 msgstr "Klonen"
 
-#: src/Views/ItemEditor.vala:186
+#: src/Views/ItemEditor.vala:185
 msgid "Test"
 msgstr "Testen"
 
-#: src/Views/ItemEditor.vala:262
+#: src/Views/ItemEditor.vala:261
 msgid "Program to execute along with it's arguments"
 msgstr "De uit te voeren toepassing, inclusief opdrachtregelopties"
 
-#: src/Views/ItemEditor.vala:268
+#: src/Views/ItemEditor.vala:267
 msgid "Command Line"
 msgstr "Opdrachtregel"
 
 #. var terminal_box = new Workspaces.Widgets.SettingBox (_ ("Auto Launch with workspace"), auto_start_switch, true);
-#: src/Views/ItemEditor.vala:270
+#: src/Views/ItemEditor.vala:269
 msgid "Custom Settings"
 msgstr "Aangepaste instellingen"
 
 #. website_url_entry.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
-#: src/Views/ItemEditor.vala:291
+#: src/Views/ItemEditor.vala:290
 msgid "Url that will be opened when lauched"
 msgstr "De bij het opstarten te openen url"
 
-#: src/Views/ItemEditor.vala:297
+#: src/Views/ItemEditor.vala:296
 msgid "Website URL"
 msgstr "Website-url:"
 
-#: src/Views/ItemEditor.vala:299
+#: src/Views/ItemEditor.vala:298
 msgid "URL Settings"
 msgstr "URL-instellingen"
 
-#: src/Views/ItemEditor.vala:335 src/Views/ItemEditor.vala:395
+#: src/Views/ItemEditor.vala:334 src/Views/ItemEditor.vala:394
 msgid "Select Application"
 msgstr "Kies een toepassing"
 
-#: src/Views/ItemEditor.vala:362 src/Views/ItemEditor.vala:423
+#: src/Views/ItemEditor.vala:361 src/Views/ItemEditor.vala:422
 msgid "Application to launch"
 msgstr "De te starten toepassing"
 
-#: src/Views/ItemEditor.vala:364
+#: src/Views/ItemEditor.vala:363
 msgid "Application Settings"
 msgstr "Toepassingsinstellingen"
 
-#: src/Views/ItemEditor.vala:431 src/Views/ItemEditor.vala:489
+#: src/Views/ItemEditor.vala:430 src/Views/ItemEditor.vala:488
 msgid "Path to the directory"
 msgstr "Het mappad"
 
-#: src/Views/ItemEditor.vala:438 src/Views/ItemEditor.vala:496
+#: src/Views/ItemEditor.vala:437 src/Views/ItemEditor.vala:495
 msgid "Choose Directory"
 msgstr "Kies een map"
 
-#: src/Views/ItemEditor.vala:462 src/Views/ItemEditor.vala:520
+#: src/Views/ItemEditor.vala:461 src/Views/ItemEditor.vala:519
 msgid "Directory to open"
 msgstr "De te openen map"
 
 #. url_settings_grid.add_widget (application_box);
-#: src/Views/ItemEditor.vala:465
+#: src/Views/ItemEditor.vala:464
 msgid "Application Directory Settings"
 msgstr "Werkmapinstellingen"
 
 #. url_settings_grid.add_widget (application_box);
-#: src/Views/ItemEditor.vala:523
+#: src/Views/ItemEditor.vala:522
 msgid "Directory Settings"
 msgstr "Mapinstellingen"
 
