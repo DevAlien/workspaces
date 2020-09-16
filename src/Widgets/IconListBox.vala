@@ -147,6 +147,7 @@ public class Workspaces.Widgets.IconListBox : Gtk.ListBox {
     }
 
     private string[] search_icons (string query) {
+        debug (@"searching $query");
         string[] matched = { };
         for (int i = 0; i < icons.size; i++) {
             string icon_name = icons[i];

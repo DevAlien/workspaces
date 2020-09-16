@@ -364,11 +364,11 @@ public class Workspaces.Widgets.WorkspaceRow : Gtk.ListBoxRow {
         var row = ((Gtk.Widget[])selection_data.get_data ())[0];
         source = (Workspaces.Widgets.ItemRow)row;
 
-        source.get_parent ().remove (source);
+        listbox.remove (source);
         Application.instance.workspaces_controller.remove_item (source.item);
 
         listbox.insert (source, 0);
-        Application.instance.workspaces_controller.add_item (source.item, workspace);
+        Application.instance.workspaces_controller.insert_item (source.item, workspace, 0);
 
         listbox.show_all ();
         listbox_revealer.reveal_child = true;
