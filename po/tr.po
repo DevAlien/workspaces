@@ -1,0 +1,327 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.devalien.workspaces package.
+#
+# Safak <bjksafak45@gmail.com>, 2020.
+msgid ""
+msgstr ""
+"Project-Id-Version: com.github.devalien.workspaces\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-14 11:56+0200\n"
+"PO-Revision-Date: 2020-09-26 12:46+0300\n"
+"Last-Translator: Safak <bjksafak45@gmail.com>\n"
+"Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
+"Language: tr_TR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 2.0\n"
+
+#: src/PreferencesWindow.vala:53 src/QuickLaunchWindow.vala:38
+msgid "Workspaces"
+msgstr "Workspaces"
+
+#: src/PreferencesWindow.vala:128 src/Dialogs/AddWorkspace.vala:27
+#: src/Widgets/QuickWelcome.vala:29 src/Widgets/Welcome.vala:29
+msgid "Add Workspace"
+msgstr "Çalışma Alanı Ekle"
+
+#: src/PreferencesWindow.vala:141 src/Dialogs/AddItem.vala:27
+#: src/Widgets/Welcome.vala:30
+msgid "Add Item"
+msgstr "Öğe Ekle"
+
+#: src/PreferencesWindow.vala:234 src/Views/ItemEditor.vala:135
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: src/PreferencesWindow.vala:238
+msgid "About"
+msgstr "Hakkında"
+
+#: src/PreferencesWindow.vala:247
+msgid "Light mode"
+msgstr "Aydınlık Mod"
+
+#: src/PreferencesWindow.vala:248
+msgid "Dark mode"
+msgstr "Karanlık Mod"
+
+#: src/PreferencesWindow.vala:272 src/PreferencesWindow.vala:276
+msgid "Open Quick Launcher"
+msgstr "Hızlı Başlatıcı'yı açın"
+
+#: src/PreferencesWindow.vala:299 src/QuickLaunchWindow.vala:112
+#: src/Dialogs/Preferences.vala:35
+msgid "Preferences"
+msgstr "Tercihler"
+
+#: src/PreferencesWindow.vala:422
+msgid "Cannot create an item without a workspace"
+msgstr "Çalışma alanı olmadan öğe oluşturulamaz"
+
+#: src/PreferencesWindow.vala:424
+msgid "Ok"
+msgstr "Tamam"
+
+#: src/PreferencesWindow.vala:428
+msgid "To add an item you first need to create a workspace."
+msgstr "Bir öğe eklemek için önce bir çalışma alanı oluşturmanız gerekir."
+
+#: src/PreferencesWindow.vala:449
+#, c-format
+msgid "You are deleting %s"
+msgstr "%s siliniyor"
+
+#: src/PreferencesWindow.vala:450
+msgid ""
+"Deleting a workspace is an irreversible action. Are you sure you want to "
+"delete it?"
+msgstr ""
+"Bir çalışma alanını silmek, geri alınamaz bir eylemdir. İstediğine "
+"emin misin ?"
+
+#: src/PreferencesWindow.vala:455
+msgid "DELETE"
+msgstr "SİL"
+
+#: src/QuickLaunchWindow.vala:46
+msgid "Search Workspaces…"
+msgstr "Çalışma Alanlarını Ara…"
+
+#: src/QuickLaunchWindow.vala:86
+msgid "No Workspaces or Items Found"
+msgstr "Çalışma Alanı veya Öğe Bulunamadı"
+
+#: src/QuickLaunchWindow.vala:205
+msgid "Try changing search terms."
+msgstr "Arama terimlerini değiştirmeyi deneyin."
+
+#: src/Dialogs/AddCategory.vala:27
+msgid "Add Collection"
+msgstr "Koleksiyon Ekle"
+
+#: src/Dialogs/AddCategory.vala:28
+msgid "My Collection"
+msgstr "Benim Koleksiyonum"
+
+#: src/Dialogs/AddCategory.vala:30 src/Dialogs/AddItem.vala:30
+#: src/Dialogs/AddWorkspace.vala:30
+msgid "Create"
+msgstr "Oluştur"
+
+#: src/Dialogs/AddCategory.vala:47
+msgid "Request name must not be empty."
+msgstr "İstek adı boş olmamalıdır."
+
+#: src/Dialogs/AddItem.vala:28
+msgid "New Item"
+msgstr "Yeni öğe"
+
+#: src/Dialogs/AddItem.vala:37
+msgid "Add to workspace"
+msgstr "Çalışma alanına ekle"
+
+#: src/Dialogs/AddItem.vala:69
+msgid "Item name must not be empty."
+msgstr "Öğe adı boş olmamalıdır."
+
+#: src/Dialogs/AddWorkspace.vala:28
+msgid "My Workspace"
+msgstr "Çalışma Alanım"
+
+#: src/Dialogs/AddWorkspace.vala:50
+msgid "Workspace name must not be empty."
+msgstr "Çalışma alanı adı boş olmamalıdır."
+
+#: src/Dialogs/Dialog.vala:38
+msgid "Name:"
+msgstr "İsim:"
+
+#: src/Dialogs/Dialog.vala:42 src/Dialogs/Preferences.vala:41
+msgid "Close"
+msgstr "Kapat"
+
+#. Window properties
+#: src/Dialogs/Preferences.vala:33
+msgid "Welcome"
+msgstr "Hoşgeldiniz"
+
+#: src/Dialogs/Preferences.vala:64
+msgid ""
+"Workspaces can be opened with a quick shortcut so you'll be able to open "
+"your projects faster."
+msgstr ""
+"Çalışma alanları hızlı bir kısayol ile açılabilir, böylece açabilirsiniz"
+"projeleriniz daha hızlı."
+
+#: src/Dialogs/Preferences.vala:81
+msgid "General Settings"
+msgstr "Genel Ayarlar"
+
+#: src/Dialogs/Preferences.vala:101
+msgid "Open Workspaces Shortcut:"
+msgstr "Çalışma Alanları Kısayolu:"
+
+#: src/Dialogs/Preferences.vala:123
+msgid "Save last position of window"
+msgstr "Pencerenin son konumunu kaydet"
+
+#: src/Popovers/AppChooserPopover.vala:30
+#: src/Popovers/IconChooserPopover.vala:31
+msgid "Choose"
+msgstr "Seç"
+
+#: src/Popovers/AppChooserPopover.vala:52
+msgid "Search apps…"
+msgstr "Uygulamalarda ara…"
+
+#: src/Popovers/IconChooserPopover.vala:38
+msgid "From file"
+msgstr "Dosyadan"
+
+#: src/Popovers/IconChooserPopover.vala:58
+msgid "Search icons…"
+msgstr "Arama Simgeleri…"
+
+#: src/Popovers/IconChooserPopover.vala:78
+msgid "All Files"
+msgstr "Tüm Dosyalar"
+
+#: src/Popovers/IconChooserPopover.vala:82
+msgid "Images"
+msgstr "Görüntüler"
+
+#: src/Popovers/IconChooserPopover.vala:86 src/Views/ItemEditor.vala:440
+#: src/Views/ItemEditor.vala:498
+msgid "Select an image"
+msgstr "Bir resim seçin"
+
+#: src/Settings/Shortcut.vala:30
+msgid "Disabled"
+msgstr "Devre dışı"
+
+#: src/Settings/Shortcut.vala:39
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#: src/Views/ItemEditor.vala:97 src/Views/ItemEditor.vala:102
+msgid "Display name"
+msgstr "Ekran adı"
+
+#: src/Views/ItemEditor.vala:148
+msgid "Auto Launch with workspace"
+msgstr "Çalışma alanıyla Otomatik Başlatma"
+
+#: src/Views/ItemEditor.vala:159
+msgid "Run in terminal"
+msgstr "Terminalde çalıştır"
+
+#: src/Views/ItemEditor.vala:174 src/Widgets/ExpandableCategory.vala:79
+#: src/Widgets/WorkspaceItem.vala:55
+msgid "Delete"
+msgstr "Sil"
+
+#: src/Views/ItemEditor.vala:180
+msgid "Duplicate"
+msgstr "Çoğalt"
+
+#: src/Views/ItemEditor.vala:185
+msgid "Test"
+msgstr "Test"
+
+#: src/Views/ItemEditor.vala:261
+msgid "Program to execute along with it's arguments"
+msgstr "Bağımsız değişkenleriyle birlikte yürütmek için program"
+
+#: src/Views/ItemEditor.vala:267
+msgid "Command Line"
+msgstr "Komut Satırı"
+
+#. var terminal_box = new Workspaces.Widgets.SettingBox (_ ("Auto Launch with workspace"), auto_start_switch, true);
+#: src/Views/ItemEditor.vala:269
+msgid "Custom Settings"
+msgstr "Özel Ayarlar"
+
+#. website_url_entry.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+#: src/Views/ItemEditor.vala:290
+msgid "Url that will be opened when lauched"
+msgstr "Başlatıldığında açılacak URL"
+
+#: src/Views/ItemEditor.vala:296
+msgid "Website URL"
+msgstr "Website URL"
+
+#: src/Views/ItemEditor.vala:298
+msgid "URL Settings"
+msgstr "URL Ayarları"
+
+#: src/Views/ItemEditor.vala:334 src/Views/ItemEditor.vala:394
+msgid "Select Application"
+msgstr "Uygulama Seçin"
+
+#: src/Views/ItemEditor.vala:361 src/Views/ItemEditor.vala:422
+msgid "Application to launch"
+msgstr "Başlatılacak uygulama"
+
+#: src/Views/ItemEditor.vala:363
+msgid "Application Settings"
+msgstr "Uygulama Ayarları"
+
+#: src/Views/ItemEditor.vala:430 src/Views/ItemEditor.vala:488
+msgid "Path to the directory"
+msgstr "Dizine giden yol"
+
+#: src/Views/ItemEditor.vala:437 src/Views/ItemEditor.vala:495
+msgid "Choose Directory"
+msgstr "Dizin Seçin"
+
+#: src/Views/ItemEditor.vala:461 src/Views/ItemEditor.vala:519
+msgid "Directory to open"
+msgstr "Açılacak dizin"
+
+#. url_settings_grid.add_widget (application_box);
+#: src/Views/ItemEditor.vala:464
+msgid "Application Directory Settings"
+msgstr "Uygulama Dizini Ayarları"
+
+#. url_settings_grid.add_widget (application_box);
+#: src/Views/ItemEditor.vala:522
+msgid "Directory Settings"
+msgstr "Dizin Ayarları"
+
+#: src/Widgets/QuickWelcome.vala:28
+msgid "There are no workspaces"
+msgstr "Çalışma alanı yok"
+
+#: src/Widgets/QuickWelcome.vala:29 src/Widgets/Welcome.vala:29
+msgid "Add a new workspace"
+msgstr "Yeni bir çalışma alanı ekle"
+
+#: src/Widgets/TypeComboBox.vala:30
+msgid "URL"
+msgstr "URL"
+
+#: src/Widgets/TypeComboBox.vala:31
+msgid "Directory"
+msgstr "Dizin"
+
+#: src/Widgets/TypeComboBox.vala:32
+msgid "Application"
+msgstr "Uygulama"
+
+#: src/Widgets/TypeComboBox.vala:33
+msgid "Application + Directory"
+msgstr "Uygulama + Dizin"
+
+#: src/Widgets/TypeComboBox.vala:34
+msgid "Custom command"
+msgstr "Özel komut"
+
+#: src/Widgets/Welcome.vala:28
+msgid "No Workspace selected"
+msgstr "Çalışma Alanı seçilmedi"
+
+#: src/Widgets/Welcome.vala:30
+msgid "Add a new item"
+msgstr "Yeni bir öğe ekleyin"
