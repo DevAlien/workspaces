@@ -1,0 +1,267 @@
+# French translations for extra package.
+# Copyright (C) 2020 THE extra'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the extra package.
+# Nathan Bonnemains (@NathanBnm), 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: extra\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-25 22:11+0100\n"
+"PO-Revision-Date: 2020-12-25 21:05+0100\n"
+"Last-Translator: Nathan Bonnemains (@NathanBnm)\n"
+"Language-Team: Français\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: data/com.github.devalien.workspaces.desktop.in:4
+#: data/com.github.devalien.workspaces.desktop.in:6
+#: data/com.github.devalien.workspaces.appdata.xml.in:7
+msgid "Workspaces"
+msgstr "Espaces de travail"
+
+#: data/com.github.devalien.workspaces.desktop.in:5
+msgid "Workspaces to be always ready to work"
+msgstr "Espaces de travail pour être toujours prêt à travailler"
+
+#: data/com.github.devalien.workspaces.desktop.in:8
+msgid "com.github.devalien.workspaces"
+msgstr "com.github.devalien.workspaces"
+
+#: data/com.github.devalien.workspaces.desktop.in:10
+msgid "Develop;Workspace;Launcher;"
+msgstr "Développement;Espace de travail;Lanceur;"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:8
+msgid "Always be ready for work"
+msgstr "Toujours prêt pour travailler"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:10
+msgid "Make working on different projects easy again!"
+msgstr "Rendez le travail sur différents projets de nouveau facile !"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:11
+msgid ""
+"Workspaces lets you configure and quickly launch all you need to work on a "
+"project. It can open in a second different instances of code, a specific "
+"website and a directory"
+msgstr ""
+"Espaces de travail vous laisse configurer et lancer rapidement tout ce dont "
+"vous avez besoin pour un projet. L'application peut ouvrir une deuxième "
+"instance de code, un site Web spécifique et un dossier"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:16
+msgid "Goncalo Margalho"
+msgstr "Goncalo Margalho"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:72
+#: data/com.github.devalien.workspaces.appdata.xml.in:107
+#: data/com.github.devalien.workspaces.appdata.xml.in:126
+#: data/com.github.devalien.workspaces.appdata.xml.in:173
+msgid "Fixes"
+msgstr "Corrections"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:74
+msgid "Fix run in terminal"
+msgstr "Correction de l'exécution dans le terminal"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:75
+msgid "Fix Open quick launcher via the knob menu"
+msgstr "Correction de l'ouverture du lanceur rapide via le menu"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:76
+msgid "Fix crash when clicking on link on about dialog by max246"
+msgstr ""
+"Correction d'un plantage lors du clic sur un lien dans la fenêtre à propos "
+"par max246"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:77
+msgid ""
+"Close quick launcher when selecting an item, unless you press CTRL by Philip-"
+"Scott"
+msgstr ""
+"Fermeture du lanceur rapide lors de la sélection d'un élément, à moins que "
+"vous n'appuyiez sur Ctrl par Philip-Scott"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:78
+msgid "Fixes visual issues on Switches, they were squashed"
+msgstr "Correction de problèmes graphiques sur les boutons"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:80
+#: data/com.github.devalien.workspaces.appdata.xml.in:120
+msgid "Improvements"
+msgstr "Améliorations"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:82
+msgid "Save or don't save latest position by max246"
+msgstr "Enregistrement ou non de la dernière position de la fenêtre par max246"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:83
+msgid "Make the workspaces in the left list sortables with drag and drop"
+msgstr ""
+"Les espaces de travail dans la liste de gauche sont désormais réorganisables "
+"par glisser-déposer"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:84
+msgid "Make the items in the left list sortables with drag and drop"
+msgstr ""
+"Les éléments dans la liste de gauche sont désormais réorganisables par "
+"glisser-déposer"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:85
+msgid "Items can be moved in another workspace just with drag and drop"
+msgstr ""
+"Les éléments peuvent être déplacés vers un autre espace de travail par un "
+"simple gliser-déposer"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:86
+msgid "Workspaces are editable"
+msgstr "Les espaces de travail peuvent être modifiés"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:87
+msgid "Workspaces are deletable (should display a warning message)"
+msgstr ""
+"Les espaces de travail peuvent être supprimés (devrait afficher un message "
+"d'avertissement)"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:88
+msgid "Workspaces will display an image in the list, if they have one"
+msgstr ""
+"Les espaces de travail afficheront une image dans la liste, s'ils en "
+"possèdent une"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:89
+msgid "Items now have a blue dot indicating that they are part of the auto-run"
+msgstr ""
+"Les éléments ont désormais un point bleu indiquant s'ils font partie d'une "
+"exécution automatique"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:91
+msgid "Translations"
+msgstr "Traductions"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:93
+msgid "German translation by meisenzahl"
+msgstr "Traduction en allemand par meisenzahl"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:94
+msgid "Dutch Translation by Vistaus"
+msgstr "Traduction en néerlandais par Vistaus"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:101
+msgid "Release 3.0 for AppCenter"
+msgstr "Version 3.0 pour le Centre d'Applications"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:109
+msgid "Fixed typo"
+msgstr "Correction d'une faute d'orthographe"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:116
+msgid "New Features"
+msgstr "Nouvelles fonctionnalités"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:118
+msgid "Run commands in terminal"
+msgstr "Exécutez des commandes dans le terminal"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:122
+msgid "App selection is now a popover"
+msgstr "Le sélecteur d'application est désormais une fenêtre flottante"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:123
+msgid "Icon selection is now a popover"
+msgstr "Le sélecteur d'icône est désormais une fenêtre flottante"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:124
+msgid "Quick launcher now has a better keyboard handling"
+msgstr ""
+"Le lanceur rapide a désormais une meilleure gestion des raccourcis clavier"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:128
+msgid "Fixed theme for other gtk themes"
+msgstr "Correction du thème pour les autres thèmes GTK"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:129
+msgid "Fixed icon critical message"
+msgstr "Correction de l'icône du message d'avertissement"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:136
+#: data/com.github.devalien.workspaces.appdata.xml.in:156
+#: data/com.github.devalien.workspaces.appdata.xml.in:169
+msgid "Bug Fixes"
+msgstr "Corrections de bugs"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:138
+msgid "Fixed shortcut for flatpak"
+msgstr "Correction du raccourci pour flatpak"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:139
+msgid "Fixed load apps for flatpak"
+msgstr "Correction du chargement des applications pour flatpak"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:146
+msgid "Features"
+msgstr "Fonctionnalités"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:148
+msgid "Added default shortcut to launch the app and a way to modify it"
+msgstr ""
+"Ajout d'un raccourci par défaut pour lancer l'application et un moyen de le "
+"modifier"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:149
+#: data/com.github.devalien.workspaces.appdata.xml.in:167
+msgid "Add missing icons"
+msgstr "Ajout des icônes manquantes"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:150
+msgid "Add URL type"
+msgstr "Ajout du type URL"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:151
+msgid "Add Application type"
+msgstr "Ajout du type Application"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:152
+msgid "Add Application + Directory type"
+msgstr "Ajout du type Application + Dossier"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:153
+msgid "Add Directory type"
+msgstr "Ajout du type Dossier"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:154
+msgid "Add Custom type"
+msgstr "Ajout du type Personnalisé"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:158
+msgid ""
+"When closing preferences, if you were in the quick launcher, it will open "
+"back that one"
+msgstr ""
+"Lors de la fermeture, si vous étiez sur le lanceur rapide, il sera de "
+"nouveau ouvert"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:164
+msgid "Improvementes"
+msgstr "Améliorations"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:166
+msgid "Improved Icon"
+msgstr "Amélioration de l'icône"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:171
+msgid "Set text color of the search icon on the header"
+msgstr ""
+"Définition de la couleur de texte de l'icône de recherche dans l'entête"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:175
+msgid "Fix control file for deb packaging"
+msgstr "Correction du fichier de contrôle pour le paquet deb"
+
+#: data/com.github.devalien.workspaces.appdata.xml.in:181
+msgid "Initial release"
+msgstr "Version initiale"

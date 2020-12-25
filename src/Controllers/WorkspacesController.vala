@@ -59,7 +59,7 @@ public class Workspaces.Controllers.WorkspacesController : Object {
     public void add_workspace (Workspaces.Models.Workspace workspace) {
         store.add_workspace (workspace);
         workspace_added (workspace);
-        var item = new Workspaces.Models.Item ("New item");
+        var item = new Workspaces.Models.Item (_ ("New item"));
         store.add_item (item, workspace);
         item_added (item);
     }
