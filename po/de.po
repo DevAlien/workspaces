@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.devalien.workspaces\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-14 11:56+0200\n"
+"POT-Creation-Date: 2020-12-25 22:12+0100\n"
 "PO-Revision-Date: 2020-09-11 16:03+0200\n"
 "Last-Translator: Marius Meisenzahl <mariusmeisenzahl@gmail.com>\n"
 "Language-Team: none\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/PreferencesWindow.vala:53 src/QuickLaunchWindow.vala:38
+#: src/Widgets/QuickWelcome.vala:28 src/Widgets/Welcome.vala:28
 msgid "Workspaces"
 msgstr "Workspaces"
 
@@ -95,6 +96,11 @@ msgstr "Es wurden keine Arbeitsflächen oder Elemente gefunden"
 #: src/QuickLaunchWindow.vala:205
 msgid "Try changing search terms."
 msgstr "Probiere andere Suchbegriffe."
+
+#: src/Controllers/WorkspacesController.vala:62
+#, fuzzy
+msgid "New item"
+msgstr "Neues Element"
 
 #: src/Dialogs/AddCategory.vala:27
 msgid "Add Collection"
@@ -217,7 +223,7 @@ msgid "Run in terminal"
 msgstr "Im Terminal ausführen"
 
 #: src/Views/ItemEditor.vala:174 src/Widgets/ExpandableCategory.vala:79
-#: src/Widgets/WorkspaceItem.vala:55
+#: src/Widgets/WorkspaceItem.vala:55 src/Widgets/WorkspaceRow.vala:101
 msgid "Delete"
 msgstr "Löschen"
 
@@ -289,6 +295,11 @@ msgstr "Anwendungsverzeichniseinstellungen"
 msgid "Directory Settings"
 msgstr "Verzeichniseinstellungen"
 
+#: src/Widgets/ItemRow.vala:100
+#, fuzzy
+msgid "Execute command"
+msgstr "Benutzerdefinierter Befehl"
+
 #: src/Widgets/QuickWelcome.vala:28
 msgid "There are no workspaces"
 msgstr "Es existieren keine Arbeitsflächen"
@@ -324,3 +335,11 @@ msgstr "Keine Arbeitsfläche ausgewählt"
 #: src/Widgets/Welcome.vala:30
 msgid "Add a new item"
 msgstr "Neues Element hinzufügen"
+
+#: src/Widgets/WorkspaceRow.vala:96
+msgid "Edit"
+msgstr ""
+
+#: src/Widgets/WorkspaceRow.vala:123
+msgid "Section Menu"
+msgstr ""

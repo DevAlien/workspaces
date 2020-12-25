@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.devalien.workspaces\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-14 11:56+0200\n"
+"POT-Creation-Date: 2020-12-25 22:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/PreferencesWindow.vala:53 src/QuickLaunchWindow.vala:38
+#: src/Widgets/QuickWelcome.vala:28 src/Widgets/Welcome.vala:28
 msgid "Workspaces"
 msgstr ""
 
@@ -93,6 +94,10 @@ msgstr ""
 
 #: src/QuickLaunchWindow.vala:205
 msgid "Try changing search terms."
+msgstr ""
+
+#: src/Controllers/WorkspacesController.vala:62
+msgid "New item"
 msgstr ""
 
 #: src/Dialogs/AddCategory.vala:27
@@ -214,7 +219,7 @@ msgid "Run in terminal"
 msgstr ""
 
 #: src/Views/ItemEditor.vala:174 src/Widgets/ExpandableCategory.vala:79
-#: src/Widgets/WorkspaceItem.vala:55
+#: src/Widgets/WorkspaceItem.vala:55 src/Widgets/WorkspaceRow.vala:101
 msgid "Delete"
 msgstr ""
 
@@ -286,6 +291,10 @@ msgstr ""
 msgid "Directory Settings"
 msgstr ""
 
+#: src/Widgets/ItemRow.vala:100
+msgid "Execute command"
+msgstr ""
+
 #: src/Widgets/QuickWelcome.vala:28
 msgid "There are no workspaces"
 msgstr ""
@@ -320,4 +329,12 @@ msgstr ""
 
 #: src/Widgets/Welcome.vala:30
 msgid "Add a new item"
+msgstr ""
+
+#: src/Widgets/WorkspaceRow.vala:96
+msgid "Edit"
+msgstr ""
+
+#: src/Widgets/WorkspaceRow.vala:123
+msgid "Section Menu"
 msgstr ""

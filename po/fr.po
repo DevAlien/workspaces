@@ -1,345 +1,344 @@
-# Italian translations for com.github.devalien.workspaces package.
+# French translations for com.github.devalien.workspaces package.
 # Copyright (C) 2020 THE com.github.devalien.workspaces'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the com.github.devalien.workspaces package.
-# nect <bynect@gmail.com>, 2020.
+# Nathan Bonnemains (@NathanBnm), 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.devalien.workspaces\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-25 22:12+0100\n"
-"PO-Revision-Date: 2020-09-26 17:04+0200\n"
-"Last-Translator: nect <bynect@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: it\n"
+"PO-Revision-Date: 2020-12-25 21:05+0100\n"
+"Last-Translator: Nathan Bonnemains (@NathanBnm)\n"
+"Language-Team: Français\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: src/PreferencesWindow.vala:53 src/QuickLaunchWindow.vala:38
 #: src/Widgets/QuickWelcome.vala:28 src/Widgets/Welcome.vala:28
 msgid "Workspaces"
-msgstr "Workspaces"
+msgstr "Espaces de travail"
 
 #: src/PreferencesWindow.vala:128 src/Dialogs/AddWorkspace.vala:27
 #: src/Widgets/QuickWelcome.vala:29 src/Widgets/Welcome.vala:29
 msgid "Add Workspace"
-msgstr "Aggiungi Workspace"
+msgstr "Ajouter un espace de travail"
 
 #: src/PreferencesWindow.vala:141 src/Dialogs/AddItem.vala:27
 #: src/Widgets/Welcome.vala:30
 msgid "Add Item"
-msgstr "Aggiungi elemento"
+msgstr "Ajouter un élément"
 
 #: src/PreferencesWindow.vala:234 src/Views/ItemEditor.vala:135
 msgid "Settings"
-msgstr "Impostazioni"
+msgstr "Paramètres"
 
 #: src/PreferencesWindow.vala:238
 msgid "About"
-msgstr "Info"
+msgstr "À propos"
 
 #: src/PreferencesWindow.vala:247
 msgid "Light mode"
-msgstr "Tema chiaro"
+msgstr "Thème clair"
 
 #: src/PreferencesWindow.vala:248
 msgid "Dark mode"
-msgstr "Tema scuro"
+msgstr "Thème sombre"
 
 #: src/PreferencesWindow.vala:272 src/PreferencesWindow.vala:276
 msgid "Open Quick Launcher"
-msgstr "Apri Quick Launcher"
+msgstr "Ouvrir le lanceur rapide"
 
 #: src/PreferencesWindow.vala:299 src/QuickLaunchWindow.vala:112
 #: src/Dialogs/Preferences.vala:35
 msgid "Preferences"
-msgstr "Preferenze"
+msgstr "Préférences"
 
 #: src/PreferencesWindow.vala:422
 msgid "Cannot create an item without a workspace"
-msgstr "Impossibile creare un elemento senza un workspace"
+msgstr "Impossible de créer un élément sans espace de travail"
 
 #: src/PreferencesWindow.vala:424
 msgid "Ok"
-msgstr ""
+msgstr "OK"
 
 #: src/PreferencesWindow.vala:428
 msgid "To add an item you first need to create a workspace."
-msgstr "Per aggiungere un elemento devi prima creare un workspace"
+msgstr "Pour ajouter un élément vous devez d'abord créer un espace de travail."
 
 #: src/PreferencesWindow.vala:449
 #, c-format
 msgid "You are deleting %s"
-msgstr "Stai rimuovendo %s"
+msgstr "Vous supprimez %s"
 
 #: src/PreferencesWindow.vala:450
 msgid ""
 "Deleting a workspace is an irreversible action. Are you sure you want to "
 "delete it?"
 msgstr ""
-"Rimuovere un Workspace e' irreversibile. Sei sicuro che vuoi rimuoverlo?"
+"Supprimer un espace de travail est une action irréversible. Êtes-vous sûr de "
+"vouloir le supprimer ?"
 
 #: src/PreferencesWindow.vala:455
 msgid "DELETE"
-msgstr "RIMUOVI"
+msgstr "SUPPRIMER"
 
 #: src/QuickLaunchWindow.vala:46
 msgid "Search Workspaces…"
-msgstr "Cerca Workspace…"
+msgstr "Rechercher dans les espaces de travail…"
 
 #: src/QuickLaunchWindow.vala:86
 msgid "No Workspaces or Items Found"
-msgstr "Nessun Workspace o Elemento trovato"
+msgstr "Aucun espace de travail ou élément trouvé"
 
 #: src/QuickLaunchWindow.vala:205
 msgid "Try changing search terms."
-msgstr "Prova a cambiare i termini di ricerca"
+msgstr "Essayez de modifier votre recherche."
 
 #: src/Controllers/WorkspacesController.vala:62
-#, fuzzy
 msgid "New item"
-msgstr "Nuovo elemento"
+msgstr "Nouvel élément"
 
 #: src/Dialogs/AddCategory.vala:27
 msgid "Add Collection"
-msgstr "Aggiungi collezione"
+msgstr "Ajouter une collection"
 
 #: src/Dialogs/AddCategory.vala:28
 msgid "My Collection"
-msgstr ""
+msgstr "Ma collection"
 
 #: src/Dialogs/AddCategory.vala:30 src/Dialogs/AddItem.vala:30
 #: src/Dialogs/AddWorkspace.vala:30
 msgid "Create"
-msgstr "Crea"
+msgstr "Créer"
 
 #: src/Dialogs/AddCategory.vala:47
 msgid "Request name must not be empty."
-msgstr "Il nome della richiesta non puo' essere vuoto."
+msgstr "Le nom de la requête ne doit pas être vide."
 
 #: src/Dialogs/AddItem.vala:28
 msgid "New Item"
-msgstr "Nuovo elemento"
+msgstr "Nouvel élément"
 
 #: src/Dialogs/AddItem.vala:37
 msgid "Add to workspace"
-msgstr "Aggiungi al workspace"
+msgstr "Ajouter à l'espace de travail"
 
 #: src/Dialogs/AddItem.vala:69
 msgid "Item name must not be empty."
-msgstr "Il nome dell'elemento non deve essere vuoto"
+msgstr "Le nom de l'élément ne doit pas être vide."
 
 #: src/Dialogs/AddWorkspace.vala:28
 msgid "My Workspace"
-msgstr ""
+msgstr "Mon espace de travail"
 
 #: src/Dialogs/AddWorkspace.vala:50
 msgid "Workspace name must not be empty."
-msgstr "Il nome del workspace non deve essere vuoto"
+msgstr "Le nom de l'espace de travail ne doit pas être vide."
 
 #: src/Dialogs/Dialog.vala:38
 msgid "Name:"
-msgstr "Nome:"
+msgstr "Nom :"
 
 #: src/Dialogs/Dialog.vala:42 src/Dialogs/Preferences.vala:41
 msgid "Close"
-msgstr "Chiudi"
+msgstr "Fermer"
 
 #. Window properties
 #: src/Dialogs/Preferences.vala:33
 msgid "Welcome"
-msgstr "Benvenuto"
+msgstr "Bienvenue"
 
 #: src/Dialogs/Preferences.vala:64
 msgid ""
 "Workspaces can be opened with a quick shortcut so you'll be able to open "
 "your projects faster."
 msgstr ""
-"I Workspace possono essere aperti con una scorciatoia che ti permettera' di "
-"aprire i tuoi progetti piu' velocemente."
+"Espaces de travail peut être ouvert avec un raccourci rapide pour que vous "
+"puissiez ouvrir vos projets plus rapidement."
 
 #: src/Dialogs/Preferences.vala:81
 msgid "General Settings"
-msgstr "Impostazioni Generali"
+msgstr "Paramètres généraux"
 
 #: src/Dialogs/Preferences.vala:101
 msgid "Open Workspaces Shortcut:"
-msgstr "Scorciatoia per aprire Workspace:"
+msgstr "Raccourci d'ouverture d'Espaces de travail :"
 
 #: src/Dialogs/Preferences.vala:123
 msgid "Save last position of window"
-msgstr "Salva l'ultima posizione della finestra"
+msgstr "Enregistrer la dernière position de la fenêtre"
 
 #: src/Popovers/AppChooserPopover.vala:30
 #: src/Popovers/IconChooserPopover.vala:31
 msgid "Choose"
-msgstr "Sceglu"
+msgstr "Sélectionner"
 
 #: src/Popovers/AppChooserPopover.vala:52
 msgid "Search apps…"
-msgstr "Cerca app…"
+msgstr "Rechercher une application…"
 
 #: src/Popovers/IconChooserPopover.vala:38
 msgid "From file"
-msgstr "Da file"
+msgstr "À partir d'un fichier"
 
 #: src/Popovers/IconChooserPopover.vala:58
 msgid "Search icons…"
-msgstr "Cerca icone…"
+msgstr "Rechercher une icône…"
 
 #: src/Popovers/IconChooserPopover.vala:78
 msgid "All Files"
-msgstr "Tutti i File…"
+msgstr "Tous les fichiers"
 
 #: src/Popovers/IconChooserPopover.vala:82
 msgid "Images"
-msgstr "Immagini"
+msgstr "Images"
 
 #: src/Popovers/IconChooserPopover.vala:86 src/Views/ItemEditor.vala:440
 #: src/Views/ItemEditor.vala:498
 msgid "Select an image"
-msgstr "Seleziona un'immagine"
+msgstr "Sélectionner une image"
 
 #: src/Settings/Shortcut.vala:30
 msgid "Disabled"
-msgstr "Disabilitato"
+msgstr "Désactivé"
 
 #: src/Settings/Shortcut.vala:39
 msgid "Ctrl"
-msgstr ""
+msgstr "Ctrl"
 
 #: src/Views/ItemEditor.vala:97 src/Views/ItemEditor.vala:102
 msgid "Display name"
-msgstr "Nome visualizzato"
+msgstr "Nom affiché"
 
 #: src/Views/ItemEditor.vala:148
 msgid "Auto Launch with workspace"
-msgstr "Lancia automaticamento con il workspace"
+msgstr "Lancer automatiquement avec l'espace de travail"
 
 #: src/Views/ItemEditor.vala:159
 msgid "Run in terminal"
-msgstr "Apri nel terminale"
+msgstr "Exécuter dans le terminal"
 
 #: src/Views/ItemEditor.vala:174 src/Widgets/ExpandableCategory.vala:79
 #: src/Widgets/WorkspaceItem.vala:55 src/Widgets/WorkspaceRow.vala:101
 msgid "Delete"
-msgstr "Rimuovi"
+msgstr "Supprimer"
 
 #: src/Views/ItemEditor.vala:180
 msgid "Duplicate"
-msgstr "Duplica"
+msgstr "Dupliquer"
 
 #: src/Views/ItemEditor.vala:185
 msgid "Test"
-msgstr ""
+msgstr "Tester"
 
 #: src/Views/ItemEditor.vala:261
 msgid "Program to execute along with it's arguments"
-msgstr "Programma da eseguire con degli argomenti"
+msgstr "Programme a exécuter avec ses arguments"
 
 #: src/Views/ItemEditor.vala:267
 msgid "Command Line"
-msgstr "Linea dei comandi"
+msgstr "Ligne de commande"
 
 #. var terminal_box = new Workspaces.Widgets.SettingBox (_ ("Auto Launch with workspace"), auto_start_switch, true);
 #: src/Views/ItemEditor.vala:269
 msgid "Custom Settings"
-msgstr "Impostazioni personalizzate"
+msgstr "Paramètres personnalisés"
 
 #. website_url_entry.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
 #: src/Views/ItemEditor.vala:290
 msgid "Url that will be opened when lauched"
-msgstr "Url che verra' aperto al lancio"
+msgstr "URL qui sera ouverte au lancement"
 
 #: src/Views/ItemEditor.vala:296
 msgid "Website URL"
-msgstr "URL del sito"
+msgstr "URL du site Web"
 
 #: src/Views/ItemEditor.vala:298
 msgid "URL Settings"
-msgstr "Impostazioni URL"
+msgstr "Paramètres de l'URL"
 
 #: src/Views/ItemEditor.vala:334 src/Views/ItemEditor.vala:394
 msgid "Select Application"
-msgstr "Seleziona Applicazione"
+msgstr "Sélectionner l'application"
 
 #: src/Views/ItemEditor.vala:361 src/Views/ItemEditor.vala:422
 msgid "Application to launch"
-msgstr "Applicazione da lanciare"
+msgstr "Application à lancer"
 
 #: src/Views/ItemEditor.vala:363
 msgid "Application Settings"
-msgstr "Impostazioni Applicazione"
+msgstr "Paramètres de l'application"
 
 #: src/Views/ItemEditor.vala:430 src/Views/ItemEditor.vala:488
 msgid "Path to the directory"
-msgstr "Percorso della cartella"
+msgstr "Chemin vers le dossier"
 
 #: src/Views/ItemEditor.vala:437 src/Views/ItemEditor.vala:495
 msgid "Choose Directory"
-msgstr "Scegli Cartella"
+msgstr "Sélectionner un dossier"
 
 #: src/Views/ItemEditor.vala:461 src/Views/ItemEditor.vala:519
 msgid "Directory to open"
-msgstr "Cartella da aprire"
+msgstr "Dossier à ouvrir"
 
 #. url_settings_grid.add_widget (application_box);
 #: src/Views/ItemEditor.vala:464
 msgid "Application Directory Settings"
-msgstr "Impostazioni Cartella Applicazione"
+msgstr "Paramètres de l'application et du dossier"
 
 #. url_settings_grid.add_widget (application_box);
 #: src/Views/ItemEditor.vala:522
 msgid "Directory Settings"
-msgstr "Impostazioni Cartella"
+msgstr "Paramètres du dossier"
 
 #: src/Widgets/ItemRow.vala:100
-#, fuzzy
 msgid "Execute command"
-msgstr "Comando personalizzato"
+msgstr "Exécuter la commande"
 
 #: src/Widgets/QuickWelcome.vala:28
 msgid "There are no workspaces"
-msgstr "Non ci sono workspace"
+msgstr "Il n'y a pas d'espaces de travail"
 
 #: src/Widgets/QuickWelcome.vala:29 src/Widgets/Welcome.vala:29
 msgid "Add a new workspace"
-msgstr "Aggiungi un nuovo workspace"
+msgstr "Ajouter un nouvel espace de travail"
 
 #: src/Widgets/TypeComboBox.vala:30
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: src/Widgets/TypeComboBox.vala:31
 msgid "Directory"
-msgstr "Cartella"
+msgstr "Dossier"
 
 #: src/Widgets/TypeComboBox.vala:32
 msgid "Application"
-msgstr "Applicazione"
+msgstr "Application"
 
 #: src/Widgets/TypeComboBox.vala:33
 msgid "Application + Directory"
-msgstr "Applicazione + Cartella"
+msgstr "Application + Dossier"
 
 #: src/Widgets/TypeComboBox.vala:34
 msgid "Custom command"
-msgstr "Comando personalizzato"
+msgstr "Commande personnalisée"
 
 #: src/Widgets/Welcome.vala:28
 msgid "No Workspace selected"
-msgstr "Nessun Workspace selezionato"
+msgstr "Aucun espace de travail sélectionné"
 
 #: src/Widgets/Welcome.vala:30
 msgid "Add a new item"
-msgstr "Aggiungi un nuovo elemento"
+msgstr "Ajouter un nouvel élément"
 
 #: src/Widgets/WorkspaceRow.vala:96
 msgid "Edit"
-msgstr ""
+msgstr "Modifier"
 
 #: src/Widgets/WorkspaceRow.vala:123
 msgid "Section Menu"
-msgstr ""
+msgstr "Menu de la section"
